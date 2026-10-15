@@ -2,7 +2,7 @@
 
 仓库：[zixifang/QT-main](https://github.com/zixifang/QT-main)
 
-计算用 pandas 和 numpy。算法读 `data` 里的 CSV，把 JSON 写到本地 `outdata`（不提交）。界面只读这些 JSON。
+计算用 pandas 和 numpy。算法读 `data` 里的 CSV，把 JSON 写到 `outdata/<数据集>/`。界面只读这些 JSON。
 
 ## 六周安排
 

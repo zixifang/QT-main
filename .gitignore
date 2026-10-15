@@ -13,10 +13,9 @@ env/
 .env
 *.pem
 
-# 原始大文件与生成结果不入库。CSV 行情可以提交，笔记本和 outdata 由本地生成。
+# 原始大文件不入库。算法结果放在 outdata/ 并提交，方便直接看到存放位置。
 data/raw/
 *.ipynb
-outdata/
 output/
 
 # 本地汇报材料
