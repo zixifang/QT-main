@@ -1,5 +1,7 @@
 # 量化研究小组
 
+仓库：[zixifang/QT-main](https://github.com/zixifang/QT-main)
+
 本仓库已按新的项目计划清空。原先的「单一 RSI 均值回归 + 五人分模块」代码、接口和分工说明都已移除，后续协作以本说明为准。
 
 ## 六周安排
@@ -41,8 +43,6 @@ docker compose run --rm app
 镜像基于 `python:3.10-slim`。当前命令只确认 Python 版本，算法程序由各自分支接入后再改启动命令。
 
 ## 协作
-
-仓库地址：https://github.com/zixifang/RSI-Strategy
 
 - `main` 保存已经能运行的版本。
 - 每人从 `main` 拉自己的分支：`feature/<GitHub用户名>-<内容>`。
