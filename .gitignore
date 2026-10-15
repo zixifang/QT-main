@@ -1,4 +1,4 @@
-# Python
+﻿# Python
 __pycache__/
 *.py[cod]
 *.egg-info/
@@ -13,10 +13,9 @@ env/
 .env
 *.pem
 
-# 原始大文件与生成结果不入库。CSV 行情可以提交，笔记本和 outdata 由本地生成。
+# 原始大文件与生成结果不入库。CSV 行情可以提交，笔记本不入库。算法结果放在 outdata/。
 data/raw/
 *.ipynb
-outdata/
 output/
 
 # 本地汇报材料

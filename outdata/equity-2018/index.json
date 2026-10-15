@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "dataset_id": "equity-2018",
+  "name": "2018 股票组合样本",
+  "source": "data/Equity-Portfolio-Management-master",
+  "price_field": "close",
+  "symbols": [
+    "AAPL",
+    "AMZN",
+    "FB",
+    "GOOG",
+    "IBM",
+    "MSFT",
+    "NFLX",
+    "ORCL",
+    "SAP",
+    "TSLA",
+    "USD_JPY"
+  ],
+  "algorithms": [
+    {
+      "id": "rsi",
+      "name": "RSI 均值回归",
+      "note": "RSI(14) 低于 30 开多，高于 70 平仓"
+    }
+  ]
+}
