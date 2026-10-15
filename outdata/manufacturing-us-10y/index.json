@@ -1,0 +1,2850 @@
+{
+  "schema_version": 1,
+  "dataset_id": "manufacturing-us-10y",
+  "name": "美国制造业近十年日线",
+  "source": "data/manufacturing-us-10y",
+  "price_field": "close",
+  "symbols": [
+    "CAT",
+    "DE",
+    "PCAR",
+    "URI",
+    "TEX",
+    "ETN",
+    "GEV",
+    "VRT",
+    "PWR",
+    "HUBB",
+    "NVT",
+    "GNRC",
+    "ROK",
+    "EMR",
+    "ITW",
+    "PH",
+    "AME",
+    "IR",
+    "FAST",
+    "DOV",
+    "GE",
+    "RTX",
+    "LMT",
+    "NOC",
+    "GD",
+    "BA",
+    "TDG",
+    "HWM",
+    "GM",
+    "F",
+    "TT",
+    "CARR",
+    "JCI",
+    "LII",
+    "NUE",
+    "STLD",
+    "APH",
+    "TEL",
+    "MMM",
+    "HON",
+    "CMI",
+    "WM",
+    "CSX",
+    "UNP",
+    "FDX",
+    "UPS"
+  ],
+  "algorithms": [
+    {
+      "id": "rsi",
+      "name": "RSI 均值回归",
+      "note": "RSI(14) 低于 30 开多，高于 70 平仓",
+      "years": {
+        "2016": {
+          "symbols": [
+            {
+              "symbol": "CAT",
+              "cumulative_return": 0.10581,
+              "benchmark_cumulative_return": 0.071814
+            },
+            {
+              "symbol": "DE",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.198549
+            },
+            {
+              "symbol": "PCAR",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.13945
+            },
+            {
+              "symbol": "URI",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.394716
+            },
+            {
+              "symbol": "TEX",
+              "cumulative_return": 0.188142,
+              "benchmark_cumulative_return": 0.281873
+            },
+            {
+              "symbol": "ETN",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.072942
+            },
+            {
+              "symbol": "PWR",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.262224
+            },
+            {
+              "symbol": "HUBB",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.1373
+            },
+            {
+              "symbol": "GNRC",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.125104
+            },
+            {
+              "symbol": "ROK",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.17055
+            },
+            {
+              "symbol": "EMR",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.132746
+            },
+            {
+              "symbol": "ITW",
+              "cumulative_return": 0.119784,
+              "benchmark_cumulative_return": 0.060559
+            },
+            {
+              "symbol": "PH",
+              "cumulative_return": 0.166076,
+              "benchmark_cumulative_return": 0.131164
+            },
+            {
+              "symbol": "AME",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.071315
+            },
+            {
+              "symbol": "FAST",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.237157
+            },
+            {
+              "symbol": "DOV",
+              "cumulative_return": 0.157363,
+              "benchmark_cumulative_return": 0.114891
+            },
+            {
+              "symbol": "GE",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.103564
+            },
+            {
+              "symbol": "RTX",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.106168
+            },
+            {
+              "symbol": "LMT",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.081163
+            },
+            {
+              "symbol": "NOC",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.065171
+            },
+            {
+              "symbol": "GD",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.147395
+            },
+            {
+              "symbol": "BA",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.170713
+            },
+            {
+              "symbol": "TDG",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.028141
+            },
+            {
+              "symbol": "HWM",
+              "cumulative_return": -0.082201,
+              "benchmark_cumulative_return": -0.014972
+            },
+            {
+              "symbol": "GM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.115904
+            },
+            {
+              "symbol": "F",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.033764
+            },
+            {
+              "symbol": "TT",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.155776
+            },
+            {
+              "symbol": "JCI",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.06108
+            },
+            {
+              "symbol": "LII",
+              "cumulative_return": 0.060961,
+              "benchmark_cumulative_return": -0.010506
+            },
+            {
+              "symbol": "NUE",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.279613
+            },
+            {
+              "symbol": "STLD",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.494972
+            },
+            {
+              "symbol": "APH",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.068304
+            },
+            {
+              "symbol": "TEL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.141507
+            },
+            {
+              "symbol": "MMM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.055842
+            },
+            {
+              "symbol": "HON",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.078629
+            },
+            {
+              "symbol": "CMI",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.094605
+            },
+            {
+              "symbol": "WM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.138657
+            },
+            {
+              "symbol": "CSX",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.164615
+            },
+            {
+              "symbol": "UNP",
+              "cumulative_return": 0.096184,
+              "benchmark_cumulative_return": 0.077793
+            },
+            {
+              "symbol": "FDX",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.092131
+            },
+            {
+              "symbol": "UPS",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.068627
+            }
+          ],
+          "strategy": {
+            "count": 41,
+            "winners": 7,
+            "losers": 1,
+            "profit_ratio": 0.170732,
+            "win_rate": 0.875,
+            "cumulative_return": 0.019808,
+            "median_return": 0.0,
+            "annualized_return": 0.125493,
+            "sharpe": 0.521697,
+            "max_drawdown": -0.006567,
+            "trades": 8,
+            "beat_benchmark": 7
+          },
+          "benchmark": {
+            "count": 41,
+            "winners": 38,
+            "losers": 3,
+            "profit_ratio": 0.926829,
+            "win_rate": null,
+            "cumulative_return": 0.130359,
+            "median_return": 0.114891,
+            "annualized_return": 0.934572,
+            "sharpe": 2.643699,
+            "max_drawdown": -0.059624,
+            "trades": 0
+          }
+        },
+        "2017": {
+          "symbols": [
+            {
+              "symbol": "CAT",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.750336
+            },
+            {
+              "symbol": "DE",
+              "cumulative_return": 0.088192,
+              "benchmark_cumulative_return": 0.548296
+            },
+            {
+              "symbol": "PCAR",
+              "cumulative_return": 0.104989,
+              "benchmark_cumulative_return": 0.148196
+            },
+            {
+              "symbol": "URI",
+              "cumulative_return": 0.123207,
+              "benchmark_cumulative_return": 0.628244
+            },
+            {
+              "symbol": "TEX",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.542597
+            },
+            {
+              "symbol": "ETN",
+              "cumulative_return": 0.042041,
+              "benchmark_cumulative_return": 0.215406
+            },
+            {
+              "symbol": "PWR",
+              "cumulative_return": 0.121175,
+              "benchmark_cumulative_return": 0.122238
+            },
+            {
+              "symbol": "HUBB",
+              "cumulative_return": 0.07894,
+              "benchmark_cumulative_return": 0.188278
+            },
+            {
+              "symbol": "GNRC",
+              "cumulative_return": 0.096426,
+              "benchmark_cumulative_return": 0.215513
+            },
+            {
+              "symbol": "ROK",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.488718
+            },
+            {
+              "symbol": "EMR",
+              "cumulative_return": 0.134685,
+              "benchmark_cumulative_return": 0.290498
+            },
+            {
+              "symbol": "ITW",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.389249
+            },
+            {
+              "symbol": "PH",
+              "cumulative_return": 0.114503,
+              "benchmark_cumulative_return": 0.449142
+            },
+            {
+              "symbol": "AME",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.499786
+            },
+            {
+              "symbol": "IR",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.608057
+            },
+            {
+              "symbol": "FAST",
+              "cumulative_return": -0.00397,
+              "benchmark_cumulative_return": 0.196637
+            },
+            {
+              "symbol": "DOV",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.376831
+            },
+            {
+              "symbol": "GE",
+              "cumulative_return": -0.394266,
+              "benchmark_cumulative_return": -0.429162
+            },
+            {
+              "symbol": "RTX",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.191314
+            },
+            {
+              "symbol": "LMT",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.31766
+            },
+            {
+              "symbol": "NOC",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.338848
+            },
+            {
+              "symbol": "GD",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.198545
+            },
+            {
+              "symbol": "BA",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.94715
+            },
+            {
+              "symbol": "TDG",
+              "cumulative_return": 0.1028,
+              "benchmark_cumulative_return": 0.198419
+            },
+            {
+              "symbol": "HWM",
+              "cumulative_return": 0.584968,
+              "benchmark_cumulative_return": 0.484022
+            },
+            {
+              "symbol": "GM",
+              "cumulative_return": 0.07071,
+              "benchmark_cumulative_return": 0.225115
+            },
+            {
+              "symbol": "F",
+              "cumulative_return": 0.005215,
+              "benchmark_cumulative_return": 0.087328
+            },
+            {
+              "symbol": "TT",
+              "cumulative_return": 0.061115,
+              "benchmark_cumulative_return": 0.212728
+            },
+            {
+              "symbol": "JCI",
+              "cumulative_return": -0.038886,
+              "benchmark_cumulative_return": -0.051147
+            },
+            {
+              "symbol": "LII",
+              "cumulative_return": 0.129002,
+              "benchmark_cumulative_return": 0.3743
+            },
+            {
+              "symbol": "NUE",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.096007
+            },
+            {
+              "symbol": "STLD",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.233364
+            },
+            {
+              "symbol": "APH",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.318074
+            },
+            {
+              "symbol": "TEL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.398764
+            },
+            {
+              "symbol": "MMM",
+              "cumulative_return": 0.074015,
+              "benchmark_cumulative_return": 0.349038
+            },
+            {
+              "symbol": "HON",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.350997
+            },
+            {
+              "symbol": "CMI",
+              "cumulative_return": 0.202549,
+              "benchmark_cumulative_return": 0.327361
+            },
+            {
+              "symbol": "WM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.244636
+            },
+            {
+              "symbol": "CSX",
+              "cumulative_return": 0.16495,
+              "benchmark_cumulative_return": 0.554765
+            },
+            {
+              "symbol": "UNP",
+              "cumulative_return": 0.09748,
+              "benchmark_cumulative_return": 0.323011
+            },
+            {
+              "symbol": "FDX",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.35213
+            },
+            {
+              "symbol": "UPS",
+              "cumulative_return": 0.157378,
+              "benchmark_cumulative_return": 0.071405
+            }
+          ],
+          "strategy": {
+            "count": 42,
+            "winners": 20,
+            "losers": 3,
+            "profit_ratio": 0.47619,
+            "win_rate": 0.88,
+            "cumulative_return": 0.05041,
+            "median_return": 0.0,
+            "annualized_return": 0.050644,
+            "sharpe": 0.623008,
+            "max_drawdown": -0.044632,
+            "trades": 25,
+            "beat_benchmark": 4
+          },
+          "benchmark": {
+            "count": 42,
+            "winners": 40,
+            "losers": 2,
+            "profit_ratio": 0.952381,
+            "win_rate": null,
+            "cumulative_return": 0.318397,
+            "median_return": 0.320543,
+            "annualized_return": 0.331649,
+            "sharpe": 1.589371,
+            "max_drawdown": -0.124332,
+            "trades": 0
+          }
+        },
+        "2018": {
+          "symbols": [
+            {
+              "symbol": "CAT",
+              "cumulative_return": 0.062668,
+              "benchmark_cumulative_return": -0.175581
+            },
+            {
+              "symbol": "DE",
+              "cumulative_return": 0.118829,
+              "benchmark_cumulative_return": -0.028958
+            },
+            {
+              "symbol": "PCAR",
+              "cumulative_return": 0.032238,
+              "benchmark_cumulative_return": -0.153183
+            },
+            {
+              "symbol": "URI",
+              "cumulative_return": -0.267549,
+              "benchmark_cumulative_return": -0.403583
+            },
+            {
+              "symbol": "TEX",
+              "cumulative_return": -0.359946,
+              "benchmark_cumulative_return": -0.42216
+            },
+            {
+              "symbol": "ETN",
+              "cumulative_return": -0.160986,
+              "benchmark_cumulative_return": -0.115856
+            },
+            {
+              "symbol": "VRT",
+              "cumulative_return": -0.000999,
+              "benchmark_cumulative_return": -0.019019
+            },
+            {
+              "symbol": "PWR",
+              "cumulative_return": -0.096589,
+              "benchmark_cumulative_return": -0.229349
+            },
+            {
+              "symbol": "HUBB",
+              "cumulative_return": -0.186061,
+              "benchmark_cumulative_return": -0.246052
+            },
+            {
+              "symbol": "NVT",
+              "cumulative_return": -0.084976,
+              "benchmark_cumulative_return": 0.011167
+            },
+            {
+              "symbol": "GNRC",
+              "cumulative_return": -0.013495,
+              "benchmark_cumulative_return": 0.003635
+            },
+            {
+              "symbol": "ROK",
+              "cumulative_return": -0.120706,
+              "benchmark_cumulative_return": -0.217881
+            },
+            {
+              "symbol": "EMR",
+              "cumulative_return": -0.007844,
+              "benchmark_cumulative_return": -0.118725
+            },
+            {
+              "symbol": "ITW",
+              "cumulative_return": -0.090829,
+              "benchmark_cumulative_return": -0.221034
+            },
+            {
+              "symbol": "PH",
+              "cumulative_return": -0.181152,
+              "benchmark_cumulative_return": -0.239955
+            },
+            {
+              "symbol": "AME",
+              "cumulative_return": 0.065964,
+              "benchmark_cumulative_return": -0.058925
+            },
+            {
+              "symbol": "IR",
+              "cumulative_return": -0.352877,
+              "benchmark_cumulative_return": -0.397288
+            },
+            {
+              "symbol": "FAST",
+              "cumulative_return": 0.154839,
+              "benchmark_cumulative_return": -0.016075
+            },
+            {
+              "symbol": "DOV",
+              "cumulative_return": -0.138676,
+              "benchmark_cumulative_return": -0.111066
+            },
+            {
+              "symbol": "GE",
+              "cumulative_return": -0.553898,
+              "benchmark_cumulative_return": -0.553898
+            },
+            {
+              "symbol": "RTX",
+              "cumulative_return": -0.17304,
+              "benchmark_cumulative_return": -0.146574
+            },
+            {
+              "symbol": "LMT",
+              "cumulative_return": -0.058526,
+              "benchmark_cumulative_return": -0.163459
+            },
+            {
+              "symbol": "NOC",
+              "cumulative_return": -0.10601,
+              "benchmark_cumulative_return": -0.189522
+            },
+            {
+              "symbol": "GD",
+              "cumulative_return": -0.147396,
+              "benchmark_cumulative_return": -0.213409
+            },
+            {
+              "symbol": "BA",
+              "cumulative_return": 0.014092,
+              "benchmark_cumulative_return": 0.115017
+            },
+            {
+              "symbol": "TDG",
+              "cumulative_return": -0.001059,
+              "benchmark_cumulative_return": 0.238293
+            },
+            {
+              "symbol": "HWM",
+              "cumulative_return": -0.267252,
+              "benchmark_cumulative_return": -0.374303
+            },
+            {
+              "symbol": "GM",
+              "cumulative_return": 0.011344,
+              "benchmark_cumulative_return": -0.150564
+            },
+            {
+              "symbol": "F",
+              "cumulative_return": -0.232116,
+              "benchmark_cumulative_return": -0.34348
+            },
+            {
+              "symbol": "TT",
+              "cumulative_return": 0.033316,
+              "benchmark_cumulative_return": 0.04408
+            },
+            {
+              "symbol": "JCI",
+              "cumulative_return": -0.075204,
+              "benchmark_cumulative_return": -0.198496
+            },
+            {
+              "symbol": "LII",
+              "cumulative_return": 0.128689,
+              "benchmark_cumulative_return": 0.063298
+            },
+            {
+              "symbol": "NUE",
+              "cumulative_return": -0.120143,
+              "benchmark_cumulative_return": -0.163609
+            },
+            {
+              "symbol": "STLD",
+              "cumulative_return": -0.28657,
+              "benchmark_cumulative_return": -0.290194
+            },
+            {
+              "symbol": "APH",
+              "cumulative_return": -0.027853,
+              "benchmark_cumulative_return": -0.068241
+            },
+            {
+              "symbol": "TEL",
+              "cumulative_return": -0.146239,
+              "benchmark_cumulative_return": -0.188736
+            },
+            {
+              "symbol": "MMM",
+              "cumulative_return": -0.12333,
+              "benchmark_cumulative_return": -0.168991
+            },
+            {
+              "symbol": "HON",
+              "cumulative_return": -0.027401,
+              "benchmark_cumulative_return": -0.082663
+            },
+            {
+              "symbol": "CMI",
+              "cumulative_return": -0.060735,
+              "benchmark_cumulative_return": -0.220647
+            },
+            {
+              "symbol": "WM",
+              "cumulative_return": 0.141866,
+              "benchmark_cumulative_return": 0.053209
+            },
+            {
+              "symbol": "CSX",
+              "cumulative_return": 0.052401,
+              "benchmark_cumulative_return": 0.144672
+            },
+            {
+              "symbol": "UNP",
+              "cumulative_return": 0.197642,
+              "benchmark_cumulative_return": 0.052622
+            },
+            {
+              "symbol": "FDX",
+              "cumulative_return": -0.319391,
+              "benchmark_cumulative_return": -0.346738
+            },
+            {
+              "symbol": "UPS",
+              "cumulative_return": -0.047136,
+              "benchmark_cumulative_return": -0.15476
+            }
+          ],
+          "strategy": {
+            "count": 44,
+            "winners": 12,
+            "losers": 32,
+            "profit_ratio": 0.272727,
+            "win_rate": 0.363636,
+            "cumulative_return": -0.086866,
+            "median_return": -0.08009,
+            "annualized_return": -0.087979,
+            "sharpe": -0.320112,
+            "max_drawdown": -0.235051,
+            "trades": 66,
+            "beat_benchmark": 34
+          },
+          "benchmark": {
+            "count": 44,
+            "winners": 9,
+            "losers": 35,
+            "profit_ratio": 0.204545,
+            "win_rate": null,
+            "cumulative_return": -0.146977,
+            "median_return": -0.15911,
+            "annualized_return": -0.14794,
+            "sharpe": -0.475424,
+            "max_drawdown": -0.299621,
+            "trades": 0
+          }
+        },
+        "2019": {
+          "symbols": [
+            {
+              "symbol": "CAT",
+              "cumulative_return": 0.247541,
+              "benchmark_cumulative_return": 0.195137
+            },
+            {
+              "symbol": "DE",
+              "cumulative_return": 0.301942,
+              "benchmark_cumulative_return": 0.182954
+            },
+            {
+              "symbol": "PCAR",
+              "cumulative_return": 0.394369,
+              "benchmark_cumulative_return": 0.450469
+            },
+            {
+              "symbol": "URI",
+              "cumulative_return": 0.60351,
+              "benchmark_cumulative_return": 0.626548
+            },
+            {
+              "symbol": "TEX",
+              "cumulative_return": 0.303132,
+              "benchmark_cumulative_return": 0.09671
+            },
+            {
+              "symbol": "ETN",
+              "cumulative_return": 0.334605,
+              "benchmark_cumulative_return": 0.427647
+            },
+            {
+              "symbol": "VRT",
+              "cumulative_return": 0.038756,
+              "benchmark_cumulative_return": 0.12551
+            },
+            {
+              "symbol": "PWR",
+              "cumulative_return": 0.245665,
+              "benchmark_cumulative_return": 0.358414
+            },
+            {
+              "symbol": "HUBB",
+              "cumulative_return": 0.145622,
+              "benchmark_cumulative_return": 0.528806
+            },
+            {
+              "symbol": "NVT",
+              "cumulative_return": 0.095487,
+              "benchmark_cumulative_return": 0.172445
+            },
+            {
+              "symbol": "GNRC",
+              "cumulative_return": 0.205835,
+              "benchmark_cumulative_return": 1.023944
+            },
+            {
+              "symbol": "ROK",
+              "cumulative_return": 0.311384,
+              "benchmark_cumulative_return": 0.378486
+            },
+            {
+              "symbol": "EMR",
+              "cumulative_return": 0.357619,
+              "benchmark_cumulative_return": 0.315349
+            },
+            {
+              "symbol": "ITW",
+              "cumulative_return": 0.205136,
+              "benchmark_cumulative_return": 0.456033
+            },
+            {
+              "symbol": "PH",
+              "cumulative_return": 0.414301,
+              "benchmark_cumulative_return": 0.407521
+            },
+            {
+              "symbol": "AME",
+              "cumulative_return": 0.122215,
+              "benchmark_cumulative_return": 0.482686
+            },
+            {
+              "symbol": "IR",
+              "cumulative_return": 0.497849,
+              "benchmark_cumulative_return": 0.928033
+            },
+            {
+              "symbol": "FAST",
+              "cumulative_return": 0.283547,
+              "benchmark_cumulative_return": 0.450752
+            },
+            {
+              "symbol": "DOV",
+              "cumulative_return": 0.213162,
+              "benchmark_cumulative_return": 0.657973
+            },
+            {
+              "symbol": "GE",
+              "cumulative_return": 0.480092,
+              "benchmark_cumulative_return": 0.539367
+            },
+            {
+              "symbol": "RTX",
+              "cumulative_return": 0.171514,
+              "benchmark_cumulative_return": 0.438213
+            },
+            {
+              "symbol": "LMT",
+              "cumulative_return": 0.150315,
+              "benchmark_cumulative_return": 0.525467
+            },
+            {
+              "symbol": "NOC",
+              "cumulative_return": 0.288619,
+              "benchmark_cumulative_return": 0.426885
+            },
+            {
+              "symbol": "GD",
+              "cumulative_return": 0.19129,
+              "benchmark_cumulative_return": 0.147951
+            },
+            {
+              "symbol": "BA",
+              "cumulative_return": 0.172591,
+              "benchmark_cumulative_return": 0.033382
+            },
+            {
+              "symbol": "TDG",
+              "cumulative_return": 0.131197,
+              "benchmark_cumulative_return": 0.844076
+            },
+            {
+              "symbol": "HWM",
+              "cumulative_return": 0.383788,
+              "benchmark_cumulative_return": 0.835446
+            },
+            {
+              "symbol": "GM",
+              "cumulative_return": 0.357355,
+              "benchmark_cumulative_return": 0.140184
+            },
+            {
+              "symbol": "F",
+              "cumulative_return": 0.366878,
+              "benchmark_cumulative_return": 0.296397
+            },
+            {
+              "symbol": "TT",
+              "cumulative_return": 0.282816,
+              "benchmark_cumulative_return": 0.483225
+            },
+            {
+              "symbol": "JCI",
+              "cumulative_return": 0.182627,
+              "benchmark_cumulative_return": 0.409061
+            },
+            {
+              "symbol": "LII",
+              "cumulative_return": 0.06749,
+              "benchmark_cumulative_return": 0.127775
+            },
+            {
+              "symbol": "NUE",
+              "cumulative_return": 0.326054,
+              "benchmark_cumulative_return": 0.118419
+            },
+            {
+              "symbol": "STLD",
+              "cumulative_return": 0.367032,
+              "benchmark_cumulative_return": 0.16778
+            },
+            {
+              "symbol": "APH",
+              "cumulative_return": 0.256091,
+              "benchmark_cumulative_return": 0.349074
+            },
+            {
+              "symbol": "TEL",
+              "cumulative_return": 0.272587,
+              "benchmark_cumulative_return": 0.293653
+            },
+            {
+              "symbol": "MMM",
+              "cumulative_return": -0.042908,
+              "benchmark_cumulative_return": -0.042908
+            },
+            {
+              "symbol": "HON",
+              "cumulative_return": 0.246516,
+              "benchmark_cumulative_return": 0.366952
+            },
+            {
+              "symbol": "CMI",
+              "cumulative_return": 0.310356,
+              "benchmark_cumulative_return": 0.380375
+            },
+            {
+              "symbol": "WM",
+              "cumulative_return": 0.152311,
+              "benchmark_cumulative_return": 0.304508
+            },
+            {
+              "symbol": "CSX",
+              "cumulative_return": 0.202647,
+              "benchmark_cumulative_return": 0.18057
+            },
+            {
+              "symbol": "UNP",
+              "cumulative_return": 0.4422,
+              "benchmark_cumulative_return": 0.336998
+            },
+            {
+              "symbol": "FDX",
+              "cumulative_return": 0.155331,
+              "benchmark_cumulative_return": -0.047777
+            },
+            {
+              "symbol": "UPS",
+              "cumulative_return": 0.256756,
+              "benchmark_cumulative_return": 0.242364
+            }
+          ],
+          "strategy": {
+            "count": 44,
+            "winners": 43,
+            "losers": 1,
+            "profit_ratio": 0.977273,
+            "win_rate": 0.875,
+            "cumulative_return": 0.26121,
+            "median_return": 0.256424,
+            "annualized_return": 0.26121,
+            "sharpe": 1.515562,
+            "max_drawdown": -0.115682,
+            "trades": 32,
+            "beat_benchmark": 15
+          },
+          "benchmark": {
+            "count": 44,
+            "winners": 42,
+            "losers": 2,
+            "profit_ratio": 0.954545,
+            "win_rate": null,
+            "cumulative_return": 0.367338,
+            "median_return": 0.362683,
+            "annualized_return": 0.367338,
+            "sharpe": 1.404877,
+            "max_drawdown": -0.179027,
+            "trades": 0
+          }
+        },
+        "2020": {
+          "symbols": [
+            {
+              "symbol": "CAT",
+              "cumulative_return": 0.002645,
+              "benchmark_cumulative_return": 0.269659
+            },
+            {
+              "symbol": "DE",
+              "cumulative_return": 0.044761,
+              "benchmark_cumulative_return": 0.579576
+            },
+            {
+              "symbol": "PCAR",
+              "cumulative_return": 0.075228,
+              "benchmark_cumulative_return": 0.117406
+            },
+            {
+              "symbol": "URI",
+              "cumulative_return": 0.022047,
+              "benchmark_cumulative_return": 0.390598
+            },
+            {
+              "symbol": "TEX",
+              "cumulative_return": -0.214752,
+              "benchmark_cumulative_return": 0.178236
+            },
+            {
+              "symbol": "ETN",
+              "cumulative_return": 0.060032,
+              "benchmark_cumulative_return": 0.298781
+            },
+            {
+              "symbol": "VRT",
+              "cumulative_return": 0.118954,
+              "benchmark_cumulative_return": 0.693562
+            },
+            {
+              "symbol": "PWR",
+              "cumulative_return": 0.215408,
+              "benchmark_cumulative_return": 0.777423
+            },
+            {
+              "symbol": "HUBB",
+              "cumulative_return": 0.023099,
+              "benchmark_cumulative_return": 0.088865
+            },
+            {
+              "symbol": "NVT",
+              "cumulative_return": 0.186019,
+              "benchmark_cumulative_return": -0.056793
+            },
+            {
+              "symbol": "GNRC",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 1.260762
+            },
+            {
+              "symbol": "ROK",
+              "cumulative_return": 0.419331,
+              "benchmark_cumulative_return": 0.261732
+            },
+            {
+              "symbol": "EMR",
+              "cumulative_return": -0.049706,
+              "benchmark_cumulative_return": 0.086086
+            },
+            {
+              "symbol": "ITW",
+              "cumulative_return": 0.413745,
+              "benchmark_cumulative_return": 0.164243
+            },
+            {
+              "symbol": "PH",
+              "cumulative_return": -0.002066,
+              "benchmark_cumulative_return": 0.347837
+            },
+            {
+              "symbol": "AME",
+              "cumulative_return": 0.001742,
+              "benchmark_cumulative_return": 0.221898
+            },
+            {
+              "symbol": "IR",
+              "cumulative_return": 0.102812,
+              "benchmark_cumulative_return": 0.242094
+            },
+            {
+              "symbol": "FAST",
+              "cumulative_return": 0.448876,
+              "benchmark_cumulative_return": 0.366023
+            },
+            {
+              "symbol": "DOV",
+              "cumulative_return": -0.01384,
+              "benchmark_cumulative_return": 0.115277
+            },
+            {
+              "symbol": "GE",
+              "cumulative_return": -0.18654,
+              "benchmark_cumulative_return": -0.027348
+            },
+            {
+              "symbol": "RTX",
+              "cumulative_return": 0.167377,
+              "benchmark_cumulative_return": -0.219538
+            },
+            {
+              "symbol": "LMT",
+              "cumulative_return": -0.091486,
+              "benchmark_cumulative_return": -0.064934
+            },
+            {
+              "symbol": "NOC",
+              "cumulative_return": -0.092828,
+              "benchmark_cumulative_return": -0.099192
+            },
+            {
+              "symbol": "GD",
+              "cumulative_return": -0.068228,
+              "benchmark_cumulative_return": -0.131401
+            },
+            {
+              "symbol": "BA",
+              "cumulative_return": -0.431449,
+              "benchmark_cumulative_return": -0.338981
+            },
+            {
+              "symbol": "TDG",
+              "cumulative_return": -0.180451,
+              "benchmark_cumulative_return": 0.105089
+            },
+            {
+              "symbol": "HWM",
+              "cumulative_return": -0.165188,
+              "benchmark_cumulative_return": 0.210269
+            },
+            {
+              "symbol": "GM",
+              "cumulative_return": -0.154305,
+              "benchmark_cumulative_return": 0.151584
+            },
+            {
+              "symbol": "F",
+              "cumulative_return": -0.282252,
+              "benchmark_cumulative_return": -0.038765
+            },
+            {
+              "symbol": "TT",
+              "cumulative_return": 0.352735,
+              "benchmark_cumulative_return": 0.434153
+            },
+            {
+              "symbol": "CARR",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 2.172381
+            },
+            {
+              "symbol": "JCI",
+              "cumulative_return": -0.05284,
+              "benchmark_cumulative_return": 0.177004
+            },
+            {
+              "symbol": "LII",
+              "cumulative_return": -0.080875,
+              "benchmark_cumulative_return": 0.137919
+            },
+            {
+              "symbol": "NUE",
+              "cumulative_return": -0.017628,
+              "benchmark_cumulative_return": -0.017628
+            },
+            {
+              "symbol": "STLD",
+              "cumulative_return": -0.029503,
+              "benchmark_cumulative_return": 0.124585
+            },
+            {
+              "symbol": "APH",
+              "cumulative_return": 0.038592,
+              "benchmark_cumulative_return": 0.220888
+            },
+            {
+              "symbol": "TEL",
+              "cumulative_return": 0.03613,
+              "benchmark_cumulative_return": 0.289485
+            },
+            {
+              "symbol": "MMM",
+              "cumulative_return": -0.033948,
+              "benchmark_cumulative_return": 0.027652
+            },
+            {
+              "symbol": "HON",
+              "cumulative_return": 0.016844,
+              "benchmark_cumulative_return": 0.229727
+            },
+            {
+              "symbol": "CMI",
+              "cumulative_return": 0.087844,
+              "benchmark_cumulative_return": 0.305036
+            },
+            {
+              "symbol": "WM",
+              "cumulative_return": 0.02308,
+              "benchmark_cumulative_return": 0.054632
+            },
+            {
+              "symbol": "CSX",
+              "cumulative_return": 0.381364,
+              "benchmark_cumulative_return": 0.270859
+            },
+            {
+              "symbol": "UNP",
+              "cumulative_return": 0.199694,
+              "benchmark_cumulative_return": 0.176351
+            },
+            {
+              "symbol": "FDX",
+              "cumulative_return": -0.055737,
+              "benchmark_cumulative_return": 0.742716
+            },
+            {
+              "symbol": "UPS",
+              "cumulative_return": 0.005687,
+              "benchmark_cumulative_return": 0.486432
+            }
+          ],
+          "strategy": {
+            "count": 45,
+            "winners": 24,
+            "losers": 19,
+            "profit_ratio": 0.533333,
+            "win_rate": 0.675676,
+            "cumulative_return": 0.027565,
+            "median_return": 0.002645,
+            "annualized_return": 0.027393,
+            "sharpe": 0.27684,
+            "max_drawdown": -0.384548,
+            "trades": 37,
+            "beat_benchmark": 9
+          },
+          "benchmark": {
+            "count": 45,
+            "winners": 36,
+            "losers": 9,
+            "profit_ratio": 0.8,
+            "win_rate": null,
+            "cumulative_return": 0.261828,
+            "median_return": 0.178236,
+            "annualized_return": 0.28546,
+            "sharpe": 0.656885,
+            "max_drawdown": -0.449278,
+            "trades": 0
+          }
+        },
+        "2021": {
+          "symbols": [
+            {
+              "symbol": "CAT",
+              "cumulative_return": -0.05398,
+              "benchmark_cumulative_return": 0.159536
+            },
+            {
+              "symbol": "DE",
+              "cumulative_return": 0.151293,
+              "benchmark_cumulative_return": 0.288592
+            },
+            {
+              "symbol": "PCAR",
+              "cumulative_return": 0.115327,
+              "benchmark_cumulative_return": 0.056256
+            },
+            {
+              "symbol": "URI",
+              "cumulative_return": -0.02004,
+              "benchmark_cumulative_return": 0.43284
+            },
+            {
+              "symbol": "TEX",
+              "cumulative_return": 0.045174,
+              "benchmark_cumulative_return": 0.272209
+            },
+            {
+              "symbol": "ETN",
+              "cumulative_return": 0.1472,
+              "benchmark_cumulative_return": 0.467022
+            },
+            {
+              "symbol": "VRT",
+              "cumulative_return": 0.099887,
+              "benchmark_cumulative_return": 0.337954
+            },
+            {
+              "symbol": "PWR",
+              "cumulative_return": 0.187939,
+              "benchmark_cumulative_return": 0.595011
+            },
+            {
+              "symbol": "HUBB",
+              "cumulative_return": 0.139613,
+              "benchmark_cumulative_return": 0.355976
+            },
+            {
+              "symbol": "NVT",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.671541
+            },
+            {
+              "symbol": "GNRC",
+              "cumulative_return": -0.088209,
+              "benchmark_cumulative_return": 0.547513
+            },
+            {
+              "symbol": "ROK",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.412142
+            },
+            {
+              "symbol": "EMR",
+              "cumulative_return": -0.01374,
+              "benchmark_cumulative_return": 0.18195
+            },
+            {
+              "symbol": "ITW",
+              "cumulative_return": 0.052161,
+              "benchmark_cumulative_return": 0.235956
+            },
+            {
+              "symbol": "PH",
+              "cumulative_return": 0.143175,
+              "benchmark_cumulative_return": 0.183033
+            },
+            {
+              "symbol": "AME",
+              "cumulative_return": 0.307727,
+              "benchmark_cumulative_return": 0.223216
+            },
+            {
+              "symbol": "IR",
+              "cumulative_return": 0.236244,
+              "benchmark_cumulative_return": 0.358458
+            },
+            {
+              "symbol": "FAST",
+              "cumulative_return": 0.121248,
+              "benchmark_cumulative_return": 0.340572
+            },
+            {
+              "symbol": "DOV",
+              "cumulative_return": 0.311099,
+              "benchmark_cumulative_return": 0.457346
+            },
+            {
+              "symbol": "GE",
+              "cumulative_return": -0.015241,
+              "benchmark_cumulative_return": 0.096853
+            },
+            {
+              "symbol": "RTX",
+              "cumulative_return": 0.192671,
+              "benchmark_cumulative_return": 0.232665
+            },
+            {
+              "symbol": "LMT",
+              "cumulative_return": 0.257733,
+              "benchmark_cumulative_return": 0.031517
+            },
+            {
+              "symbol": "NOC",
+              "cumulative_return": 0.089241,
+              "benchmark_cumulative_return": 0.292939
+            },
+            {
+              "symbol": "GD",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.43775
+            },
+            {
+              "symbol": "BA",
+              "cumulative_return": -0.02832,
+              "benchmark_cumulative_return": -0.059516
+            },
+            {
+              "symbol": "TDG",
+              "cumulative_return": 0.668275,
+              "benchmark_cumulative_return": 0.028165
+            },
+            {
+              "symbol": "HWM",
+              "cumulative_return": 0.566951,
+              "benchmark_cumulative_return": 0.116738
+            },
+            {
+              "symbol": "GM",
+              "cumulative_return": 0.15423,
+              "benchmark_cumulative_return": 0.408021
+            },
+            {
+              "symbol": "F",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 1.37481
+            },
+            {
+              "symbol": "TT",
+              "cumulative_return": 0.175401,
+              "benchmark_cumulative_return": 0.410152
+            },
+            {
+              "symbol": "CARR",
+              "cumulative_return": 0.053705,
+              "benchmark_cumulative_return": 0.453097
+            },
+            {
+              "symbol": "JCI",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.77419
+            },
+            {
+              "symbol": "LII",
+              "cumulative_return": 0.018006,
+              "benchmark_cumulative_return": 0.197055
+            },
+            {
+              "symbol": "NUE",
+              "cumulative_return": 0.334614,
+              "benchmark_cumulative_return": 1.184465
+            },
+            {
+              "symbol": "STLD",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.714194
+            },
+            {
+              "symbol": "APH",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.349428
+            },
+            {
+              "symbol": "TEL",
+              "cumulative_return": 0.135739,
+              "benchmark_cumulative_return": 0.351205
+            },
+            {
+              "symbol": "MMM",
+              "cumulative_return": -0.059157,
+              "benchmark_cumulative_return": 0.048505
+            },
+            {
+              "symbol": "HON",
+              "cumulative_return": -0.01158,
+              "benchmark_cumulative_return": -0.002948
+            },
+            {
+              "symbol": "CMI",
+              "cumulative_return": -0.070245,
+              "benchmark_cumulative_return": -0.016792
+            },
+            {
+              "symbol": "WM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.438222
+            },
+            {
+              "symbol": "CSX",
+              "cumulative_return": 0.349754,
+              "benchmark_cumulative_return": 0.256971
+            },
+            {
+              "symbol": "UNP",
+              "cumulative_return": 0.139386,
+              "benchmark_cumulative_return": 0.233134
+            },
+            {
+              "symbol": "FDX",
+              "cumulative_return": 0.130709,
+              "benchmark_cumulative_return": 0.007204
+            },
+            {
+              "symbol": "UPS",
+              "cumulative_return": 0.025103,
+              "benchmark_cumulative_return": 0.30019
+            }
+          ],
+          "strategy": {
+            "count": 45,
+            "winners": 28,
+            "losers": 9,
+            "profit_ratio": 0.622222,
+            "win_rate": 0.772727,
+            "cumulative_return": 0.110869,
+            "median_return": 0.089241,
+            "annualized_return": 0.110869,
+            "sharpe": 0.754642,
+            "max_drawdown": -0.090927,
+            "trades": 44,
+            "beat_benchmark": 8
+          },
+          "benchmark": {
+            "count": 45,
+            "winners": 42,
+            "losers": 3,
+            "profit_ratio": 0.933333,
+            "win_rate": null,
+            "cumulative_return": 0.338563,
+            "median_return": 0.30019,
+            "annualized_return": 0.338563,
+            "sharpe": 1.172278,
+            "max_drawdown": -0.172641,
+            "trades": 0
+          }
+        },
+        "2022": {
+          "symbols": [
+            {
+              "symbol": "CAT",
+              "cumulative_return": 0.511875,
+              "benchmark_cumulative_return": 0.185988
+            },
+            {
+              "symbol": "DE",
+              "cumulative_return": 0.462896,
+              "benchmark_cumulative_return": 0.265872
+            },
+            {
+              "symbol": "PCAR",
+              "cumulative_return": 0.095825,
+              "benchmark_cumulative_return": 0.169969
+            },
+            {
+              "symbol": "URI",
+              "cumulative_return": -0.083556,
+              "benchmark_cumulative_return": 0.069608
+            },
+            {
+              "symbol": "TEX",
+              "cumulative_return": -0.146385,
+              "benchmark_cumulative_return": -0.014408
+            },
+            {
+              "symbol": "ETN",
+              "cumulative_return": -0.01675,
+              "benchmark_cumulative_return": -0.071826
+            },
+            {
+              "symbol": "VRT",
+              "cumulative_return": -0.402508,
+              "benchmark_cumulative_return": -0.452526
+            },
+            {
+              "symbol": "PWR",
+              "cumulative_return": 0.252417,
+              "benchmark_cumulative_return": 0.24633
+            },
+            {
+              "symbol": "HUBB",
+              "cumulative_return": 0.130643,
+              "benchmark_cumulative_return": 0.150832
+            },
+            {
+              "symbol": "NVT",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.033234
+            },
+            {
+              "symbol": "GNRC",
+              "cumulative_return": -0.713969,
+              "benchmark_cumulative_return": -0.713969
+            },
+            {
+              "symbol": "ROK",
+              "cumulative_return": -0.052984,
+              "benchmark_cumulative_return": -0.247752
+            },
+            {
+              "symbol": "EMR",
+              "cumulative_return": 0.180231,
+              "benchmark_cumulative_return": 0.057356
+            },
+            {
+              "symbol": "ITW",
+              "cumulative_return": -0.055644,
+              "benchmark_cumulative_return": -0.084574
+            },
+            {
+              "symbol": "PH",
+              "cumulative_return": 0.40154,
+              "benchmark_cumulative_return": -0.069116
+            },
+            {
+              "symbol": "AME",
+              "cumulative_return": 0.168309,
+              "benchmark_cumulative_return": -0.043295
+            },
+            {
+              "symbol": "IR",
+              "cumulative_return": -0.011594,
+              "benchmark_cumulative_return": -0.154101
+            },
+            {
+              "symbol": "FAST",
+              "cumulative_return": 0.041645,
+              "benchmark_cumulative_return": -0.243397
+            },
+            {
+              "symbol": "DOV",
+              "cumulative_return": -0.222894,
+              "benchmark_cumulative_return": -0.243391
+            },
+            {
+              "symbol": "GE",
+              "cumulative_return": -0.088018,
+              "benchmark_cumulative_return": -0.109232
+            },
+            {
+              "symbol": "RTX",
+              "cumulative_return": 0.254178,
+              "benchmark_cumulative_return": 0.200139
+            },
+            {
+              "symbol": "LMT",
+              "cumulative_return": 0.205027,
+              "benchmark_cumulative_return": 0.404756
+            },
+            {
+              "symbol": "NOC",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.430189
+            },
+            {
+              "symbol": "GD",
+              "cumulative_return": 0.185969,
+              "benchmark_cumulative_return": 0.216882
+            },
+            {
+              "symbol": "BA",
+              "cumulative_return": 0.004249,
+              "benchmark_cumulative_return": -0.053795
+            },
+            {
+              "symbol": "TDG",
+              "cumulative_return": 0.154671,
+              "benchmark_cumulative_return": 0.017731
+            },
+            {
+              "symbol": "HWM",
+              "cumulative_return": 0.321757,
+              "benchmark_cumulative_return": 0.24165
+            },
+            {
+              "symbol": "GM",
+              "cumulative_return": -0.328034,
+              "benchmark_cumulative_return": -0.423644
+            },
+            {
+              "symbol": "F",
+              "cumulative_return": 0.050429,
+              "benchmark_cumulative_return": -0.421802
+            },
+            {
+              "symbol": "TT",
+              "cumulative_return": -0.166555,
+              "benchmark_cumulative_return": -0.153415
+            },
+            {
+              "symbol": "CARR",
+              "cumulative_return": -0.094316,
+              "benchmark_cumulative_return": -0.226796
+            },
+            {
+              "symbol": "JCI",
+              "cumulative_return": -0.208833,
+              "benchmark_cumulative_return": -0.192887
+            },
+            {
+              "symbol": "LII",
+              "cumulative_return": -0.271244,
+              "benchmark_cumulative_return": -0.249445
+            },
+            {
+              "symbol": "NUE",
+              "cumulative_return": 0.877892,
+              "benchmark_cumulative_return": 0.173878
+            },
+            {
+              "symbol": "STLD",
+              "cumulative_return": 0.343028,
+              "benchmark_cumulative_return": 0.601352
+            },
+            {
+              "symbol": "APH",
+              "cumulative_return": 0.083286,
+              "benchmark_cumulative_return": -0.119559
+            },
+            {
+              "symbol": "TEL",
+              "cumulative_return": -0.056863,
+              "benchmark_cumulative_return": -0.276605
+            },
+            {
+              "symbol": "MMM",
+              "cumulative_return": -0.126918,
+              "benchmark_cumulative_return": -0.296264
+            },
+            {
+              "symbol": "HON",
+              "cumulative_return": 0.054823,
+              "benchmark_cumulative_return": 0.049028
+            },
+            {
+              "symbol": "CMI",
+              "cumulative_return": 0.027439,
+              "benchmark_cumulative_return": 0.14086
+            },
+            {
+              "symbol": "WM",
+              "cumulative_return": 0.200361,
+              "benchmark_cumulative_return": -0.044935
+            },
+            {
+              "symbol": "CSX",
+              "cumulative_return": 0.051552,
+              "benchmark_cumulative_return": -0.165806
+            },
+            {
+              "symbol": "UNP",
+              "cumulative_return": 0.020416,
+              "benchmark_cumulative_return": -0.159338
+            },
+            {
+              "symbol": "FDX",
+              "cumulative_return": -0.23935,
+              "benchmark_cumulative_return": -0.316385
+            },
+            {
+              "symbol": "UPS",
+              "cumulative_return": 0.250373,
+              "benchmark_cumulative_return": -0.162111
+            }
+          ],
+          "strategy": {
+            "count": 45,
+            "winners": 25,
+            "losers": 18,
+            "profit_ratio": 0.555556,
+            "win_rate": 0.705882,
+            "cumulative_return": 0.045431,
+            "median_return": 0.027439,
+            "annualized_return": 0.045752,
+            "sharpe": 0.426154,
+            "max_drawdown": -0.237948,
+            "trades": 51,
+            "beat_benchmark": 31
+          },
+          "benchmark": {
+            "count": 45,
+            "winners": 18,
+            "losers": 27,
+            "profit_ratio": 0.4,
+            "win_rate": null,
+            "cumulative_return": -0.04566,
+            "median_return": -0.069116,
+            "annualized_return": -0.045699,
+            "sharpe": -0.006077,
+            "max_drawdown": -0.326077,
+            "trades": 0
+          }
+        },
+        "2023": {
+          "symbols": [
+            {
+              "symbol": "CAT",
+              "cumulative_return": 0.250472,
+              "benchmark_cumulative_return": 0.259488
+            },
+            {
+              "symbol": "DE",
+              "cumulative_return": 0.211664,
+              "benchmark_cumulative_return": -0.0548
+            },
+            {
+              "symbol": "PCAR",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.550131
+            },
+            {
+              "symbol": "URI",
+              "cumulative_return": 0.110714,
+              "benchmark_cumulative_return": 0.636175
+            },
+            {
+              "symbol": "TEX",
+              "cumulative_return": 0.478655,
+              "benchmark_cumulative_return": 0.360982
+            },
+            {
+              "symbol": "ETN",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.562237
+            },
+            {
+              "symbol": "VRT",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 2.518054
+            },
+            {
+              "symbol": "PWR",
+              "cumulative_return": 0.066864,
+              "benchmark_cumulative_return": 0.517039
+            },
+            {
+              "symbol": "HUBB",
+              "cumulative_return": 0.183729,
+              "benchmark_cumulative_return": 0.424015
+            },
+            {
+              "symbol": "NVT",
+              "cumulative_return": 0.230364,
+              "benchmark_cumulative_return": 0.55976
+            },
+            {
+              "symbol": "GNRC",
+              "cumulative_return": 0.454446,
+              "benchmark_cumulative_return": 0.283926
+            },
+            {
+              "symbol": "ROK",
+              "cumulative_return": 0.14387,
+              "benchmark_cumulative_return": 0.226323
+            },
+            {
+              "symbol": "EMR",
+              "cumulative_return": 0.146837,
+              "benchmark_cumulative_return": 0.037534
+            },
+            {
+              "symbol": "ITW",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.215642
+            },
+            {
+              "symbol": "PH",
+              "cumulative_return": 0.3307,
+              "benchmark_cumulative_return": 0.608113
+            },
+            {
+              "symbol": "AME",
+              "cumulative_return": 0.090767,
+              "benchmark_cumulative_return": 0.188067
+            },
+            {
+              "symbol": "IR",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.482061
+            },
+            {
+              "symbol": "FAST",
+              "cumulative_return": 0.175398,
+              "benchmark_cumulative_return": 0.413061
+            },
+            {
+              "symbol": "DOV",
+              "cumulative_return": 0.102756,
+              "benchmark_cumulative_return": 0.152166
+            },
+            {
+              "symbol": "GE",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.957123
+            },
+            {
+              "symbol": "RTX",
+              "cumulative_return": -0.060926,
+              "benchmark_cumulative_return": -0.144383
+            },
+            {
+              "symbol": "LMT",
+              "cumulative_return": 0.200058,
+              "benchmark_cumulative_return": -0.043086
+            },
+            {
+              "symbol": "NOC",
+              "cumulative_return": 0.014785,
+              "benchmark_cumulative_return": -0.127911
+            },
+            {
+              "symbol": "GD",
+              "cumulative_return": 0.10754,
+              "benchmark_cumulative_return": 0.071259
+            },
+            {
+              "symbol": "BA",
+              "cumulative_return": 0.009432,
+              "benchmark_cumulative_return": 0.368366
+            },
+            {
+              "symbol": "TDG",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.665676
+            },
+            {
+              "symbol": "HWM",
+              "cumulative_return": 0.24996,
+              "benchmark_cumulative_return": 0.378405
+            },
+            {
+              "symbol": "GM",
+              "cumulative_return": 0.360068,
+              "benchmark_cumulative_return": 0.079219
+            },
+            {
+              "symbol": "F",
+              "cumulative_return": 0.265113,
+              "benchmark_cumulative_return": 0.158207
+            },
+            {
+              "symbol": "TT",
+              "cumulative_return": 0.149002,
+              "benchmark_cumulative_return": 0.473934
+            },
+            {
+              "symbol": "CARR",
+              "cumulative_return": 0.252627,
+              "benchmark_cumulative_return": 0.414676
+            },
+            {
+              "symbol": "JCI",
+              "cumulative_return": -0.108621,
+              "benchmark_cumulative_return": -0.076288
+            },
+            {
+              "symbol": "LII",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.895483
+            },
+            {
+              "symbol": "NUE",
+              "cumulative_return": 0.156279,
+              "benchmark_cumulative_return": 0.337527
+            },
+            {
+              "symbol": "STLD",
+              "cumulative_return": 0.182434,
+              "benchmark_cumulative_return": 0.227511
+            },
+            {
+              "symbol": "APH",
+              "cumulative_return": 0.177684,
+              "benchmark_cumulative_return": 0.315
+            },
+            {
+              "symbol": "TEL",
+              "cumulative_return": 0.187288,
+              "benchmark_cumulative_return": 0.246245
+            },
+            {
+              "symbol": "MMM",
+              "cumulative_return": 0.147051,
+              "benchmark_cumulative_return": -0.033281
+            },
+            {
+              "symbol": "HON",
+              "cumulative_return": 0.076681,
+              "benchmark_cumulative_return": 0.000189
+            },
+            {
+              "symbol": "CMI",
+              "cumulative_return": 0.23385,
+              "benchmark_cumulative_return": 0.017192
+            },
+            {
+              "symbol": "WM",
+              "cumulative_return": 0.107848,
+              "benchmark_cumulative_return": 0.161958
+            },
+            {
+              "symbol": "CSX",
+              "cumulative_return": 0.076666,
+              "benchmark_cumulative_return": 0.135093
+            },
+            {
+              "symbol": "UNP",
+              "cumulative_return": 0.109731,
+              "benchmark_cumulative_return": 0.216086
+            },
+            {
+              "symbol": "FDX",
+              "cumulative_return": 0.388658,
+              "benchmark_cumulative_return": 0.491285
+            },
+            {
+              "symbol": "UPS",
+              "cumulative_return": -0.029868,
+              "benchmark_cumulative_return": -0.059581
+            }
+          ],
+          "strategy": {
+            "count": 45,
+            "winners": 34,
+            "losers": 3,
+            "profit_ratio": 0.755556,
+            "win_rate": 0.930233,
+            "cumulative_return": 0.138457,
+            "median_return": 0.14387,
+            "annualized_return": 0.1397,
+            "sharpe": 0.9389,
+            "max_drawdown": -0.099668,
+            "trades": 43,
+            "beat_benchmark": 14
+          },
+          "benchmark": {
+            "count": 45,
+            "winners": 38,
+            "losers": 7,
+            "profit_ratio": 0.844444,
+            "win_rate": null,
+            "cumulative_return": 0.334797,
+            "median_return": 0.259488,
+            "annualized_return": 0.33832,
+            "sharpe": 1.04512,
+            "max_drawdown": -0.213443,
+            "trades": 0
+          }
+        },
+        "2024": {
+          "symbols": [
+            {
+              "symbol": "CAT",
+              "cumulative_return": -0.004112,
+              "benchmark_cumulative_return": 0.246586
+            },
+            {
+              "symbol": "DE",
+              "cumulative_return": 0.104369,
+              "benchmark_cumulative_return": 0.075554
+            },
+            {
+              "symbol": "PCAR",
+              "cumulative_return": -0.035603,
+              "benchmark_cumulative_return": 0.10811
+            },
+            {
+              "symbol": "URI",
+              "cumulative_return": -0.07211,
+              "benchmark_cumulative_return": 0.239654
+            },
+            {
+              "symbol": "TEX",
+              "cumulative_return": 0.14765,
+              "benchmark_cumulative_return": -0.185861
+            },
+            {
+              "symbol": "ETN",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.395113
+            },
+            {
+              "symbol": "GEV",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 1.508017
+            },
+            {
+              "symbol": "VRT",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 1.36823
+            },
+            {
+              "symbol": "PWR",
+              "cumulative_return": 0.193563,
+              "benchmark_cumulative_return": 0.466013
+            },
+            {
+              "symbol": "HUBB",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.289412
+            },
+            {
+              "symbol": "NVT",
+              "cumulative_return": 0.090772,
+              "benchmark_cumulative_return": 0.166312
+            },
+            {
+              "symbol": "GNRC",
+              "cumulative_return": -0.018358,
+              "benchmark_cumulative_return": 0.199706
+            },
+            {
+              "symbol": "ROK",
+              "cumulative_return": 0.170536,
+              "benchmark_cumulative_return": -0.06231
+            },
+            {
+              "symbol": "EMR",
+              "cumulative_return": 0.285042,
+              "benchmark_cumulative_return": 0.297312
+            },
+            {
+              "symbol": "ITW",
+              "cumulative_return": 0.00676,
+              "benchmark_cumulative_return": -0.009664
+            },
+            {
+              "symbol": "PH",
+              "cumulative_return": -0.006051,
+              "benchmark_cumulative_return": 0.395782
+            },
+            {
+              "symbol": "AME",
+              "cumulative_return": 0.123907,
+              "benchmark_cumulative_return": 0.100104
+            },
+            {
+              "symbol": "IR",
+              "cumulative_return": -0.026942,
+              "benchmark_cumulative_return": 0.170638
+            },
+            {
+              "symbol": "FAST",
+              "cumulative_return": -0.045761,
+              "benchmark_cumulative_return": 0.135258
+            },
+            {
+              "symbol": "DOV",
+              "cumulative_return": -0.007402,
+              "benchmark_cumulative_return": 0.233473
+            },
+            {
+              "symbol": "GE",
+              "cumulative_return": 0.043448,
+              "benchmark_cumulative_return": 0.648255
+            },
+            {
+              "symbol": "RTX",
+              "cumulative_return": 0.13756,
+              "benchmark_cumulative_return": 0.40762
+            },
+            {
+              "symbol": "LMT",
+              "cumulative_return": -0.114715,
+              "benchmark_cumulative_return": 0.100216
+            },
+            {
+              "symbol": "NOC",
+              "cumulative_return": 0.186351,
+              "benchmark_cumulative_return": 0.019317
+            },
+            {
+              "symbol": "GD",
+              "cumulative_return": -0.056961,
+              "benchmark_cumulative_return": 0.035217
+            },
+            {
+              "symbol": "BA",
+              "cumulative_return": -0.138111,
+              "benchmark_cumulative_return": -0.320955
+            },
+            {
+              "symbol": "TDG",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.322651
+            },
+            {
+              "symbol": "HWM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 1.027054
+            },
+            {
+              "symbol": "GM",
+              "cumulative_return": 0.206679,
+              "benchmark_cumulative_return": 0.498428
+            },
+            {
+              "symbol": "F",
+              "cumulative_return": -0.087756,
+              "benchmark_cumulative_return": -0.131017
+            },
+            {
+              "symbol": "TT",
+              "cumulative_return": -0.025026,
+              "benchmark_cumulative_return": 0.529701
+            },
+            {
+              "symbol": "CARR",
+              "cumulative_return": 0.02077,
+              "benchmark_cumulative_return": 0.202586
+            },
+            {
+              "symbol": "JCI",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.397973
+            },
+            {
+              "symbol": "LII",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.372678
+            },
+            {
+              "symbol": "NUE",
+              "cumulative_return": -0.32443,
+              "benchmark_cumulative_return": -0.319521
+            },
+            {
+              "symbol": "STLD",
+              "cumulative_return": -0.064947,
+              "benchmark_cumulative_return": -0.019943
+            },
+            {
+              "symbol": "APH",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.413024
+            },
+            {
+              "symbol": "TEL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.035116
+            },
+            {
+              "symbol": "MMM",
+              "cumulative_return": 0.12627,
+              "benchmark_cumulative_return": 0.461244
+            },
+            {
+              "symbol": "HON",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.100156
+            },
+            {
+              "symbol": "CMI",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.489244
+            },
+            {
+              "symbol": "WM",
+              "cumulative_return": 0.106968,
+              "benchmark_cumulative_return": 0.142847
+            },
+            {
+              "symbol": "CSX",
+              "cumulative_return": 0.069213,
+              "benchmark_cumulative_return": -0.056475
+            },
+            {
+              "symbol": "UNP",
+              "cumulative_return": 0.054897,
+              "benchmark_cumulative_return": -0.051024
+            },
+            {
+              "symbol": "FDX",
+              "cumulative_return": 0.385402,
+              "benchmark_cumulative_return": 0.134937
+            },
+            {
+              "symbol": "UPS",
+              "cumulative_return": -0.069411,
+              "benchmark_cumulative_return": -0.159306
+            }
+          ],
+          "strategy": {
+            "count": 46,
+            "winners": 18,
+            "losers": 16,
+            "profit_ratio": 0.391304,
+            "win_rate": 0.545455,
+            "cumulative_return": 0.029619,
+            "median_return": 0.0,
+            "annualized_return": 0.029619,
+            "sharpe": 0.193732,
+            "max_drawdown": -0.07623,
+            "trades": 44,
+            "beat_benchmark": 12
+          },
+          "benchmark": {
+            "count": 46,
+            "winners": 36,
+            "losers": 10,
+            "profit_ratio": 0.782609,
+            "win_rate": null,
+            "cumulative_return": 0.248206,
+            "median_return": 0.185172,
+            "annualized_return": 0.265902,
+            "sharpe": 0.799365,
+            "max_drawdown": -0.185264,
+            "trades": 0
+          }
+        },
+        "2025": {
+          "symbols": [
+            {
+              "symbol": "CAT",
+              "cumulative_return": 0.167839,
+              "benchmark_cumulative_return": 0.603046
+            },
+            {
+              "symbol": "DE",
+              "cumulative_return": 0.24781,
+              "benchmark_cumulative_return": 0.113852
+            },
+            {
+              "symbol": "PCAR",
+              "cumulative_return": 0.2619,
+              "benchmark_cumulative_return": 0.080338
+            },
+            {
+              "symbol": "URI",
+              "cumulative_return": -0.015414,
+              "benchmark_cumulative_return": 0.159169
+            },
+            {
+              "symbol": "TEX",
+              "cumulative_return": 0.240906,
+              "benchmark_cumulative_return": 0.172536
+            },
+            {
+              "symbol": "ETN",
+              "cumulative_return": 0.116937,
+              "benchmark_cumulative_return": -0.027896
+            },
+            {
+              "symbol": "GEV",
+              "cumulative_return": 0.465402,
+              "benchmark_cumulative_return": 0.990167
+            },
+            {
+              "symbol": "VRT",
+              "cumulative_return": 0.773712,
+              "benchmark_cumulative_return": 0.428051
+            },
+            {
+              "symbol": "PWR",
+              "cumulative_return": 0.239258,
+              "benchmark_cumulative_return": 0.337026
+            },
+            {
+              "symbol": "HUBB",
+              "cumulative_return": 0.124111,
+              "benchmark_cumulative_return": 0.074291
+            },
+            {
+              "symbol": "NVT",
+              "cumulative_return": -0.018412,
+              "benchmark_cumulative_return": 0.51267
+            },
+            {
+              "symbol": "GNRC",
+              "cumulative_return": -0.110979,
+              "benchmark_cumulative_return": -0.120477
+            },
+            {
+              "symbol": "ROK",
+              "cumulative_return": 0.18159,
+              "benchmark_cumulative_return": 0.383629
+            },
+            {
+              "symbol": "EMR",
+              "cumulative_return": 0.045104,
+              "benchmark_cumulative_return": 0.089169
+            },
+            {
+              "symbol": "ITW",
+              "cumulative_return": 0.028234,
+              "benchmark_cumulative_return": -0.004253
+            },
+            {
+              "symbol": "PH",
+              "cumulative_return": 0.055853,
+              "benchmark_cumulative_return": 0.395422
+            },
+            {
+              "symbol": "AME",
+              "cumulative_return": 0.172586,
+              "benchmark_cumulative_return": 0.146633
+            },
+            {
+              "symbol": "IR",
+              "cumulative_return": 0.038728,
+              "benchmark_cumulative_return": -0.123385
+            },
+            {
+              "symbol": "FAST",
+              "cumulative_return": 0.063893,
+              "benchmark_cumulative_return": 0.139829
+            },
+            {
+              "symbol": "DOV",
+              "cumulative_return": 0.024588,
+              "benchmark_cumulative_return": 0.052403
+            },
+            {
+              "symbol": "GE",
+              "cumulative_return": 0.471136,
+              "benchmark_cumulative_return": 0.857338
+            },
+            {
+              "symbol": "RTX",
+              "cumulative_return": 0.204047,
+              "benchmark_cumulative_return": 0.614408
+            },
+            {
+              "symbol": "LMT",
+              "cumulative_return": 0.055849,
+              "benchmark_cumulative_return": 0.024669
+            },
+            {
+              "symbol": "NOC",
+              "cumulative_return": 0.143549,
+              "benchmark_cumulative_return": 0.236147
+            },
+            {
+              "symbol": "GD",
+              "cumulative_return": 0.12827,
+              "benchmark_cumulative_return": 0.30394
+            },
+            {
+              "symbol": "BA",
+              "cumulative_return": 0.361538,
+              "benchmark_cumulative_return": 0.226667
+            },
+            {
+              "symbol": "TDG",
+              "cumulative_return": 0.002057,
+              "benchmark_cumulative_return": 0.121529
+            },
+            {
+              "symbol": "HWM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.879538
+            },
+            {
+              "symbol": "GM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.542371
+            },
+            {
+              "symbol": "F",
+              "cumulative_return": 0.24441,
+              "benchmark_cumulative_return": 0.423451
+            },
+            {
+              "symbol": "TT",
+              "cumulative_return": 0.064869,
+              "benchmark_cumulative_return": 0.061375
+            },
+            {
+              "symbol": "CARR",
+              "cumulative_return": -0.15818,
+              "benchmark_cumulative_return": -0.218116
+            },
+            {
+              "symbol": "JCI",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.529518
+            },
+            {
+              "symbol": "LII",
+              "cumulative_return": 0.057578,
+              "benchmark_cumulative_return": -0.195381
+            },
+            {
+              "symbol": "NUE",
+              "cumulative_return": 0.198999,
+              "benchmark_cumulative_return": 0.420346
+            },
+            {
+              "symbol": "STLD",
+              "cumulative_return": 0.448144,
+              "benchmark_cumulative_return": 0.507028
+            },
+            {
+              "symbol": "APH",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.960836
+            },
+            {
+              "symbol": "TEL",
+              "cumulative_return": 0.235941,
+              "benchmark_cumulative_return": 0.610686
+            },
+            {
+              "symbol": "MMM",
+              "cumulative_return": 0.486847,
+              "benchmark_cumulative_return": 0.263635
+            },
+            {
+              "symbol": "HON",
+              "cumulative_return": 0.213127,
+              "benchmark_cumulative_return": -0.063661
+            },
+            {
+              "symbol": "CMI",
+              "cumulative_return": 0.013699,
+              "benchmark_cumulative_return": 0.493587
+            },
+            {
+              "symbol": "WM",
+              "cumulative_return": 0.214544,
+              "benchmark_cumulative_return": 0.105011
+            },
+            {
+              "symbol": "CSX",
+              "cumulative_return": -0.027077,
+              "benchmark_cumulative_return": 0.141331
+            },
+            {
+              "symbol": "UNP",
+              "cumulative_return": 0.114241,
+              "benchmark_cumulative_return": 0.038589
+            },
+            {
+              "symbol": "FDX",
+              "cumulative_return": 0.015146,
+              "benchmark_cumulative_return": 0.05106
+            },
+            {
+              "symbol": "UPS",
+              "cumulative_return": -0.198079,
+              "benchmark_cumulative_return": -0.159336
+            }
+          ],
+          "strategy": {
+            "count": 46,
+            "winners": 36,
+            "losers": 6,
+            "profit_ratio": 0.782609,
+            "win_rate": 0.852941,
+            "cumulative_return": 0.139007,
+            "median_return": 0.115589,
+            "annualized_return": 0.140306,
+            "sharpe": 0.687055,
+            "max_drawdown": -0.166829,
+            "trades": 34,
+            "beat_benchmark": 19
+          },
+          "benchmark": {
+            "count": 46,
+            "winners": 38,
+            "losers": 8,
+            "profit_ratio": 0.826087,
+            "win_rate": null,
+            "cumulative_return": 0.264756,
+            "median_return": 0.165853,
+            "annualized_return": 0.267418,
+            "sharpe": 0.793061,
+            "max_drawdown": -0.259909,
+            "trades": 0
+          }
+        },
+        "2026": {
+          "symbols": [
+            {
+              "symbol": "CAT",
+              "cumulative_return": -0.04402,
+              "benchmark_cumulative_return": 0.315407
+            },
+            {
+              "symbol": "DE",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.408023
+            },
+            {
+              "symbol": "PCAR",
+              "cumulative_return": 0.140857,
+              "benchmark_cumulative_return": -0.000367
+            },
+            {
+              "symbol": "URI",
+              "cumulative_return": 0.570508,
+              "benchmark_cumulative_return": 0.28636
+            },
+            {
+              "symbol": "TEX",
+              "cumulative_return": 0.073595,
+              "benchmark_cumulative_return": -0.014086
+            },
+            {
+              "symbol": "ETN",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.294371
+            },
+            {
+              "symbol": "GEV",
+              "cumulative_return": 0.085655,
+              "benchmark_cumulative_return": 0.443648
+            },
+            {
+              "symbol": "VRT",
+              "cumulative_return": -0.001676,
+              "benchmark_cumulative_return": 0.37636
+            },
+            {
+              "symbol": "PWR",
+              "cumulative_return": 0.280162,
+              "benchmark_cumulative_return": 0.566237
+            },
+            {
+              "symbol": "HUBB",
+              "cumulative_return": 0.14664,
+              "benchmark_cumulative_return": 0.075314
+            },
+            {
+              "symbol": "NVT",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.50472
+            },
+            {
+              "symbol": "GNRC",
+              "cumulative_return": 0.234543,
+              "benchmark_cumulative_return": 0.452372
+            },
+            {
+              "symbol": "ROK",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.09881
+            },
+            {
+              "symbol": "EMR",
+              "cumulative_return": 0.320439,
+              "benchmark_cumulative_return": 0.227419
+            },
+            {
+              "symbol": "ITW",
+              "cumulative_return": 0.27015,
+              "benchmark_cumulative_return": 0.114839
+            },
+            {
+              "symbol": "PH",
+              "cumulative_return": 0.199984,
+              "benchmark_cumulative_return": 0.094705
+            },
+            {
+              "symbol": "AME",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.207702
+            },
+            {
+              "symbol": "IR",
+              "cumulative_return": 0.066994,
+              "benchmark_cumulative_return": -0.015434
+            },
+            {
+              "symbol": "FAST",
+              "cumulative_return": 0.159975,
+              "benchmark_cumulative_return": 0.317089
+            },
+            {
+              "symbol": "DOV",
+              "cumulative_return": 0.016878,
+              "benchmark_cumulative_return": -0.00244
+            },
+            {
+              "symbol": "GE",
+              "cumulative_return": 0.304616,
+              "benchmark_cumulative_return": 0.000937
+            },
+            {
+              "symbol": "RTX",
+              "cumulative_return": 0.104923,
+              "benchmark_cumulative_return": 0.027769
+            },
+            {
+              "symbol": "LMT",
+              "cumulative_return": 0.113285,
+              "benchmark_cumulative_return": 0.099277
+            },
+            {
+              "symbol": "NOC",
+              "cumulative_return": -0.182469,
+              "benchmark_cumulative_return": -0.120083
+            },
+            {
+              "symbol": "GD",
+              "cumulative_return": 0.138724,
+              "benchmark_cumulative_return": 0.012047
+            },
+            {
+              "symbol": "BA",
+              "cumulative_return": -0.055796,
+              "benchmark_cumulative_return": -0.149503
+            },
+            {
+              "symbol": "TDG",
+              "cumulative_return": -0.06243,
+              "benchmark_cumulative_return": -0.165492
+            },
+            {
+              "symbol": "HWM",
+              "cumulative_return": -0.112754,
+              "benchmark_cumulative_return": 0.062656
+            },
+            {
+              "symbol": "GM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.028033
+            },
+            {
+              "symbol": "F",
+              "cumulative_return": 0.25165,
+              "benchmark_cumulative_return": -0.049724
+            },
+            {
+              "symbol": "TT",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.219471
+            },
+            {
+              "symbol": "CARR",
+              "cumulative_return": 0.051169,
+              "benchmark_cumulative_return": 0.038291
+            },
+            {
+              "symbol": "JCI",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.284027
+            },
+            {
+              "symbol": "LII",
+              "cumulative_return": -0.275027,
+              "benchmark_cumulative_return": -0.275027
+            },
+            {
+              "symbol": "NUE",
+              "cumulative_return": 0.197748,
+              "benchmark_cumulative_return": 0.589326
+            },
+            {
+              "symbol": "STLD",
+              "cumulative_return": 0.110815,
+              "benchmark_cumulative_return": 0.444728
+            },
+            {
+              "symbol": "APH",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.229941
+            },
+            {
+              "symbol": "TEL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.065816
+            },
+            {
+              "symbol": "MMM",
+              "cumulative_return": 0.135414,
+              "benchmark_cumulative_return": 0.041719
+            },
+            {
+              "symbol": "HON",
+              "cumulative_return": 0.097979,
+              "benchmark_cumulative_return": 0.02841
+            },
+            {
+              "symbol": "CMI",
+              "cumulative_return": -0.080797,
+              "benchmark_cumulative_return": 0.040956
+            },
+            {
+              "symbol": "WM",
+              "cumulative_return": 0.08988,
+              "benchmark_cumulative_return": -0.005471
+            },
+            {
+              "symbol": "CSX",
+              "cumulative_return": 0.048757,
+              "benchmark_cumulative_return": 0.344014
+            },
+            {
+              "symbol": "UNP",
+              "cumulative_return": 0.21444,
+              "benchmark_cumulative_return": 0.256985
+            },
+            {
+              "symbol": "FDX",
+              "cumulative_return": 0.040979,
+              "benchmark_cumulative_return": 0.266138
+            },
+            {
+              "symbol": "UPS",
+              "cumulative_return": 0.163433,
+              "benchmark_cumulative_return": 0.011466
+            }
+          ],
+          "strategy": {
+            "count": 46,
+            "winners": 28,
+            "losers": 8,
+            "profit_ratio": 0.608696,
+            "win_rate": 0.619048,
+            "cumulative_return": 0.08294,
+            "median_return": 0.070294,
+            "annualized_return": 0.11073,
+            "sharpe": 0.717795,
+            "max_drawdown": -0.09334,
+            "trades": 42,
+            "beat_benchmark": 22
+          },
+          "benchmark": {
+            "count": 46,
+            "winners": 35,
+            "losers": 11,
+            "profit_ratio": 0.76087,
+            "win_rate": null,
+            "cumulative_return": 0.151003,
+            "median_return": 0.096757,
+            "annualized_return": 0.203676,
+            "sharpe": 0.619615,
+            "max_drawdown": -0.232482,
+            "trades": 0
+          }
+        }
+      }
+    }
+  ]
+}
