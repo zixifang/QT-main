@@ -1,0 +1,130 @@
+# Agent 开发须知
+
+后续 agent 改这个仓库时，按下面的边界做。不要把计算塞回界面，也不要让界面直接读 `data` 里的 CSV。
+
+## 必须遵守
+
+1. `gui/` 只读取 `outdata/**/*.json` 并绘图。禁止在 `gui/` 里计算 RSI、收益、回撤、夏普，禁止 `gui/` import `algorithms` 或 `engine`，禁止 `gui/` 打开 `data/` 下的 CSV。
+2. 每个算法是 `algorithms/` 下的独立程序。它读取 `data/`，调用 `engine` 做回测，然后把 JSON 写到 `outdata/<dataset_id>/`。
+3. RSI 已经分离为 `python -m algorithms.rsi`。它只处理 `data/Equity-Portfolio-Management-master`，输出 `outdata/equity-2018/`。不要把这段计算搬回 `gui/app.py`。
+4. 界面上的数据集来自 `outdata` 子目录里的 `index.json`。股票表的行来自该文件的 `symbols`，列是代码、全年涨跌、年末价格。全年涨跌用 JSON 里买入持有的 `cumulative_return`，年末价格用 `close` 的最后一个数。算法列表来自该文件的 `algorithms`。新增数据集或算法时改 JSON，不要在界面里写死代码列表。
+5. 股票区域保持左侧表格，不要改回标签页。数据集下拉框放在股票表上方，算法列表放在股票表下方。
+6. 右侧仍是三页：原始数据、算法点位、统计指标。这三页的数都从当前股票 JSON 里取。
+7. 横轴使用 JSON 里的 `dates`，格式 `YYYY-MM-DD`，按时间从早到晚。不要改回未对齐的日期坐标。
+
+## 目录契约
+
+```text
+data/<原始数据集>/                 算法程序的输入
+outdata/<dataset_id>/index.json    界面用来列数据集、股票、算法
+outdata/<dataset_id>/<SYMBOL>.json 界面用来画一只股票
+algorithms/<name>.py               只负责一种算法的计算和写 JSON
+gui/                               只负责读 JSON 和展示
+engine/                            只给算法程序调用
+```
+
+## index.json
+
+```json
+{
+  "schema_version": 1,
+  "dataset_id": "equity-2018",
+  "name": "界面下拉框显示的名字",
+  "source": "data/相对路径",
+  "price_field": "close",
+  "symbols": ["AAPL"],
+  "algorithms": [
+    {"id": "rsi", "name": "RSI 均值回归", "note": "一句话说明规则"}
+  ]
+}
+```
+
+`dataset_id` 必须和目录名一致。`symbols` 的顺序就是股票标签从左到右的顺序。每个代码都要有同名 `{SYMBOL}.json`。
+
+## 股票 JSON
+
+`schema_version` 固定为 `1`。数组长度都等于 `dates` 的长度，按下标对齐。没有值的位置写 `null`，不要写 `NaN`。
+
+```json
+{
+  "schema_version": 1,
+  "dataset_id": "equity-2018",
+  "symbol": "AAPL",
+  "price_field": "close",
+  "dates": ["2018-01-02"],
+  "open": [170.16],
+  "high": [172.3],
+  "low": [169.26],
+  "close": [172.26],
+  "volume": [25555900],
+  "algorithms": {
+    "rsi": {
+      "id": "rsi",
+      "name": "RSI 均值回归",
+      "note": "RSI(14) 低于 30 开多，高于 70 平仓",
+      "params": {"period": 14, "oversold": 30, "overbought": 70, "fee": 0.001},
+      "indicator": [null],
+      "signal": [0],
+      "position": [0],
+      "buy_dates": ["2018-02-01"],
+      "sell_dates": ["2018-05-10"],
+      "equity": [1.0],
+      "benchmark_equity": [1.0],
+      "stats": {
+        "strategy": {
+          "cumulative_return": 0.0,
+          "annualized_return": 0.0,
+          "volatility": 0.0,
+          "sharpe": 0.0,
+          "max_drawdown": 0.0,
+          "calmar": 0.0,
+          "trades": 0,
+          "win_rate": 0.0
+        },
+        "benchmark": {
+          "cumulative_return": 0.0,
+          "annualized_return": 0.0,
+          "volatility": 0.0,
+          "sharpe": 0.0,
+          "max_drawdown": 0.0,
+          "calmar": 0.0,
+          "trades": 1,
+          "win_rate": null
+        }
+      }
+    }
+  }
+}
+```
+
+字段含义：
+
+| 字段 | 含义 |
+|---|---|
+| `close` | 原始价格。第一页画这列，第二页也在这列上标买卖点 |
+| `volume` | 第一页下方的成交量 |
+| `indicator` | 第二页下方的指标值。RSI 的前 14 天是 `null` |
+| `signal` | 当日收盘才知道的目标仓位，尚未后移 |
+| `position` | 回测实际持仓，等于 `signal` 后移一天 |
+| `buy_dates` / `sell_dates` | `position` 发生变化的日期，必须能在 `dates` 里找到 |
+| `equity` | 策略净值，起点约为 1 |
+| `benchmark_equity` | 买入持有净值 |
+| `stats` | 第三页表格。比例用小数，例如 `-0.0182` 表示 -1.82% |
+| `stats.benchmark.win_rate` | 买入持有不计算胜率，写 `null`，界面显示为 — |
+
+`params.oversold` 和 `params.overbought` 如果存在，第二页会把它们画成水平线。没有这两个参数的算法不要编造这两条线。
+
+## 新增算法时要改的文件
+
+1. 新建 `algorithms/<算法id>.py`，提供可单独运行的入口。
+2. 读取已有的 `outdata/<dataset_id>/*.json`，或自己从 `data` 重算后整文件重写。
+3. 在每只股票的 `algorithms` 里加入同一个 `id`。
+4. 把 `{"id","name","note"}` 追加到 `index.json` 的 `algorithms`，不要覆盖别人的算法条目。
+5. 跑一遍自己的程序，确认 `python -m gui` 能在不改界面代码的情况下看到新算法。
+
+## 不要做的事
+
+- 不要在界面点击时临时算 RSI 或回测。
+- 不要把 CSV 列名直接交给界面；列名转换放在算法程序里。
+- 不要修改 `schema_version`，除非同时改 `gui/app.py`、本文件和已生成的 JSON。
+- 不要把 `outdata` 的结果再写回 `data`。

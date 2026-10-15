@@ -2,7 +2,7 @@
 
 仓库：[zixifang/QT-main](https://github.com/zixifang/QT-main)
 
-本仓库已按新的项目计划清空。原先的「单一 RSI 均值回归 + 五人分模块」代码、接口和分工说明都已移除，后续协作以本说明为准。
+计算用 pandas 和 numpy。算法读 `data` 里的 CSV，把 JSON 写到本地 `outdata`（不提交）。界面只读这些 JSON。
 
 ## 六周安排
 
@@ -48,6 +48,17 @@ print(summarize(result))
 ```powershell
 python -m engine
 ```
+
+## 行情窗口
+
+界面只读取 `outdata` 里的 JSON。RSI 单独从 `data` 计算后再写入 `outdata`。
+
+```powershell
+python -m algorithms.rsi
+python -m gui
+```
+
+左侧上方选择数据集，中间是股票表（代码、全年涨跌、年末价格），下方选择算法。右侧三页为原始价格与成交量、买卖点与指标、净值与统计指标。约定见 [docs/开发说明.md](docs/开发说明.md)。给其他 agent 的边界见 [docs/AGENT开发须知.md](docs/AGENT开发须知.md)。
 
 ## 环境
 
