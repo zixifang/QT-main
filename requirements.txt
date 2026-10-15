@@ -1,4 +1,5 @@
-# Python 3.10
+# 计算引擎：pandas + numpy。Python 3.10。
 pandas==2.2.3
 numpy==2.1.3
+# 可视化由各成员使用，不进入回测计算。
 matplotlib==3.9.2

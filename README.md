@@ -21,6 +21,33 @@
 - 每个人都做数据清洗、算法实践和可视化。
 - 数据来源可以来自论文，不限于 Kaggle。
 - 运行环境使用 Python 3.10，或用 Docker 封装后再上传。
+- 计算引擎固定为 pandas 与 numpy。行情用 DataFrame 整理，收益和指标用数组计算。
+
+## 计算引擎
+
+入口是 `engine`。各人的算法只通过这三个函数接入：
+
+| 函数 | 输入 | 输出 |
+|---|---|---|
+| `prepare_close(frame)` | 含 `date`、`close` 的 DataFrame | 以日期为索引的收盘价 Series |
+| `run_backtest(close, position, fee=0.0)` | 收盘价、目标仓位 | 含 `close`、`position`、`return`、`equity` 的 DataFrame |
+| `summarize(result)` | 回测结果 | `cumulative_return`、`max_drawdown`、`sharpe` |
+
+`position` 在当日收盘后确定，回测使用上一期仓位计算收益。仓位可以是多头、空仓或空头权重。
+
+```python
+from engine import prepare_close, run_backtest, summarize
+
+close = prepare_close(frame)
+result = run_backtest(close, position, fee=0.001)
+print(summarize(result))
+```
+
+检查引擎是否装好：
+
+```powershell
+python -m engine
+```
 
 ## 环境
 
@@ -40,7 +67,7 @@ docker compose build
 docker compose run --rm app
 ```
 
-镜像基于 `python:3.10-slim`。当前命令只确认 Python 版本，算法程序由各自分支接入后再改启动命令。
+镜像基于 `python:3.10-slim`。启动命令是 `python -m engine`，用来确认 pandas、numpy 和回测接口可用。
 
 ## 协作
 

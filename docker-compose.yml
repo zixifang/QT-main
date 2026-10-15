@@ -1,4 +1,4 @@
 services:
   app:
     build: .
-    command: ["python", "--version"]
+    command: ["python", "-m", "engine"]
