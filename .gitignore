@@ -13,11 +13,12 @@ env/
 .env
 *.pem
 
-# 数据与输出：原始大文件不入库，样例与说明除外
+# 原始数据和生成结果默认不入库
 data/raw/
-data/processed/
-output/*
-!output/.gitkeep
+output/
+
+# 本地汇报材料
+ppt/
 
 # IDE / OS
 .idea/

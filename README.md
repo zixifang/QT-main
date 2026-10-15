@@ -1,48 +1,52 @@
-# 美股 RSI 均值回归回测
+# 量化研究小组
 
-期末数据科学小组项目的最小可行版本：用日频 OHLCV 跑通 **RSI 均值回归 → 回测指标 → 图表 → Docker 复现**。策略是否赚钱不是验收标准，链路能复现才是。
+本仓库已按新的项目计划清空。原先的「单一 RSI 均值回归 + 五人分模块」代码、接口和分工说明都已移除，后续协作以本说明为准。
 
-当前策略：RSI(14) 低于 30 开多，高于 70 平仓。只做多，信号次日生效。
+## 六周安排
 
-## 分工
+| 周次 | 内容 |
+|---|---|
+| 第一周 | 学习基础论文，搭建基础框架。每人找 1–3 个数据集、2 个算法，完成最小可行程序 |
+| 第二周 | 继续完成第一周内容。每人制作分享报告（算法简介和回测可视化）。周末开会核对进度 |
+| 第三周 | 在第二周基础上扩展，例如补充算法、补齐落后进度 |
+| 第四周 | 总结第三周的扩展，集中解决问题。周末开会 |
+| 第五周 | 分工制作汇报，并进行汇报演练 |
+| 第六周 | 处理遗留问题 |
 
-| 角色 | 模块 | 第 1 周交付 |
-|---|---|---|
-| A | `src/strategy`、`src/backtest`、接口文档 | 已建立仓库与接口，冒烟脚本可跑 |
-| B | `src/data/loader.py`、`data/processed` | Kaggle 数据与清洗 |
-| C | `src/viz/plots.py`、`output/` | 确认三张图的清单 |
-| D | `Dockerfile`、`docker-compose.yml` | 镜像里能看到 Python 版本 |
-| E | 汇报材料、审查记录 | PPT 框架与 README 口径（仓库已由 A 建好） |
+## 共同约定
 
-接口以 [docs/interfaces.md](docs/interfaces.md) 为准。分支规则见 [docs/branching.md](docs/branching.md)。
+- 第一周确定统一的架构和接口，之后不再改动。
+- 每个人都做数据清洗、算法实践和可视化。
+- 数据来源可以来自论文，不限于 Kaggle。
+- 运行环境使用 Python 3.10，或用 Docker 封装后再上传。
 
-## 本地运行
+## 环境
 
-需要 Python 3.10 及以上。本机开发环境是 3.12，Docker 目标版本是 3.10。
+本地：
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-pytest
-python -m src.main
+python --version
 ```
 
-`src.main` 使用合成行情。角色 B 把 CSV 放到 `data/processed/` 之后，按接口文档把入口改成 `load_data`。
-
-也可以运行 `.\run.ps1`，它会创建虚拟环境、安装依赖、跑测试并打印指标。
-
-## Docker
-
-角色 D 负责把下面两条命令收成稳定的一键流程。骨架已经放在仓库里：
+Docker：
 
 ```powershell
 docker compose build
-docker compose run --rm backtest
+docker compose run --rm app
 ```
 
-数据通过卷挂载 `./data` 和 `./output`，不用把大文件打进镜像。
+镜像基于 `python:3.10-slim`。当前命令只确认 Python 版本，算法程序由各自分支接入后再改启动命令。
 
-## 服务器
+## 协作
 
-`方向.txt` 里提到的 Slurm 只作为以后上机算力的可选入口，见 `slurm/run.sbatch`。第 1 周不依赖集群。
+仓库地址：https://github.com/zixifang/RSI-Strategy
+
+- `main` 保存已经能运行的版本。
+- 每人从 `main` 拉自己的分支：`feature/<GitHub用户名>-<内容>`。
+- 最小可行程序放在 `members/<GitHub用户名>/`，里面包含数据说明、算法和可视化，避免互相覆盖。
+- 完成后开 Pull Request 合并回 `main`。
+
+大体积原始数据不要提交。数据说明里写清来源、字段和时间范围即可。
