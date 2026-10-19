@@ -6,11 +6,11 @@
 
 1. `gui/` 只读取 `outdata/**/*.json` 并绘图。禁止在 `gui/` 里计算 RSI、收益、回撤、夏普，禁止 `gui/` import `algorithms` 或 `engine`，禁止 `gui/` 打开 `data/` 下的 CSV。
 2. 每个算法是 `algorithms/` 下的独立程序。它读取 `data/`，调用 `engine` 做回测，然后把 JSON 写到 `outdata/<dataset_id>/`。
-3. RSI 已经分离为 `python -m algorithms.rsi`。它只处理 `data/Equity-Portfolio-Management-master`，输出 `outdata/equity-2018/`。不要把这段计算搬回 `gui/app.py`。
-4. 界面上的数据集来自 `outdata` 子目录里的 `index.json`。股票表的行来自该文件的 `symbols`，列是代码、全年涨跌、年末价格。全年涨跌用 JSON 里买入持有的 `cumulative_return`，年末价格用 `close` 的最后一个数。算法列表来自该文件的 `algorithms`。新增数据集或算法时改 JSON，不要在界面里写死代码列表。
+3. RSI 是 `python -m algorithms.rsi`。它扫描 `data/` 下每个含单只股票 CSV 的子目录，用同一套 RSI 规则计算，并写到 `outdata/<dataset_id>/`。`Equity-Portfolio-Management-master` 对应 `outdata/equity-2018/`，其余数据集的 id 与数据目录名一致。带 `Ticker` 列的合并文件（如 `tech_us_10y.csv`）不要写成一只股票。不要把这段计算搬回 `gui/app.py`。
+4. 界面上的数据集来自 `outdata` 子目录里的 `index.json`。股票表的行来自该文件的 `symbols`，列是代码、整体涨跌、价格。按年或按月时，价格是选中年份的最后收盘价，整体涨跌是它相对上一年最后一个 `close` 的涨跌；该年之前没有行情时，改用当年第一个 `close`。按10年时年份选择变灰，整体涨跌是最近10年的涨跌，价格是期末收盘价。不要用全样本的 `cumulative_return`。算法列表来自该文件的 `algorithms`。新增数据集或算法时改 JSON，不要在界面里写死代码列表。
 5. 股票区域保持左侧表格，不要改回标签页。数据集下拉框放在股票表上方，算法列表放在股票表下方。
-6. 右侧仍是三页：原始数据、算法点位、统计指标。这三页的数都从当前股票 JSON 里取。
-7. 横轴使用 JSON 里的 `dates`，格式 `YYYY-MM-DD`，按时间从早到晚。不要改回未对齐的日期坐标。
+6. 右侧共四页：原始数据、算法点位、统计指标、全局统计。前三页的数都从当前股票 JSON 里取。图表上方保留年份、月份选项，右侧下拉框有「按月展示」「按年展示」和「按10年展示」。按年只画选中年份，按月只画选中年月，按10年画最近10年并且年份选择变灰。没有数据的月份要禁用。按10年时月份选项停用。前三页折线图的图例横排在图上方，不压住折线。单股统计表保持 JSON 里的全样本 `stats`，不要在界面里按月份重算。第四页只读 `index.json` 里当前算法的 `years[<选中年份>]`。算法程序按自然年写入这一份：`symbols` 是各股当年策略累计收益，`strategy` / `benchmark` 是当年汇总。综合胜率按该年交易次数加权，综合盈利率是该年各股累计收益的等权平均。界面换年就换读取的年份，不要在界面里重算收益、回撤或夏普。全局统计页仍可切换年份，月份和展示方式停用。
+7. 横轴使用 JSON 里的 `dates`，格式 `YYYY-MM-DD`，按时间从早到晚，再按上面的年或月截取。不要改回未对齐的日期坐标。
 
 ## 目录契约
 
@@ -34,7 +34,18 @@ engine/                            只给算法程序调用
   "price_field": "close",
   "symbols": ["AAPL"],
   "algorithms": [
-    {"id": "rsi", "name": "RSI 均值回归", "note": "一句话说明规则"}
+    {
+      "id": "rsi",
+      "name": "RSI 均值回归",
+      "note": "一句话说明规则",
+      "years": {
+        "2018": {
+          "symbols": [{"symbol": "AAPL", "cumulative_return": 0.0, "benchmark_cumulative_return": 0.0}],
+          "strategy": {"count": 1, "winners": 0, "losers": 0, "profit_ratio": 0.0, "win_rate": 0.0, "cumulative_return": 0.0, "median_return": 0.0, "annualized_return": 0.0, "sharpe": 0.0, "max_drawdown": 0.0, "trades": 0, "beat_benchmark": 0},
+          "benchmark": {"count": 1, "winners": 0, "losers": 0, "profit_ratio": 0.0, "win_rate": null, "cumulative_return": 0.0, "median_return": 0.0, "annualized_return": 0.0, "sharpe": 0.0, "max_drawdown": 0.0, "trades": 0}
+        }
+      }
+    }
   ]
 }
 ```

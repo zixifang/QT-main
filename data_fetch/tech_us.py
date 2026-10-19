@@ -9,11 +9,44 @@
 from __future__ import annotations
 
 import logging
+import os
+import shutil
 import time
 from datetime import date, timedelta
 from pathlib import Path
 
 import pandas as pd
+
+
+def _use_ascii_ca_bundle() -> None:
+    """libcurl 打不开路径里含中文的 CA 证书，先复制到纯英文临时目录。"""
+    for key in ("SSL_CERT_FILE", "CURL_CA_BUNDLE", "REQUESTS_CA_BUNDLE"):
+        path = os.environ.get(key)
+        if not path or not os.path.exists(path):
+            continue
+        try:
+            path.encode("ascii")
+        except UnicodeEncodeError:
+            break
+        return
+    import certifi
+
+    source = certifi.where()
+    try:
+        source.encode("ascii")
+        return
+    except UnicodeEncodeError:
+        pass
+    target = Path(os.environ.get("TEMP") or os.environ.get("TMP") or ".") / "certifi-cacert.pem"
+    shutil.copyfile(source, target)
+    location = str(target)
+    os.environ["SSL_CERT_FILE"] = location
+    os.environ["CURL_CA_BUNDLE"] = location
+    os.environ["REQUESTS_CA_BUNDLE"] = location
+
+
+_use_ascii_ca_bundle()
+
 import yfinance as yf
 
 # 改这里即可，不必动下面的函数。
@@ -21,7 +54,7 @@ import yfinance as yf
 START = ""
 END = ""
 YEARS = 10
-DATA_DIR = Path(__file__).resolve().parents[1] / "data"
+DATA_DIR = Path(__file__).resolve().parents[1] / "data" / "tech-us-10y"
 COMBINED_NAME = "tech_us_10y.csv"
 INTERVAL = "1d"
 AUTO_ADJUST = True

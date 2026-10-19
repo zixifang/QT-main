@@ -58,7 +58,7 @@ python -m algorithms.rsi
 python -m gui
 ```
 
-左侧上方选择数据集，中间是股票表（代码、全年涨跌、年末价格），下方选择算法。右侧三页为原始价格与成交量、买卖点与指标、净值与统计指标。约定见 [docs/开发说明.md](docs/开发说明.md)。给其他 agent 的边界见 [docs/AGENT开发须知.md](docs/AGENT开发须知.md)。
+左侧上方选择数据集，中间是股票表（代码、全年涨跌、年末价格），下方选择算法。右侧四页为原始价格与成交量、买卖点与指标、净值与统计指标、数据集全局统计。约定见 [docs/开发说明.md](docs/开发说明.md)。给其他 agent 的边界见 [docs/AGENT开发须知.md](docs/AGENT开发须知.md)。
 
 ## 环境
 
@@ -82,9 +82,29 @@ docker compose run --rm app
 
 ## 协作
 
-- `main` 保存已经能运行的版本。
-- 每人从 `main` 拉自己的分支：`feature/<GitHub用户名>-<内容>`。
-- 最小可行程序放在 `members/<GitHub用户名>/`，里面包含数据说明、算法和可视化，避免互相覆盖。
-- 完成后开 Pull Request 合并回 `main`。
+`main` 只放已经能运行的版本。每人从 `main` 拉自己的分支，不要几个人同时改同一批文件：
 
-大体积原始数据不要提交。数据说明里写清来源、字段和时间范围即可。
+```powershell
+git checkout main
+git pull
+git checkout -b feature/<GitHub用户名>-<数据集或算法名>
+```
+
+数据集和算法分开存放。你只新增自己的目录或文件，不要改别人已经提交的那一份。
+
+| 要上传的内容 | 放在哪里 | 避免冲突 |
+|---|---|---|
+| 一套新行情 | `data/<数据集id>/{代码}.csv` | 不要往别人的数据目录里加文件，也不要改 `data_fetch/` 里已有的下载脚本。需要自己的下载程序时，新建 `data_fetch/<名称>.py` |
+| 一个新算法 | 新建 `algorithms/<算法名>.py` | 不要把公式写进 `gui/`，不要改别人的算法文件，例如已有的 `algorithms/rsi.py` |
+
+行情 CSV 的列是 `Date,Open,High,Low,Close,Adj Close,Volume`，一个代码一个文件。如果还要一份合并表，放在同一个数据目录里，并带上 `Ticker` 列，文件名不要做成股票代码。
+
+算法读 `data/`，只把结果写进 `outdata/<数据集id>/`。不要把算出来的 JSON 写回 `data/`。
+
+- `outdata/<数据集id>/index.json` 的 `algorithms` 数组按算法 id **追加**一条。
+- 每只股票的 `{代码}.json` 里，`algorithms` 是按算法 id 分开的对象。只写入自己的 id，不要整文件覆盖掉别人已经算好的算法。
+- 界面按这些 JSON 自动列出数据集和算法，不要把股票代码写死在 `gui/` 里。
+
+`engine/` 和 `gui/` 是共用接口。接口没有约定要改时不要动。不要提交 `.venv`、笔记本（`*.ipynb`）、汇报 PPT 和 `data/raw/`。
+
+做完后开 Pull Request 合并回 `main`。细节见 [docs/开发说明.md](docs/开发说明.md)。

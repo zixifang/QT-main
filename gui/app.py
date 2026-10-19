@@ -21,7 +21,7 @@ from gui.outdata import list_datasets, load_symbol
 plt.rcParams["font.sans-serif"] = ["Microsoft YaHei", "SimHei", "DejaVu Sans"]
 plt.rcParams["axes.unicode_minus"] = False
 
-PAGES = ("原始数据", "算法点位", "统计指标")
+PAGES = ("原始数据", "算法点位", "统计指标", "全局统计")
 STAT_ROWS = (
     ("cumulative_return", "累计收益", "pct"),
     ("annualized_return", "年化收益", "pct"),
@@ -43,25 +43,131 @@ def as_float(values: list) -> np.ndarray:
     return np.array([np.nan if value is None else float(value) for value in values], dtype=float)
 
 
-def apply_date_axis(axis, dates: np.ndarray) -> None:
-    axis.xaxis.set_major_locator(mdates.MonthLocator())
-    axis.xaxis.set_major_formatter(mdates.DateFormatter("%Y-%m"))
+def apply_date_axis(axis, dates: np.ndarray, mode: str) -> None:
+    if mode == "month":
+        axis.xaxis.set_major_locator(mdates.DayLocator(interval=5))
+        axis.xaxis.set_major_formatter(mdates.DateFormatter("%m-%d"))
+        pad = 0.8
+    elif mode == "decade":
+        axis.xaxis.set_major_locator(mdates.YearLocator())
+        axis.xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
+        pad = 20
+    else:
+        axis.xaxis.set_major_locator(mdates.MonthLocator())
+        axis.xaxis.set_major_formatter(mdates.DateFormatter("%Y-%m"))
+        pad = 3
     if len(dates):
-        axis.set_xlim(float(dates[0]) - 3, float(dates[-1]) + 3)
+        axis.set_xlim(float(dates[0]) - pad, float(dates[-1]) + pad)
     axis.tick_params(axis="x", labelrotation=30)
     for label in axis.get_xticklabels():
         label.set_ha("right")
 
 
-def _board_fields(record: dict) -> tuple[float | None, float | None, str]:
-    closes = [value for value in record.get("close") or [] if value is not None]
-    end_price = float(closes[-1]) if closes else None
-    change = None
-    for algo in (record.get("algorithms") or {}).values():
-        change = (algo.get("stats") or {}).get("benchmark", {}).get("cumulative_return")
-        break
-    tag = "up" if change is not None and change >= 0 else "down"
-    return change, end_price, tag
+def place_legend(axis, ncol: int) -> None:
+    """图例横排在坐标轴上沿，不压住折线。"""
+    axis.legend(
+        frameon=False,
+        loc="lower left",
+        bbox_to_anchor=(0.0, 1.0),
+        ncol=ncol,
+        fontsize=9,
+        borderaxespad=0.15,
+        handlelength=1.5,
+        columnspacing=1.0,
+    )
+
+
+def slice_record(record: dict, year: str, month: str | None = None, span_years: int | None = None) -> dict | None:
+    """按 JSON 里的日期截取展示区间，不改统计指标。"""
+    dates = record.get("dates") or []
+    if not dates or (not year and not span_years):
+        return None
+    stamps = pd.to_datetime(dates)
+    if span_years:
+        if year:
+            in_year = stamps.year == int(year)
+            if not bool(in_year.any()):
+                return None
+            end = stamps[in_year].max()
+        else:
+            end = stamps.max()
+        start = end - pd.DateOffset(years=int(span_years))
+        mask = (stamps >= start) & (stamps <= end)
+    else:
+        mask = stamps.year == int(year)
+        if month:
+            mask = mask & (stamps.month == int(month))
+    keep = np.asarray(mask)
+    if not keep.any():
+        return None
+    out = dict(record)
+    for key in ("dates", "open", "high", "low", "close", "volume"):
+        values = record.get(key)
+        if isinstance(values, list):
+            out[key] = [value for value, shown in zip(values, keep) if shown]
+    shown_dates = set(out["dates"])
+    algorithms = {}
+    for algo_id, algo in (record.get("algorithms") or {}).items():
+        copied = dict(algo)
+        for key in ("indicator", "signal", "position", "equity", "benchmark_equity"):
+            values = algo.get(key)
+            if isinstance(values, list) and len(values) == len(dates):
+                copied[key] = [value for value, shown in zip(values, keep) if shown]
+        copied["buy_dates"] = [day for day in algo.get("buy_dates") or [] if day in shown_dates]
+        copied["sell_dates"] = [day for day in algo.get("sell_dates") or [] if day in shown_dates]
+        algorithms[algo_id] = copied
+    out["algorithms"] = algorithms
+    return out
+
+
+def _tagged(change: float | None) -> str:
+    if change is None:
+        return "flat"
+    return "up" if change >= 0 else "down"
+
+
+def _price_pairs(record: dict) -> list[tuple[str, float]]:
+    dates = record.get("dates") or []
+    closes = record.get("close") or []
+    pairs = []
+    for day, price in zip(dates, closes):
+        if price is None or len(day) < 10:
+            continue
+        pairs.append((day, float(price)))
+    return pairs
+
+
+def _board_fields(record: dict, year: str, decade: bool = False) -> tuple[float | None, float | None, str]:
+    """按年时，整体涨跌相对上一年末，年末价格是该年最后收盘价。按10年时，用最近10年的整体涨跌和期末价格。"""
+    pairs = _price_pairs(record)
+    if not pairs:
+        return None, None, "flat"
+    if decade:
+        end_day, end_price = pairs[-1]
+        cutoff = (pd.Timestamp(end_day) - pd.DateOffset(years=10)).strftime("%Y-%m-%d")
+        base = None
+        for day, price in pairs:
+            if day <= cutoff:
+                base = price
+            else:
+                break
+        if base in (None, 0.0):
+            base = pairs[0][1]
+        change = None if base in (None, 0.0) else end_price / base - 1.0
+        return change, end_price, _tagged(change)
+    previous = None
+    year_closes: list[float] = []
+    for day, price in pairs:
+        if day[:4] < year:
+            previous = price
+        elif day[:4] == year:
+            year_closes.append(price)
+    if not year or not year_closes:
+        return None, None, "flat"
+    end_price = year_closes[-1]
+    base = previous if previous not in (None, 0.0) else year_closes[0]
+    change = None if base in (None, 0.0) else end_price / base - 1.0
+    return change, end_price, _tagged(change)
 
 
 def _format_price(value: float | None) -> str:
@@ -94,6 +200,11 @@ class MarketApp(tk.Tk):
         self._suspend = False
         self.page = 0
         self.page_text = tk.StringVar(value=self._page_caption())
+        self.view_mode = tk.StringVar(value="按年展示")
+        self.year_var = tk.StringVar()
+        self.month_var = tk.StringVar(value="1")
+        self._years: tuple[str, ...] = ()
+        self.month_buttons: dict[int, ttk.Radiobutton] = {}
         self._build()
         self._load_dataset(0)
         self.redraw()
@@ -142,7 +253,7 @@ class MarketApp(tk.Tk):
         main = ttk.Frame(self, padding=(0, 12, 12, 12))
         main.grid(row=0, column=1, sticky="nsew")
         main.columnconfigure(0, weight=1)
-        main.rowconfigure(1, weight=1)
+        main.rowconfigure(2, weight=1)
         pager = ttk.Frame(main)
         pager.grid(row=0, column=0, sticky="ew", pady=(0, 6))
         self.prev_button = ttk.Button(pager, text="上一页", command=self.prev_page)
@@ -151,11 +262,46 @@ class MarketApp(tk.Tk):
         self.next_button = ttk.Button(pager, text="下一页", command=self.next_page)
         self.next_button.pack(side="left")
 
+        period = ttk.Frame(main)
+        period.grid(row=1, column=0, sticky="ew", pady=(0, 6))
+        period.columnconfigure(1, weight=1)
+        year_row = ttk.Frame(period)
+        year_row.grid(row=0, column=0, columnspan=2, sticky="ew")
+        ttk.Label(year_row, text="年").pack(side="left")
+        self.year_box = ttk.Frame(year_row)
+        self.year_box.pack(side="left", padx=(6, 0))
+        self.view_picker = ttk.Combobox(
+            year_row,
+            textvariable=self.view_mode,
+            state="readonly",
+            width=12,
+            values=("按月展示", "按年展示", "按10年展示"),
+        )
+        self.view_picker.pack(side="right")
+        self.view_picker.bind("<<ComboboxSelected>>", lambda _event: self.redraw())
+
+        month_row = ttk.Frame(period)
+        month_row.grid(row=1, column=0, columnspan=2, sticky="ew", pady=(4, 0))
+        ttk.Label(month_row, text="月").pack(side="left")
+        self.month_box = ttk.Frame(month_row)
+        self.month_box.pack(side="left", padx=(6, 0))
+        for month in range(1, 13):
+            button = ttk.Radiobutton(
+                self.month_box,
+                text=f"{month}月",
+                value=str(month),
+                variable=self.month_var,
+                command=self.redraw,
+                width=4,
+            )
+            button.pack(side="left", padx=(0, 2))
+            self.month_buttons[month] = button
+
         self.figure = Figure(figsize=(8.4, 6.2), dpi=100)
         self.canvas = FigureCanvasTkAgg(self.figure, master=main)
-        self.canvas.get_tk_widget().grid(row=1, column=0, sticky="nsew")
+        self.canvas.get_tk_widget().grid(row=2, column=0, sticky="nsew")
         toolbar = NavigationToolbar2Tk(self.canvas, main, pack_toolbar=False)
-        toolbar.grid(row=2, column=0, sticky="ew")
+        toolbar.grid(row=3, column=0, sticky="ew")
         toolbar.update()
 
     def _on_dataset(self) -> None:
@@ -175,10 +321,13 @@ class MarketApp(tk.Tk):
     def _fill_board(self) -> None:
         selected = self.selected_symbol()
         self.board.delete(*self.board.get_children())
+        decade = self._view() == "decade"
+        self.board.heading("return", text="整体涨跌")
+        self.board.heading("end", text="期末价格" if decade else "年末价格")
         symbols = self.dataset["symbols"] if self.dataset else []
         for symbol in symbols:
             record = self._cached_symbol(symbol)
-            change, end_price, tag = _board_fields(record)
+            change, end_price, tag = _board_fields(record, self.year_var.get(), decade=decade)
             self.board.insert(
                 "",
                 "end",
@@ -188,6 +337,8 @@ class MarketApp(tk.Tk):
             )
         if symbols:
             self.board.selection_set(selected if selected in symbols else symbols[0])
+        dataset_id = self.dataset["dataset_id"] if self.dataset else ""
+        self._board_marker = (dataset_id, self.year_var.get(), self._view())
 
     def _cached_symbol(self, symbol: str) -> dict:
         key = (self.dataset["dataset_id"], symbol)
@@ -257,16 +408,100 @@ class MarketApp(tk.Tk):
                 match = [item for item in self.dataset["algorithms"] if item["id"] == algorithm_id]
                 note = match[0]["note"] if match else ""
             self.algorithm_note.configure(text=note)
-            if record is None:
+            self._sync_period(record)
+            self._sync_board()
+            self._set_period_enabled(self.page != len(PAGES) - 1)
+            shown = self._window(record) if record else None
+            if self.page == len(PAGES) - 1:
+                self._draw_overview(algorithm_id)
+            elif record is None:
                 self._draw_message("请选择数据集和股票。")
+            elif shown is None:
+                self._draw_message(f"{self._span_text()}没有数据。")
             elif self.page == 0:
-                self._draw_raw(record)
+                self._draw_raw(shown)
             elif self.page == 1:
-                self._draw_signals(record, algorithm_id)
+                self._draw_signals(shown, algorithm_id)
             else:
-                self._draw_stats(record, algorithm_id)
-        self.figure.tight_layout()
+                self._draw_stats(shown, algorithm_id)
+        if self.page == len(PAGES) - 1 and self.datasets:
+            self.figure.subplots_adjust(left=0.08, right=0.98, top=0.94, bottom=0.04, hspace=0.32)
+        else:
+            self.figure.tight_layout()
         self.canvas.draw_idle()
+
+    def _view(self) -> str:
+        mode = self.view_mode.get()
+        if mode == "按月展示":
+            return "month"
+        if mode == "按10年展示":
+            return "decade"
+        return "year"
+
+    def _span_text(self) -> str:
+        year = self.year_var.get() or "—"
+        if self._view() == "month" and self.month_var.get():
+            return f"{year}年{int(self.month_var.get())}月"
+        if self._view() == "decade":
+            return "近10年"
+        return f"{year}年"
+
+    def _window(self, record: dict) -> dict | None:
+        if self._view() == "decade":
+            return slice_record(record, "", span_years=10)
+        month = self.month_var.get() if self._view() == "month" else None
+        return slice_record(record, self.year_var.get(), month)
+
+    def _sync_period(self, record: dict | None) -> None:
+        dates = (record or {}).get("dates") or []
+        years = tuple(sorted({item[:4] for item in dates if len(item) >= 4}))
+        if years != self._years:
+            for child in self.year_box.winfo_children():
+                child.destroy()
+            for year in years:
+                ttk.Radiobutton(
+                    self.year_box,
+                    text=year,
+                    value=year,
+                    variable=self.year_var,
+                    command=self.redraw,
+                ).pack(side="left", padx=(0, 4))
+            self._years = years
+        if years and self.year_var.get() not in years:
+            self.year_var.set(years[-1])
+        self._refresh_months(dates)
+
+    def _sync_board(self) -> None:
+        dataset_id = self.dataset["dataset_id"] if self.dataset else ""
+        marker = (dataset_id, self.year_var.get(), self._view())
+        if marker == getattr(self, "_board_marker", None):
+            return
+        self._suspend = True
+        self._fill_board()
+        self._suspend = False
+
+    def _set_period_enabled(self, enabled: bool) -> None:
+        """前三页按10年时年份变灰。全局统计页仍按选中年份读取。"""
+        self.view_picker.state(["!disabled"] if enabled else ["disabled"])
+        lock_year = enabled and self._view() == "decade"
+        for child in self.year_box.winfo_children():
+            child.state(["disabled"] if lock_year else ["!disabled"])
+        if enabled and self._view() != "decade":
+            dates = (self.current_record() or {}).get("dates") or []
+            self._refresh_months(dates)
+        else:
+            for button in self.month_buttons.values():
+                button.state(["disabled"])
+
+    def _refresh_months(self, dates: list[str]) -> None:
+        year = self.year_var.get()
+        available = {int(item[5:7]) for item in dates if item[:4] == year and len(item) >= 7}
+        for month, button in self.month_buttons.items():
+            enabled = self._view() == "month" and month in available
+            button.state(["!disabled"] if enabled else ["disabled"])
+        current = int(self.month_var.get() or "0")
+        if available and current not in available:
+            self.month_var.set(str(min(available)))
 
     def _draw_message(self, text: str) -> None:
         axis = self.figure.add_subplot(1, 1, 1)
@@ -280,9 +515,9 @@ class MarketApp(tk.Tk):
         price_axis = self.figure.add_subplot(2, 1, 1)
         volume_axis = self.figure.add_subplot(2, 1, 2, sharex=price_axis)
         price_axis.plot(dates, close, color="#1f4b99", linewidth=1.4, label=record["price_field"])
-        price_axis.set_title(f"{record['symbol']} 原始价格")
+        price_axis.set_title(f"{record['symbol']} 原始价格 {self._span_text()}", pad=18)
         price_axis.set_ylabel("价格")
-        price_axis.legend(frameon=False, loc="upper left")
+        place_legend(price_axis, 1)
         price_axis.grid(True, axis="y", linewidth=0.4, alpha=0.5)
         price_axis.tick_params(labelbottom=False)
         volume_axis.bar(dates, volume, width=0.8, color="#8aa0b8", align="center")
@@ -290,7 +525,7 @@ class MarketApp(tk.Tk):
         volume_axis.set_ylabel("股")
         volume_axis.set_xlabel("日期")
         volume_axis.grid(True, axis="y", linewidth=0.4, alpha=0.5)
-        apply_date_axis(volume_axis, dates)
+        apply_date_axis(volume_axis, dates, self._view())
 
     def _draw_signals(self, record: dict, algorithm_id: str | None) -> None:
         algo = (record.get("algorithms") or {}).get(algorithm_id or "")
@@ -305,9 +540,9 @@ class MarketApp(tk.Tk):
         price_axis.plot(dates, close, color="#1f4b99", linewidth=1.3, label=record["price_field"])
         self._mark(price_axis, algo.get("buy_dates", []), by_date, "^", "#0b6a2b", "买入")
         self._mark(price_axis, algo.get("sell_dates", []), by_date, "v", "#9b1c1c", "卖出")
-        price_axis.set_title(f"{record['symbol']} 价格与{algo['name']}买卖点")
+        price_axis.set_title(f"{record['symbol']} 价格与{algo['name']}买卖点 {self._span_text()}", pad=18)
         price_axis.set_ylabel("价格")
-        price_axis.legend(frameon=False, loc="upper left")
+        place_legend(price_axis, 3)
         price_axis.grid(True, axis="y", linewidth=0.4, alpha=0.5)
         price_axis.tick_params(labelbottom=False)
 
@@ -317,12 +552,12 @@ class MarketApp(tk.Tk):
             indicator_axis.axhline(params["oversold"], color="#0b6a2b", linewidth=0.8, linestyle="--", label=f"超卖 {params['oversold']:.0f}")
         if "overbought" in params:
             indicator_axis.axhline(params["overbought"], color="#9b1c1c", linewidth=0.8, linestyle="--", label=f"超买 {params['overbought']:.0f}")
-        indicator_axis.set_title(f"{record['symbol']} {algo['id'].upper()}")
+        indicator_axis.set_title(f"{record['symbol']} {algo['id'].upper()}", pad=18)
         indicator_axis.set_ylabel(algo["id"].upper())
         indicator_axis.set_xlabel("日期")
-        indicator_axis.legend(frameon=False, loc="upper left", ncol=3)
+        place_legend(indicator_axis, 3)
         indicator_axis.grid(True, axis="y", linewidth=0.4, alpha=0.5)
-        apply_date_axis(indicator_axis, dates)
+        apply_date_axis(indicator_axis, dates, self._view())
 
     def _mark(self, axis, days: list[str], by_date: dict, marker: str, color: str, label: str) -> None:
         points = [(day, by_date[day]) for day in days if day in by_date]
@@ -341,18 +576,18 @@ class MarketApp(tk.Tk):
         curve = self.figure.add_subplot(2, 1, 1)
         curve.plot(dates, as_float(algo["equity"]), color="#1f4b99", linewidth=1.4, label=algo["name"])
         curve.plot(dates, as_float(algo["benchmark_equity"]), color="#888888", linewidth=1.2, label="买入持有")
-        curve.set_title(f"{record['symbol']} 净值（起点 = 1）")
+        curve.set_title(f"{record['symbol']} 净值（{self._span_text()}）", pad=18)
         curve.set_ylabel("净值")
         curve.set_xlabel("日期")
-        curve.legend(frameon=False, loc="upper left")
+        place_legend(curve, 2)
         curve.grid(True, axis="y", linewidth=0.4, alpha=0.5)
-        apply_date_axis(curve, dates)
+        apply_date_axis(curve, dates, self._view())
 
         table_axis = self.figure.add_subplot(2, 1, 2)
         table_axis.axis("off")
         fee = (algo.get("params") or {}).get("fee")
         fee_text = f"，策略手续费 {fee:.1%}" if isinstance(fee, (int, float)) else ""
-        table_axis.set_title(f"统计指标{fee_text}", loc="left", fontsize=11, pad=8)
+        table_axis.set_title(f"统计指标（全样本）{fee_text}", loc="left", fontsize=11, pad=8)
         strategy = algo["stats"]["strategy"]
         benchmark = algo["stats"]["benchmark"]
         rows = [
@@ -363,6 +598,80 @@ class MarketApp(tk.Tk):
         table.auto_set_font_size(False)
         table.set_fontsize(10)
         table.scale(1, 1.35)
+
+    def _stored_overview(self, algorithm_id: str | None) -> dict | None:
+        year = self.year_var.get()
+        if self.dataset is None or not algorithm_id or not year:
+            return None
+        for item in self.dataset.get("algorithms") or []:
+            if item.get("id") == algorithm_id:
+                return (item.get("years") or {}).get(year)
+        return None
+
+    def _draw_overview(self, algorithm_id: str | None) -> None:
+        if self.dataset is None:
+            self._draw_message("outdata 里还没有数据集。\n请先运行：python -m algorithms.rsi")
+            return
+        year = self.year_var.get() or "—"
+        block = self._stored_overview(algorithm_id)
+        if not block:
+            self._draw_message(f"{year}年还没有保存全局统计。\n请重新运行：python -m algorithms.rsi")
+            return
+        symbols = [row for row in block.get("symbols") or [] if row.get("cumulative_return") is not None]
+        ordered = sorted(symbols, key=lambda row: float(row["cumulative_return"]))
+        returns = [float(row["cumulative_return"]) for row in ordered]
+        labels = [row["symbol"] for row in ordered]
+        colors = ["#0b6a2b" if value >= 0 else "#9b1c1c" for value in returns]
+        grid = self.figure.add_gridspec(2, 1, height_ratios=[3.4, 1.05], hspace=0.28)
+        bar_axis = self.figure.add_subplot(grid[0, 0])
+        metric_axis = self.figure.add_subplot(grid[1, 0])
+        bar_axis.barh(labels, returns, color=colors, height=0.72)
+        bar_axis.axvline(0, color="#666666", linewidth=0.6)
+        bar_axis.set_title(f"{year}年各股策略累计收益")
+        bar_axis.set_xlabel("累计收益")
+        bar_axis.xaxis.set_major_formatter(plt.FuncFormatter(lambda value, _pos: f"{value * 100:.0f}%"))
+        bar_axis.tick_params(axis="y", labelsize=8 if len(labels) <= 16 else 7)
+        bar_axis.grid(True, axis="x", linewidth=0.4, alpha=0.5)
+        self._draw_metric_bars(metric_axis, block, algorithm_id, year)
+
+    def _draw_metric_bars(self, axis, block: dict, algorithm_id: str | None, year: str) -> None:
+        """指标横排成两行，避免竖表挡住上方的收益图。"""
+        strategy = block.get("strategy") or {}
+        benchmark = block.get("benchmark") or {}
+        count = int(strategy.get("count") or 0)
+        beat = strategy.get("beat_benchmark")
+        columns = [
+            ("count", "股票数", "int"),
+            ("profit_ratio", "盈利占比", "pct_plain"),
+            ("win_rate", "综合胜率", "pct_plain"),
+            ("cumulative_return", "综合盈利率", "pct"),
+            ("median_return", "收益中位数", "pct"),
+            ("annualized_return", "平均年化", "pct"),
+            ("sharpe", "平均夏普", "num"),
+            ("max_drawdown", "平均回撤", "pct_plain"),
+            ("trades", "交易次数", "int"),
+        ]
+        headers = [label for _key, label, _kind in columns]
+        cells = [
+            [self._overview_cell(strategy, key, kind) for key, _label, kind in columns],
+            [self._overview_cell(benchmark, key, kind) for key, _label, kind in columns],
+        ]
+        cells[0].append(f"{int(beat)}/{count}" if beat is not None and count else "—")
+        cells[1].append("—")
+        headers.append("跑赢")
+        axis.axis("off")
+        name = next((item["name"] for item in self.dataset["algorithms"] if item["id"] == algorithm_id), algorithm_id or "")
+        axis.set_title(f"{name} {year}年指标", loc="left", fontsize=11, pad=6)
+        table = axis.table(cellText=cells, rowLabels=["策略", "买入持有"], colLabels=headers, loc="center", cellLoc="center")
+        table.auto_set_font_size(False)
+        table.set_fontsize(8)
+        table.scale(1, 1.35)
+
+    def _overview_cell(self, side: dict, key: str, kind: str) -> str:
+        value = side.get(key)
+        if kind == "int":
+            return "—" if value is None else str(int(value))
+        return format_stat(value, kind)
 
 
 def main() -> None:
