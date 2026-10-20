@@ -1,0 +1,193 @@
+"""因子说明。implemented 为 false 的因子保持为空，不估算。"""
+
+from __future__ import annotations
+
+FACTORS: tuple[dict, ...] = (
+    {
+        "id": "gross_margin_sharpe",
+        "name": "毛利率稳定性",
+        "group": "质量",
+        "role": "alpha",
+        "direction": 1,
+        "implemented": False,
+        "fields": ["gross_profit", "revenue", "announce_date"],
+        "window": "12 个季度",
+        "configurable": ["quarters"],
+        "defaults": {"enabled": False, "quarters": 12},
+        "formula": "过去 12 个季度毛利率的均值除以其标准差。毛利率 = 毛利 / 营收。数值按公告日的下一交易日才能进入截面。",
+    },
+    {
+        "id": "rd_to_sales",
+        "name": "研发强度",
+        "group": "质量",
+        "role": "alpha",
+        "direction": 1,
+        "implemented": False,
+        "fields": ["rd_expense", "revenue", "announce_date"],
+        "window": "12 个季度",
+        "configurable": ["quarters"],
+        "defaults": {"enabled": False, "quarters": 12},
+        "formula": "过去 12 个季度研发费用 / 营收的均值。按公告日的下一交易日对齐。",
+    },
+    {
+        "id": "revenue_growth",
+        "name": "每股营收增长",
+        "group": "成长",
+        "role": "alpha",
+        "direction": 1,
+        "implemented": False,
+        "fields": ["revenue", "diluted_shares", "announce_date"],
+        "window": "3 年同比增速的均值",
+        "configurable": ["quarters"],
+        "defaults": {"enabled": False, "quarters": 12},
+        "formula": "每股营收 = 营收 / 稀释股本。因子是每股营收同比增速在 3 年上的均值。按公告日的下一交易日对齐。",
+    },
+    {
+        "id": "fwd_eps_growth",
+        "name": "预期EPS增长",
+        "group": "成长",
+        "role": "alpha",
+        "direction": 1,
+        "implemented": False,
+        "fields": ["eps_estimate_fy0", "eps_estimate_fy2", "announce_date"],
+        "window": "未来两个财年",
+        "configurable": [],
+        "defaults": {"enabled": False},
+        "formula": "年化预期增速 = (EPS_fy2 / EPS_fy0) ^ (1/2) - 1。没有一致预期时结果为空，并标记降级。",
+    },
+    {
+        "id": "cfo_to_sales",
+        "name": "经营现金流占营收",
+        "group": "盈利质量",
+        "role": "alpha",
+        "direction": 1,
+        "implemented": False,
+        "fields": ["cfo", "revenue", "announce_date"],
+        "window": "最近四个季度",
+        "configurable": ["quarters"],
+        "defaults": {"enabled": False, "quarters": 4},
+        "formula": "最近四个季度经营现金流 / 营收。按公告日的下一交易日对齐。",
+    },
+    {
+        "id": "roe_stability",
+        "name": "ROE稳定性",
+        "group": "盈利质量",
+        "role": "alpha",
+        "direction": 1,
+        "implemented": False,
+        "fields": ["roe", "announce_date"],
+        "window": "12 个季度",
+        "configurable": ["quarters"],
+        "defaults": {"enabled": False, "quarters": 12},
+        "formula": "过去 12 个季度 ROE 的均值除以其标准差。按公告日的下一交易日对齐。",
+    },
+    {
+        "id": "peg",
+        "name": "PEG",
+        "group": "估值",
+        "role": "reference",
+        "direction": -1,
+        "implemented": False,
+        "fields": ["pe", "expected_growth", "announce_date"],
+        "window": "当期",
+        "configurable": [],
+        "defaults": {"enabled": False},
+        "formula": "市盈率 / 预期盈利增速。越低越好，只作排序参考。没有预期增速时为空。",
+    },
+    {
+        "id": "residual_momentum",
+        "name": "残差动量",
+        "group": "量价",
+        "role": "alpha",
+        "direction": 1,
+        "implemented": True,
+        "fields": ["close"],
+        "window": "252 个交易日，跳过最近 21 日",
+        "configurable": ["lookback", "skip"],
+        "defaults": {"enabled": True, "lookback": 252, "skip": 21},
+        "formula": (
+            "在 t 日，窗口 W 为 [t-skip-L+1, t-skip] 的日收益。"
+            "β = Cov(r, r_NDX) / Var(r_NDX)。"
+            "因子 = Σ(r - β r_NDX)，等于窗口长度乘以詹森阿尔法。"
+            "不用最近 skip 天，也不用复权价。疑似拆股日的收益记 0。"
+        ),
+    },
+    {
+        "id": "low_volatility",
+        "name": "低波动",
+        "group": "量价",
+        "role": "alpha",
+        "direction": -1,
+        "implemented": True,
+        "fields": ["close"],
+        "window": "60 个交易日",
+        "configurable": ["lookback"],
+        "defaults": {"enabled": True, "lookback": 60},
+        "formula": "过去 lookback 个交易日日收益的样本标准差，再乘以 sqrt(252)。越低越好。疑似拆股日的收益记 0。",
+    },
+    {
+        "id": "size",
+        "name": "市值",
+        "group": "风险",
+        "role": "risk",
+        "direction": 0,
+        "implemented": False,
+        "fields": ["close", "shares_outstanding"],
+        "window": "当日",
+        "configurable": [],
+        "defaults": {"enabled": False},
+        "formula": "log(收盘价 × 股本)。本地没有股本，不能计算，只保留在中性化名单里。",
+    },
+    {
+        "id": "beta",
+        "name": "贝塔",
+        "group": "风险",
+        "role": "risk",
+        "direction": 0,
+        "implemented": True,
+        "fields": ["close"],
+        "window": "252 个交易日",
+        "configurable": ["lookback"],
+        "defaults": {"enabled": False, "lookback": 252},
+        "formula": "过去 lookback 日 Cov(r, r_NDX) / Var(r_NDX)。只用于中性化，不进入合成。用到当日收益。",
+    },
+    {
+        "id": "liquidity",
+        "name": "流动性",
+        "group": "风险",
+        "role": "risk",
+        "direction": 0,
+        "implemented": True,
+        "fields": ["volume"],
+        "window": "20 个交易日",
+        "configurable": ["lookback"],
+        "defaults": {"enabled": False, "lookback": 20},
+        "formula": "过去 lookback 日成交量均值的对数。没有流通股本，所以不是换手率。只用于中性化。",
+    },
+    {
+        "id": "industry",
+        "name": "行业",
+        "group": "风险",
+        "role": "risk",
+        "direction": 0,
+        "implemented": False,
+        "fields": ["industry"],
+        "window": "当日",
+        "configurable": [],
+        "defaults": {"enabled": False},
+        "formula": "行业哑变量，只用于中性化。本地没有点位行业分类。",
+    },
+)
+
+
+def catalog() -> list[dict]:
+    return [dict(item) for item in FACTORS]
+
+
+def get_factor(factor_id: str) -> dict:
+    for item in FACTORS:
+        if item["id"] == factor_id:
+            return dict(item)
+    from services.errors import DataGapError
+
+    raise DataGapError(f"没有这个因子：{factor_id}")

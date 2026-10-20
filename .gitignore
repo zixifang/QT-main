@@ -21,6 +21,11 @@ output/
 # 本地汇报材料
 ppt/
 
+# 指数增强按需缓存和导出的报告
+cache/
+reports/*
+!reports/.gitkeep
+
 # IDE / OS
 .idea/
 .vscode/

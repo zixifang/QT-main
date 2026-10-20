@@ -36,6 +36,7 @@ TECH_ORDER = [
 ]
 # 合并文件不是单只股票，不能按一只标的做 RSI。
 SKIP_STEMS = {"tech_us_10y", "manufacturing_us_10y", "nasdaq100"}
+SKIP_FOLDERS = {"nasdaq100"}
 DATASETS = {
     "Equity-Portfolio-Management-master": {
         "dataset_id": "equity-2018",
@@ -174,6 +175,9 @@ def export_all(data_root: Path = DATA_ROOT) -> list[Path]:
         raise FileNotFoundError(f"没有数据目录：{data_root}")
     written: list[Path] = []
     for folder in sorted(path for path in data_root.iterdir() if path.is_dir()):
+        if folder.name in SKIP_FOLDERS:
+            print(f"跳过 {folder.relative_to(ROOT).as_posix()}：由 python -m algorithms.index_enhance 计算")
+            continue
         meta = DATASETS.get(folder.name, {})
         out_dir = export_dataset(
             folder,
