@@ -23,6 +23,13 @@ def list_datasets(root: Path = OUTDATA_DIR) -> list[dict]:
     return datasets
 
 
+def load_paper(dataset: dict, algorithm_id: str) -> dict | None:
+    path = Path(dataset["_dir"]) / "paper" / f"{algorithm_id}.json"
+    if not algorithm_id or not path.exists():
+        return None
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
 def load_symbol(dataset: dict, symbol: str) -> dict:
     path = Path(dataset["_dir"]) / f"{symbol}.json"
     if not path.exists():

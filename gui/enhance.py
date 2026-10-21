@@ -18,7 +18,6 @@ from services.eval_service import EvalService
 from services.factor_service import FactorService
 from services.composite_service import CompositeService
 from services.backtest_service import BacktestService
-from services.report_service import ReportService
 from services.store import Store
 from services.task_service import TaskService
 
@@ -102,6 +101,23 @@ class EnhancePanel(ttk.Frame):
     def on_show(self, symbol: str | None) -> None:
         self.focus_var.set(symbol or "未选择")
 
+    def apply_dataset(self, name: str, symbols: list[str], span: tuple[str, str] | None, focus: str | None) -> None:
+        """股票池和区间改成当前数据集，并清掉上一套的检验和回测。"""
+        self.cancel_task()
+        self.universe_var.set(", ".join(symbols))
+        if span:
+            self.start_var.set(span[0])
+            self.end_var.set(span[1])
+        self.focus_var.set(focus or "未选择")
+        self.benchmark_var.set("NDX")
+        self.alert_var.set(f"当前数据集是{name}。股票池和区间已换成这套成分股，行情读 data/nasdaq100 的未复权文件。")
+        self.coverage_tree.delete(*self.coverage_tree.get_children())
+        for widget in (self.factor_text, self.eval_text, self.composite_text, self.backtest_text):
+            _write(widget, "")
+        for figure, canvas in ((self.eval_fig, self.eval_canvas), (self.backtest_fig, self.backtest_canvas)):
+            figure.clear()
+            canvas.draw_idle()
+
     def _vars(self) -> None:
         self.focus_var = tk.StringVar()
         self.source_var = tk.StringVar()
@@ -140,7 +156,6 @@ class EnhancePanel(ttk.Frame):
         self.notebook.add(self._eval_page(), text="单因子检验")
         self.notebook.add(self._composite_page(), text="多因子合成")
         self.notebook.add(self._backtest_page(), text="回测")
-        self.notebook.add(self._report_page(), text="报告")
         bar = ttk.Frame(self)
         bar.pack(fill="x", pady=(6, 0))
         ttk.Button(bar, text="高级选项", command=self._toggle_advanced).pack(side="left")
@@ -273,16 +288,6 @@ class EnhancePanel(ttk.Frame):
         self.backtest_fig = Figure(figsize=(7.2, 3.2), dpi=100)
         self.backtest_canvas = FigureCanvasTkAgg(self.backtest_fig, master=page)
         self.backtest_canvas.get_tk_widget().pack(fill="both", expand=True)
-        return page
-
-    def _report_page(self) -> ttk.Frame:
-        page = ttk.Frame(self.notebook, padding=8)
-        row = ttk.Frame(page)
-        row.pack(fill="x")
-        ttk.Button(row, text="导出 HTML", command=lambda: self.run_report("html")).pack(side="left")
-        ttk.Button(row, text="导出 PDF", command=lambda: self.run_report("pdf")).pack(side="left", padx=8)
-        self.report_text = tk.Text(page, height=16, wrap="word", font=("Microsoft YaHei UI", 9))
-        self.report_text.pack(fill="both", expand=True, pady=(6, 0))
         return page
 
     def _advanced_fields(self, frame: ttk.LabelFrame) -> None:
@@ -447,9 +452,6 @@ class EnhancePanel(ttk.Frame):
     def run_backtest(self) -> None:
         self._start("回测", lambda cfg, progress, cancel: BacktestService().run(cfg, progress=progress, cancel=cancel), self._show_backtest)
 
-    def run_report(self, kind: str) -> None:
-        self._start("报告", lambda cfg, progress, cancel: ReportService().export(cfg, kind, progress=progress, cancel=cancel), self._show_report)
-
     def cancel_task(self) -> None:
         if self.task_id:
             self.tasks.cancel(self.task_id)
@@ -564,10 +566,6 @@ class EnhancePanel(ttk.Frame):
             lines.append(f"{row['year']} 策略 {_pct(row['strategy'])} 基准 {_pct(row['benchmark'])}")
         _write(self.backtest_text, "\n".join(lines))
         self._plot_nav(result["nav"])
-
-    def _show_report(self, result: dict) -> None:
-        path = result.get("html") or result.get("pdf") or "没有写出文件"
-        _write(self.report_text, path + "\n\n" + result.get("summary", ""))
 
     def _plot_nav(self, nav: list[dict]) -> None:
         self.backtest_fig.clear()

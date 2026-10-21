@@ -1,0 +1,26 @@
+{
+  "train_end": "2022-12-30",
+  "val_end": "2024-12-31",
+  "window": 20,
+  "horizon": 5,
+  "announcement_lag": 0,
+  "form": "10-K",
+  "train": {
+    "samples": 144028,
+    "start": "2015-01-30",
+    "end": "2022-12-22",
+    "days": 1990
+  },
+  "val": {
+    "samples": 45403,
+    "start": "2023-01-03",
+    "end": "2024-12-23",
+    "days": 497
+  },
+  "unused": {
+    "samples": 42542,
+    "start": "2022-12-23",
+    "end": "2026-10-09",
+    "days": 454
+  }
+}

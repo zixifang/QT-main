@@ -15,16 +15,21 @@ env/
 
 # 原始大文件不入库。算法结果放在 outdata/ 并提交，方便直接看到存放位置。
 data/raw/
+data/xbrl/raw/
+data/xbrl/*.parquet
+data/xbrl/*.csv
+data/xbrl/company_tickers.json
+data/factors/*.parquet
+data/factors/*.csv
 *.ipynb
 output/
 
 # 本地汇报材料
 ppt/
 
-# 指数增强按需缓存和导出的报告
+# 指数增强按需缓存和本地导出
 cache/
-reports/*
-!reports/.gitkeep
+reports/
 
 # IDE / OS
 .idea/

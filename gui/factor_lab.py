@@ -39,6 +39,33 @@ class FactorLabPanel(ttk.Frame):
     def on_show(self, symbol: str | None) -> None:
         self.focus_var.set(symbol or "未选择")
 
+    def apply_dataset(self, name: str, symbols: list[str], span: tuple[str, str] | None, data_dir: str, has_index: bool, focus: str | None) -> None:
+        """换成当前数据集的股票池、区间和行情目录，并清掉上一套的图。"""
+        if self.task_id:
+            self.tasks.cancel(self.task_id)
+        self.dataset_symbols = list(symbols)
+        self.data_dir = data_dir
+        self.symbols_var.set(",".join(symbols))
+        if span:
+            self.start_var.set(span[0])
+            self.end_var.set(span[1])
+        self.focus_var.set(focus or "未选择")
+        self.benchmark_var.set("纳斯达克指数" if has_index else "股票池等权")
+        self.test_result = None
+        self.backtest_result = None
+        self.which["values"] = ()
+        self.which_var.set("")
+        self._write(self.summary, f"已切换到{name}。股票池和区间已换成这套数据，运行后重新计算。")
+        self.status_var.set("已换数据集，尚未运行")
+        self.trade_status.set("已换数据集，尚未运行")
+        self.metric_var.set("运行后在这里显示绩效。")
+        self.trades.delete(*self.trades.get_children())
+        self._draw_test()
+        self.trade_figure.clear()
+        self._blank(self.trade_figure, "运行后在这里显示图表")
+        self.trade_figure.tight_layout()
+        self.trade_canvas.draw_idle()
+
     def _build(self) -> None:
         self.columnconfigure(0, weight=1)
         self.rowconfigure(0, weight=1)
@@ -89,7 +116,7 @@ class FactorLabPanel(ttk.Frame):
         self.factor_list.selection_set(0)
         if self.factor_list.size() > 5:
             self.factor_list.selection_set(5)
-        ttk.Button(form, text="填入纳斯达克100", command=self._fill_universe).grid(row=13, column=0, columnspan=2, sticky="ew", pady=4)
+        ttk.Button(form, text="填入当前数据集", command=self._fill_universe).grid(row=13, column=0, columnspan=2, sticky="ew", pady=4)
         ttk.Button(form, text="运行因子测试", command=self._run_tests).grid(row=14, column=0, columnspan=2, sticky="ew")
         ttk.Label(form, textvariable=self.status_var, wraplength=220).grid(row=15, column=0, columnspan=2, sticky="w", pady=4)
 
@@ -194,7 +221,7 @@ class FactorLabPanel(ttk.Frame):
             self.symbols_var.set(",".join(current))
 
     def _fill_universe(self) -> None:
-        names = list_constituents()
+        names = list(getattr(self, "dataset_symbols", None) or list_constituents())
         if names:
             self.symbols_var.set(",".join(names))
 
@@ -202,16 +229,18 @@ class FactorLabPanel(ttk.Frame):
         return [self.factor_list.get(index) for index in self.factor_list.curselection()]
 
     def _base_config(self) -> dict:
-        return {
+        config = {
             "symbols": self._symbols(),
             "start": self.start_var.get().strip(),
             "end": self.end_var.get().strip(),
+            "data_dir": getattr(self, "data_dir", ""),
             "N": int(self.window_var.get()),
             "horizon": int(self.horizon_var.get()),
             "winsorize": bool(self.winsor_var.get()),
             "standardize": bool(self.zscore_var.get()),
             "industry_neutral": bool(self.industry_var.get()),
         }
+        return config
 
     def _run_tests(self) -> None:
         try:

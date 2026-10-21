@@ -24,7 +24,11 @@ CONSTITUENTS_FILE = ROOT / "data_fetch" / "nasdaq100_constituents.txt"
 SCHEMA_VERSION = 1
 PRICE_FIELD = "close"
 FEE = 0.001
+ILLIQUID_FEE = 0.002
 WEIGHT_KEEP = 0.40
+SKIP_SYMBOLS = frozenset({"GOOG"})
+OOS_START = "2021-01-01"
+UNIVERSE_NOTE = "没有调仓日的历史成分名单，不能称为指数增强。股票池是 2026 年 10 月的幸存者名单，已去掉 GOOG，只留 GOOGL。"
 # 与行情接口相同：未复权序列里单日涨跌超过 50% 视为拆股或坏点，收益记 0。价格本身不改。
 JUMP_LIMIT = 0.5
 DATASET_ID = "nasdaq100"
@@ -44,8 +48,9 @@ PORTFOLIOS = (
     {
         "id": "enhance-g1",
         "name": "【指数增强+动量】",
-        "note": "月末按12-1动量倾斜配置，只持有得分最高的40%，其余权重为0。权重次日生效。新纳入为买入，调出为卖出。单股净值用该股自己的现金买卖，赚到的差价下次再买入；全局表对比这些股票各自的买入持有。",
+        "note": "月末按12-1动量倾斜配置，只持有得分最高的40%，其余权重为0。权重次日生效，按信号日收盘价成交，相当于收盘集合竞价。252日、跳过21日和40%持仓没有用2021年以后的行情调整，对外比较看2021年以来的资金比和贝塔。新纳入为买入，调出为卖出。单股净值用该股自己的现金买卖，赚到的差价下次再买入；全局表对比这些股票各自的买入持有。",
         "factor": "momentum",
+        "fill": "close",
         "params": {"long": MOMENTUM_LONG, "skip": MOMENTUM_SKIP, "fee": FEE, "weight_keep": WEIGHT_KEEP},
     },
     {
@@ -79,38 +84,26 @@ PORTFOLIOS = (
     {
         "id": "enhance-g6",
         "name": "【指数增强+等权组合】",
-        "note": "月末把四项横截面排名等权合成，各占25%：21日反转、60日低波动、20日平均成交额取反、20日收盘价与成交量相关系数。只持有得分最高的40%。新纳入为买入，调出为卖出。单股净值用该股自己的现金买卖，赚到的差价下次再买入；全局表对比这些股票各自的买入持有。",
+        "note": "月末把四项横截面排名等权合成，各占25%：21日反转、60日低波动、20日平均成交额取反、20日收盘价与成交量相关系数。只持有得分最高的40%。这一项偏向低成交额，单边成本用0.002。新纳入为买入，调出为卖出。单股净值用该股自己的现金买卖，赚到的差价下次再买入；全局表对比这些股票各自的买入持有。",
         "factor": "equal_blend",
+        "fill": "close",
         "params": {
             "reversal": REVERSAL_WINDOW,
             "low_vol": VOL_WINDOW,
             "liquidity": LIQUIDITY_WINDOW,
             "price_volume_corr": CORR_WINDOW,
             "weights": [0.25, 0.25, 0.25, 0.25],
-            "fee": FEE,
+            "fee": ILLIQUID_FEE,
             "weight_keep": WEIGHT_KEEP,
         },
     },
     {
         "id": "enhance-g7",
-        "name": "【指数增强+下影线】",
-        "note": "月末按下影线倾斜配置。下影线是（开盘价与收盘价的较小值减最低价）除以开盘价，下影线更长的超配，只持有得分最高的40%。新纳入为买入，调出为卖出。单股净值用该股自己的现金买卖，赚到的差价下次再买入；全局表对比这些股票各自的买入持有。",
-        "factor": "lower_shadow",
-        "params": {"fee": FEE, "weight_keep": WEIGHT_KEEP},
-    },
-    {
-        "id": "enhance-g8",
-        "name": "【指数增强+20日波动】",
-        "note": "月末按20日收益标准差倾斜配置，波动更高的超配，只持有得分最高的40%。这一项不把单日涨跌超过50%的日子记成0。新纳入为买入，调出为卖出。单股净值用该股自己的现金买卖，赚到的差价下次再买入；全局表对比这些股票各自的买入持有。",
-        "factor": "vol_20",
+        "name": "【高波动对照】",
+        "note": "下影线、20日波动和全日振幅在同一段行情里几乎是同一笔高波动交易，因此合成一条对照，三项横截面排名各占三分之一，只持有得分最高的40%。20日波动用已经把单日涨跌超过50%记为0的收益。下影线和振幅要用当天的最高价、最低价，所以整条组合改在下一交易日开盘价成交。新纳入为买入，调出为卖出。单股净值用该股自己的现金买卖，赚到的差价下次再买入；全局表对比这些股票各自的买入持有。",
+        "factor": "high_vol",
+        "fill": "next_open",
         "params": {"window": FACTOR_VOL_WINDOW, "fee": FEE, "weight_keep": WEIGHT_KEEP},
-    },
-    {
-        "id": "enhance-g9",
-        "name": "【指数增强+全日振幅】",
-        "note": "月末按全日振幅倾斜配置。振幅是（最高价减最低价）除以开盘价，振幅更大的超配，只持有得分最高的40%。新纳入为买入，调出为卖出。单股净值用该股自己的现金买卖，赚到的差价下次再买入；全局表对比这些股票各自的买入持有。",
-        "factor": "klen",
-        "params": {"fee": FEE, "weight_keep": WEIGHT_KEEP},
     },
 )
 
@@ -120,7 +113,7 @@ def read_constituents(path: Path = CONSTITUENTS_FILE) -> list[str]:
     names: list[str] = []
     for line in path.read_text(encoding="utf-8").splitlines():
         text = line.split("#", 1)[0].strip().upper()
-        if text:
+        if text and text not in SKIP_SYMBOLS:
             names.append(text)
     if not names:
         raise ValueError(f"成分股名单是空的：{path}")
@@ -164,7 +157,7 @@ def build_factor_panels(
     highs: pd.DataFrame,
     lows: pd.DataFrame,
 ) -> dict[str, pd.DataFrame]:
-    """因子都只用当天及以前的数据。收益已去掉超过 50% 的跳变，20日波动除外。"""
+    """因子都只用当天及以前的数据。收益里超过 50% 的跳变已记为 0，20日波动用的是同一条收益。"""
     momentum = _window_return(returns, MOMENTUM_LONG - MOMENTUM_SKIP).shift(MOMENTUM_SKIP)
     reversal = -_window_return(returns, REVERSAL_WINDOW)
     low_vol = -returns.rolling(VOL_WINDOW, min_periods=VOL_WINDOW).std()
@@ -176,7 +169,7 @@ def build_factor_panels(
     equal_blend = _equal_ranks(reversal, low_vol, -liquidity, price_volume)
     lower_shadow = _safe_div(np.minimum(opens, closes) - lows, opens)
     amplitude = _safe_div(highs - lows, opens)
-    vol_20 = (closes / closes.shift(1) - 1.0).rolling(FACTOR_VOL_WINDOW, min_periods=FACTOR_VOL_WINDOW).std()
+    vol_20 = returns.rolling(FACTOR_VOL_WINDOW, min_periods=FACTOR_VOL_WINDOW).std()
     return {
         "momentum": momentum,
         "reversal": reversal,
@@ -184,9 +177,7 @@ def build_factor_panels(
         "liquidity": liquidity,
         "momentum_low_vol": combined,
         "equal_blend": equal_blend,
-        "lower_shadow": lower_shadow,
-        "vol_20": vol_20,
-        "klen": amplitude,
+        "high_vol": _equal_ranks(lower_shadow, vol_20, amplitude),
     }
 
 
@@ -220,6 +211,9 @@ def run_portfolio(
     factor: pd.DataFrame,
     ndx: pd.Series,
     asset: pd.DataFrame,
+    opens: pd.DataFrame,
+    fee: float = FEE,
+    fill: str = "close",
 ) -> dict[str, pd.DataFrame | pd.Series]:
     """月末打分，权重次日生效。两次调仓之间股份数量不变，差价留在股票里。"""
     signal = _target_signal(closes, factor)
@@ -227,7 +221,10 @@ def run_portfolio(
     held = held.where(closes.notna(), 0.0)
     totals = held.sum(axis=1)
     held = held.div(totals.where(totals > 0.0), axis=0).fillna(0.0)
-    net, equity = _share_portfolio(held, asset)
+    if fill == "next_open":
+        net, equity = _share_portfolio_open(held, closes, opens, fee)
+    else:
+        net, equity = _share_portfolio(held, asset, fee)
     benchmark = run_backtest(ndx.reindex(closes.index), pd.Series(1.0, index=closes.index), fee=0.0)
     return {
         "signal": signal,
@@ -239,7 +236,7 @@ def run_portfolio(
     }
 
 
-def _share_portfolio(target: pd.DataFrame, asset: pd.DataFrame) -> tuple[pd.Series, pd.Series]:
+def _share_portfolio(target: pd.DataFrame, asset: pd.DataFrame, fee: float = FEE) -> tuple[pd.Series, pd.Series]:
     """目标权重变了才按前收盘价换股。没变的日子股份不动，涨出来的钱留在原来的股票里。"""
     weights = target.to_numpy(dtype=float)
     returns = asset.reindex(index=target.index, columns=target.columns).fillna(0.0).to_numpy(dtype=float)
@@ -257,11 +254,58 @@ def _share_portfolio(target: pd.DataFrame, asset: pd.DataFrame) -> tuple[pd.Seri
         if float(np.max(np.abs(goal - previous))) > 1e-12:
             wealth = cash + float(shares @ price)
             held_now = shares * price / wealth if wealth > 0.0 else np.zeros(names, dtype=float)
-            wealth *= max(0.0, 1.0 - float(np.abs(goal - held_now).sum()) * FEE)
+            wealth *= max(0.0, 1.0 - float(np.abs(goal - held_now).sum()) * fee)
             shares = np.divide(goal * wealth, price, out=np.zeros(names, dtype=float), where=price > 0.0)
             cash = max(0.0, wealth - float(shares @ price))
             previous = goal.copy()
         price = price * (1.0 + returns[day])
+        wealth = cash + float(shares @ price)
+        nav[day] = wealth
+        out[day] = wealth / nav[day - 1] - 1.0 if nav[day - 1] > 0.0 else 0.0
+    return (
+        pd.Series(out, index=target.index, name="return"),
+        pd.Series(nav, index=target.index, name="equity"),
+    )
+
+
+def _share_portfolio_open(
+    target: pd.DataFrame,
+    closes: pd.DataFrame,
+    opens: pd.DataFrame,
+    fee: float = FEE,
+) -> tuple[pd.Series, pd.Series]:
+    """次日开盘换股。隔夜涨跌留给旧仓，开盘之后的涨跌才算新仓。跳空超过 50% 的日子整段记 0。"""
+    close = closes.reindex(index=target.index, columns=target.columns).astype(float)
+    opened = opens.reindex(index=target.index, columns=target.columns).astype(float)
+    raw = close / close.shift(1) - 1.0
+    jump = raw.abs() > JUMP_LIMIT
+    bad_open = opened.isna() | (opened <= 0) | close.shift(1).isna() | (close.shift(1) <= 0)
+    overnight = (opened / close.shift(1) - 1.0).mask(jump | bad_open, 0.0).fillna(0.0)
+    intraday = (close / opened - 1.0).mask(jump, 0.0)
+    intraday = intraday.mask(bad_open, raw.mask(jump, 0.0)).fillna(0.0)
+    weights = target.to_numpy(dtype=float)
+    overnight_values = overnight.to_numpy(dtype=float)
+    intraday_values = intraday.to_numpy(dtype=float)
+    days, names = weights.shape
+    nav = np.empty(days, dtype=float)
+    out = np.empty(days, dtype=float)
+    cash = 1.0
+    shares = np.zeros(names, dtype=float)
+    price = np.ones(names, dtype=float)
+    previous = np.zeros(names, dtype=float)
+    nav[0] = 1.0
+    out[0] = 0.0
+    for day in range(1, days):
+        open_price = price * (1.0 + overnight_values[day])
+        goal = weights[day]
+        if float(np.max(np.abs(goal - previous))) > 1e-12:
+            wealth = cash + float(shares @ open_price)
+            held_now = shares * open_price / wealth if wealth > 0.0 else np.zeros(names, dtype=float)
+            wealth *= max(0.0, 1.0 - float(np.abs(goal - held_now).sum()) * fee)
+            shares = np.divide(goal * wealth, open_price, out=np.zeros(names, dtype=float), where=open_price > 0.0)
+            cash = max(0.0, wealth - float(shares @ open_price))
+            previous = goal.copy()
+        price = open_price * (1.0 + intraday_values[day])
         wealth = cash + float(shares @ price)
         nav[day] = wealth
         out[day] = wealth / nav[day - 1] - 1.0 if nav[day - 1] > 0.0 else 0.0
@@ -283,7 +327,15 @@ def export_dataset(data_dir: Path = DATA_DIR, out_dir: Path = OUT_DIR) -> Path:
     returns = _cleaned_panel(closes)
     factors = build_factor_panels(closes, volumes, returns, opens, highs, lows)
     books = {
-        spec["id"]: run_portfolio(closes, factors[spec["factor"]], ndx, returns)
+        spec["id"]: run_portfolio(
+            closes,
+            factors[spec["factor"]],
+            ndx,
+            returns,
+            opens,
+            fee=float(spec["params"]["fee"]),
+            fill=str(spec.get("fill") or "close"),
+        )
         for spec in PORTFOLIOS
     }
     _check_weights(books)
@@ -317,11 +369,22 @@ def export_dataset(data_dir: Path = DATA_DIR, out_dir: Path = OUT_DIR) -> Path:
             for year, rows in sorted(overviews[spec["id"]].items())
         }
         algorithms.append(entry)
-        full = _describe_returns(books[spec["id"]]["return"].to_numpy(dtype=float), (0, 0))
-        bench = _describe_returns(books[spec["id"]]["benchmark_return"].to_numpy(dtype=float), (0, 0))
+        full_return = books[spec["id"]]["return"]
+        bench_return = books[spec["id"]]["benchmark_return"]
+        full = _describe_returns(full_return.to_numpy(dtype=float), (0, 0))
+        bench = _describe_returns(bench_return.to_numpy(dtype=float), (0, 0))
+        paired = _pair_stats(full_return, bench_return)
+        since = full_return.index >= pd.Timestamp(OOS_START)
+        reported = _pair_stats(full_return.loc[since], bench_return.loc[since])
+        ratio = paired["strategy"].get("wealth_ratio")
+        beta = paired["strategy"].get("beta")
+        oos_ratio = reported["strategy"].get("wealth_ratio")
+        oos_beta = reported["strategy"].get("beta")
         print(
-            f"{spec['name']} 组合累计 {full['cumulative_return'] * 100:+.2f}%，"
-            f"基准 {bench['cumulative_return'] * 100:+.2f}%"
+            f"{spec['name']} 累计 {full['cumulative_return'] * 100:+.2f}%，"
+            f"基准 {bench['cumulative_return'] * 100:+.2f}%，"
+            f"可交易区间资金比 {ratio:.2f}，贝塔 {beta:.2f}，"
+            f"2021年以来资金比 {oos_ratio:.2f}，贝塔 {oos_beta:.2f}"
         )
 
     _write_json(out_dir / f"{INDEX_STEM}.json", _benchmark_payload(data_dir, books))
@@ -358,15 +421,17 @@ def _benchmark_payload(data_dir: Path, books: dict[str, dict]) -> dict:
             mask = strategy.index.year == int(year)
             if bool(mask.any()):
                 years[str(int(year))] = _pair_stats(strategy.loc[mask], benchmark.loc[mask])
+        since = strategy.index >= pd.Timestamp(OOS_START)
         algorithms[spec["id"]] = {
             "id": spec["id"],
             "name": spec["name"],
             "note": spec["note"],
-            "params": {**spec["params"], "keep": WEIGHT_KEEP},
+            "params": {**spec["params"], "keep": WEIGHT_KEEP, "fill": spec.get("fill") or "close"},
             "equity": _series(book["equity"].reindex(calendar)),
             "benchmark_equity": _series(book["benchmark_equity"].reindex(calendar)),
             "stats": _pair_stats(strategy, benchmark),
             "stats_10y": _pair_stats(*_trailing(strategy, benchmark, 10)),
+            "stats_since_2021": _pair_stats(strategy.loc[since], benchmark.loc[since]),
             "years": years,
         }
     return {
@@ -383,6 +448,7 @@ def _benchmark_payload(data_dir: Path, books: dict[str, dict]) -> dict:
         "close": _series(close),
         "return_index": _series(level),
         "volume": _series(frame.get("volume")),
+        "universe_note": UNIVERSE_NOTE,
         "algorithms": algorithms,
     }
 
@@ -395,14 +461,46 @@ def _trailing(strategy: pd.Series, benchmark: pd.Series, years: int) -> tuple[pd
 
 
 def _pair_stats(strategy: pd.Series, benchmark: pd.Series) -> dict:
-    """组合和指数各自的区间指标。超额收益只写在组合一侧。"""
+    """组合和指数的区间指标。资金比和贝塔从策略开始有涨跌的那天起，两边用同一段日期。"""
     strategy_values = strategy.to_numpy(dtype=float)
     benchmark_values = benchmark.to_numpy(dtype=float)
     strategy_stats = _describe_returns(strategy_values, (0, 0))
     benchmark_stats = _describe_returns(benchmark_values, (0, 0), hide_win_rate=True)
-    strategy_stats["excess_return"] = _num(_compound(strategy_values) - _compound(benchmark_values))
-    benchmark_stats["excess_return"] = None
+    tradable_strategy, tradable_benchmark = _tradable_window(strategy, benchmark)
+    strategy_stats["wealth_ratio"] = _wealth_ratio(tradable_strategy, tradable_benchmark)
+    strategy_stats["beta"] = _beta(tradable_strategy, tradable_benchmark)
+    benchmark_stats["wealth_ratio"] = None if strategy_stats["wealth_ratio"] is None else 1.0
+    benchmark_stats["beta"] = None if strategy_stats["beta"] is None else 1.0
     return {"strategy": strategy_stats, "benchmark": benchmark_stats}
+
+
+def _tradable_window(strategy: pd.Series, benchmark: pd.Series) -> tuple[pd.Series, pd.Series]:
+    """去掉开头还没成交的平直段，避免预热期把指数的涨跌算进比较。"""
+    strategy = strategy.astype(float)
+    benchmark = benchmark.reindex(strategy.index).astype(float).fillna(0.0)
+    active = np.flatnonzero(np.abs(strategy.to_numpy(dtype=float)) > 1e-12)
+    if len(active) == 0:
+        return strategy.iloc[0:0], benchmark.iloc[0:0]
+    start = int(active[0])
+    return strategy.iloc[start:], benchmark.iloc[start:]
+
+
+def _wealth_ratio(strategy: pd.Series, benchmark: pd.Series):
+    if strategy.empty:
+        return None
+    base = 1.0 + _compound(benchmark.to_numpy(dtype=float))
+    if base == 0.0:
+        return None
+    return _num((1.0 + _compound(strategy.to_numpy(dtype=float))) / base)
+
+
+def _beta(strategy: pd.Series, benchmark: pd.Series):
+    if len(strategy) < 2:
+        return None
+    variance = float(benchmark.var(ddof=1))
+    if not np.isfinite(variance) or variance == 0.0:
+        return None
+    return _num(float(strategy.cov(benchmark, ddof=1) / variance))
 
 
 def _read_csv(path: Path) -> pd.DataFrame:
@@ -489,7 +587,11 @@ def _symbol_payload(
     for spec in PORTFOLIOS:
         book = books[spec["id"]]
         position = book["position"][symbol].reindex(frame.index).fillna(0.0)
-        equity = _share_equity(level, position)
+        fee = float(spec["params"]["fee"])
+        if spec.get("fill") == "next_open":
+            equity = _share_equity_open(frame["close"], frame["open"] if "open" in frame.columns else None, position, fee)
+        else:
+            equity = _share_equity(level, position, fee)
         window_return = equity.pct_change().fillna(0.0)
         window_return.iloc[0] = 0.0
         bench_return = _stock_returns(frame["close"])
@@ -761,7 +863,7 @@ def _stock_returns(close: pd.Series) -> pd.Series:
     return returns
 
 
-def _share_equity(price: pd.Series, position: pd.Series) -> pd.Series:
+def _share_equity(price: pd.Series, position: pd.Series, fee: float = FEE) -> pd.Series:
     """按前一日收盘价买卖。卖出后现金留在这只股票，下次用全部现金再买入。"""
     held_flags = (position.reindex(price.index).fillna(0.0) > 1e-8).to_numpy()
     prices = price.to_numpy(dtype=float)
@@ -772,14 +874,49 @@ def _share_equity(price: pd.Series, position: pd.Series) -> pd.Series:
     for i, (level, held) in enumerate(zip(prices, held_flags)):
         if i > 0 and prices[i - 1] > 0.0:
             if held and not prev:
-                shares = cash * (1.0 - FEE) / prices[i - 1]
+                shares = cash * (1.0 - fee) / prices[i - 1]
                 cash = 0.0
             elif prev and not held:
-                cash = shares * prices[i - 1] * (1.0 - FEE)
+                cash = shares * prices[i - 1] * (1.0 - fee)
                 shares = 0.0
         values[i] = shares * level if held and shares else cash
         prev = bool(held)
     return pd.Series(values, index=price.index, name="equity")
+
+
+def _share_equity_open(close: pd.Series, opened: pd.Series | None, position: pd.Series, fee: float = FEE) -> pd.Series:
+    """按当天开盘价买卖。买入日只计开盘到收盘，卖出日只计隔夜。涨跌超过 50% 的日子记 0。"""
+    close = close.astype(float)
+    raw = close / close.shift(1) - 1.0
+    jump = raw.abs() > JUMP_LIMIT
+    if opened is None:
+        opened = pd.Series(np.nan, index=close.index)
+    else:
+        opened = opened.reindex(close.index).astype(float)
+    bad_open = opened.isna() | (opened <= 0) | close.shift(1).isna() | (close.shift(1) <= 0)
+    overnight = (opened / close.shift(1) - 1.0).mask(jump | bad_open, 0.0).fillna(0.0).to_numpy(dtype=float)
+    intraday = (close / opened - 1.0).mask(jump, 0.0)
+    intraday = intraday.mask(bad_open, raw.mask(jump, 0.0)).fillna(0.0).to_numpy(dtype=float)
+    held_flags = (position.reindex(close.index).fillna(0.0) > 1e-8).to_numpy()
+    values = np.empty(len(close), dtype=float)
+    cash = 1.0
+    shares = 0.0
+    price = 1.0
+    prev = False
+    values[0] = cash
+    for i in range(1, len(close)):
+        open_price = price * (1.0 + overnight[i])
+        held = bool(held_flags[i])
+        if held and not prev and open_price > 0.0:
+            shares = cash * (1.0 - fee) / open_price
+            cash = 0.0
+        elif prev and not held and open_price > 0.0:
+            cash = shares * open_price * (1.0 - fee)
+            shares = 0.0
+        price = open_price * (1.0 + intraday[i])
+        values[i] = shares * price if shares else cash
+        prev = held
+    return pd.Series(values, index=close.index, name="equity")
 
 
 def _equity(returns: pd.Series) -> pd.Series:
@@ -906,6 +1043,23 @@ def _num(value):
 
 def _write_json(path: Path, payload: dict) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def _write_merged_json(path: Path, payload: dict, catalog: bool = False) -> None:
+    """写入 JSON。文件里已有的其他算法保留，同名算法用这次的结果覆盖。"""
+    if path.exists():
+        previous = json.loads(path.read_text(encoding="utf-8"))
+        if catalog:
+            by_id = {}
+            for item in list(previous.get("algorithms") or []) + list(payload.get("algorithms") or []):
+                if item.get("id"):
+                    by_id[item["id"]] = item
+            payload = {**payload, "algorithms": list(by_id.values())}
+        else:
+            algorithms = dict(previous.get("algorithms") or {})
+            algorithms.update(payload.get("algorithms") or {})
+            payload = {**payload, "algorithms": algorithms}
+    _write_json(path, payload)
 
 
 def main() -> None:

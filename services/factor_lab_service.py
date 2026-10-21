@@ -132,10 +132,11 @@ def _load_frames(config: dict) -> tuple[dict[str, pd.DataFrame], list[str]]:
     start = str(config.get("start") or "2015-01-01")
     end = str(config.get("end") or "2025-12-31")
     root = Path(config["root"]) if config.get("root") else ROOT
+    folder = Path(config["data_dir"]) if config.get("data_dir") else root / "data" / "nasdaq100"
     frames: dict[str, pd.DataFrame] = {}
     warnings: list[str] = []
     for symbol in symbols:
-        path = root / "data" / "nasdaq100" / f"{symbol}.csv"
+        path = folder / f"{symbol}.csv"
         if not path.exists():
             warnings.append(f"没有 {symbol}.csv，已跳过")
             continue
@@ -380,7 +381,8 @@ def _benchmark(config: dict, close: pd.DataFrame) -> tuple[pd.Series | None, str
         nav = (1.0 + returns.mean(axis=1).fillna(0.0)).cumprod()
         return nav, ""
     root = Path(config["root"]) if config.get("root") else ROOT
-    path = root / "data" / "nasdaq100" / "NDX.csv"
+    folder = Path(config["data_dir"]) if config.get("data_dir") else root / "data" / "nasdaq100"
+    path = folder / "NDX.csv"
     if not path.exists():
         returns = close.pct_change(fill_method=None)
         nav = (1.0 + returns.mean(axis=1).fillna(0.0)).cumprod()

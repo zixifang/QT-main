@@ -24,7 +24,6 @@ from services.factor_service import FactorService as FactorSvc
 from services.eval_service import EvalService as EvalSvc
 from services.composite_service import CompositeService as CompSvc
 from services.backtest_service import BacktestService as BackSvc
-from services.report_service import ReportService
 from services.task_service import TaskService
 
 
@@ -90,7 +89,6 @@ class ContractTest(unittest.TestCase):
         self.assertIn("factor_id", inspect.signature(EvalSvc.single).parameters)
         self.assertTrue(callable(CompSvc.combine))
         self.assertTrue(callable(BackSvc.run))
-        self.assertIn("kind", inspect.signature(ReportService.export).parameters)
         self.assertTrue(callable(TaskService.start) and callable(TaskService.cancel) and callable(TaskService.poll))
         rows = FactorSvc(Path(".")).catalog()
         ids = {row["id"] for row in rows}
