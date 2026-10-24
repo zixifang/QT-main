@@ -1,0 +1,1231 @@
+{
+  "schema_version": 1,
+  "dataset_id": "recent-us-2024-2026",
+  "name": "美股大盘 2024–2026",
+  "source": "data/recent-us-2024-2026",
+  "price_field": "close",
+  "symbols": [
+    "AAPL",
+    "AMZN",
+    "AVGO",
+    "BAC",
+    "CAT",
+    "COST",
+    "CVX",
+    "GE",
+    "GOOGL",
+    "JNJ",
+    "JPM",
+    "KO",
+    "META",
+    "MSFT",
+    "NFLX",
+    "NVDA",
+    "TSLA",
+    "UNH",
+    "WMT",
+    "XOM"
+  ],
+  "algorithms": [
+    {
+      "id": "macd_trend",
+      "name": "MACD 趋势跟踪",
+      "note": "MACD 柱转正且在零轴上方开多；柱转负或跌破 ATR 跟踪止损平仓",
+      "years": {
+        "2024": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": 0.079002,
+              "benchmark_cumulative_return": 0.348955
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": -0.006241,
+              "benchmark_cumulative_return": 0.463283
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": 0.103941,
+              "benchmark_cumulative_return": 1.136026
+            },
+            {
+              "symbol": "BAC",
+              "cumulative_return": 0.085426,
+              "benchmark_cumulative_return": 0.29646
+            },
+            {
+              "symbol": "CAT",
+              "cumulative_return": -0.043229,
+              "benchmark_cumulative_return": 0.239315
+            },
+            {
+              "symbol": "COST",
+              "cumulative_return": 0.143919,
+              "benchmark_cumulative_return": 0.408238
+            },
+            {
+              "symbol": "CVX",
+              "cumulative_return": -0.090577,
+              "benchmark_cumulative_return": -0.031041
+            },
+            {
+              "symbol": "GE",
+              "cumulative_return": -0.092011,
+              "benchmark_cumulative_return": 0.324256
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": 0.185249,
+              "benchmark_cumulative_return": 0.370051
+            },
+            {
+              "symbol": "JNJ",
+              "cumulative_return": -0.05454,
+              "benchmark_cumulative_return": -0.095955
+            },
+            {
+              "symbol": "JPM",
+              "cumulative_return": 0.159412,
+              "benchmark_cumulative_return": 0.393015
+            },
+            {
+              "symbol": "KO",
+              "cumulative_return": -0.008591,
+              "benchmark_cumulative_return": 0.040789
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": -0.029338,
+              "benchmark_cumulative_return": 0.690808
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": -0.035084,
+              "benchmark_cumulative_return": 0.136517
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": 0.133227,
+              "benchmark_cumulative_return": 0.902497
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": 0.340547,
+              "benchmark_cumulative_return": 1.787951
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": 0.862738,
+              "benchmark_cumulative_return": 0.625634
+            },
+            {
+              "symbol": "UNH",
+              "cumulative_return": -0.107209,
+              "benchmark_cumulative_return": -0.062076
+            },
+            {
+              "symbol": "WMT",
+              "cumulative_return": 0.22414,
+              "benchmark_cumulative_return": 0.701613
+            },
+            {
+              "symbol": "XOM",
+              "cumulative_return": 0.008702,
+              "benchmark_cumulative_return": 0.050899
+            }
+          ],
+          "strategy": {
+            "count": 20,
+            "winners": 11,
+            "losers": 9,
+            "profit_ratio": 0.55,
+            "win_rate": 0.423313,
+            "cumulative_return": 0.092974,
+            "median_return": 0.043852,
+            "annualized_return": 0.092974,
+            "sharpe": 0.394011,
+            "max_drawdown": -0.140259,
+            "trades": 163,
+            "beat_benchmark": 2
+          },
+          "benchmark": {
+            "count": 20,
+            "winners": 17,
+            "losers": 3,
+            "profit_ratio": 0.85,
+            "win_rate": null,
+            "cumulative_return": 0.436362,
+            "median_return": 0.359503,
+            "annualized_return": 0.436362,
+            "sharpe": 1.177188,
+            "max_drawdown": -0.184433,
+            "trades": 0
+          }
+        },
+        "2025": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": -0.019683,
+              "benchmark_cumulative_return": 0.085616
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": -0.150236,
+              "benchmark_cumulative_return": 0.052099
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": 0.082837,
+              "benchmark_cumulative_return": 0.49284
+            },
+            {
+              "symbol": "BAC",
+              "cumulative_return": 0.155664,
+              "benchmark_cumulative_return": 0.251422
+            },
+            {
+              "symbol": "CAT",
+              "cumulative_return": 0.255009,
+              "benchmark_cumulative_return": 0.579198
+            },
+            {
+              "symbol": "COST",
+              "cumulative_return": -0.048487,
+              "benchmark_cumulative_return": -0.058858
+            },
+            {
+              "symbol": "CVX",
+              "cumulative_return": -0.265829,
+              "benchmark_cumulative_return": 0.052265
+            },
+            {
+              "symbol": "GE",
+              "cumulative_return": 0.393433,
+              "benchmark_cumulative_return": 0.846813
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": 0.198159,
+              "benchmark_cumulative_return": 0.65346
+            },
+            {
+              "symbol": "JNJ",
+              "cumulative_return": 0.279656,
+              "benchmark_cumulative_return": 0.430992
+            },
+            {
+              "symbol": "JPM",
+              "cumulative_return": 0.18209,
+              "benchmark_cumulative_return": 0.344208
+            },
+            {
+              "symbol": "KO",
+              "cumulative_return": -0.044883,
+              "benchmark_cumulative_return": 0.122872
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": -0.009617,
+              "benchmark_cumulative_return": 0.127376
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": -0.001576,
+              "benchmark_cumulative_return": 0.147378
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": -0.029105,
+              "benchmark_cumulative_return": 0.051923
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": -0.123425,
+              "benchmark_cumulative_return": 0.388785
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": 0.152418,
+              "benchmark_cumulative_return": 0.113609
+            },
+            {
+              "symbol": "UNH",
+              "cumulative_return": -0.135406,
+              "benchmark_cumulative_return": -0.347428
+            },
+            {
+              "symbol": "WMT",
+              "cumulative_return": 0.10498,
+              "benchmark_cumulative_return": 0.233094
+            },
+            {
+              "symbol": "XOM",
+              "cumulative_return": -0.1492,
+              "benchmark_cumulative_return": 0.118713
+            }
+          ],
+          "strategy": {
+            "count": 20,
+            "winners": 9,
+            "losers": 11,
+            "profit_ratio": 0.45,
+            "win_rate": 0.381503,
+            "cumulative_return": 0.04134,
+            "median_return": -0.005596,
+            "annualized_return": 0.041785,
+            "sharpe": 0.268095,
+            "max_drawdown": -0.163665,
+            "trades": 173,
+            "beat_benchmark": 3
+          },
+          "benchmark": {
+            "count": 20,
+            "winners": 18,
+            "losers": 2,
+            "profit_ratio": 0.9,
+            "win_rate": null,
+            "cumulative_return": 0.234319,
+            "median_return": 0.137377,
+            "annualized_return": 0.236631,
+            "sharpe": 0.812695,
+            "max_drawdown": -0.286542,
+            "trades": 0
+          }
+        },
+        "2026": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": 0.079558,
+              "benchmark_cumulative_return": 0.279077
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": -0.06393,
+              "benchmark_cumulative_return": 0.07443
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": -0.140602,
+              "benchmark_cumulative_return": -0.070558
+            },
+            {
+              "symbol": "BAC",
+              "cumulative_return": 0.027757,
+              "benchmark_cumulative_return": -0.080727
+            },
+            {
+              "symbol": "CAT",
+              "cumulative_return": 0.352105,
+              "benchmark_cumulative_return": 0.199225
+            },
+            {
+              "symbol": "COST",
+              "cumulative_return": -0.143803,
+              "benchmark_cumulative_return": 0.163485
+            },
+            {
+              "symbol": "CVX",
+              "cumulative_return": 0.183245,
+              "benchmark_cumulative_return": 0.530149
+            },
+            {
+              "symbol": "GE",
+              "cumulative_return": 0.107874,
+              "benchmark_cumulative_return": -0.072688
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": 0.089899,
+              "benchmark_cumulative_return": 0.023035
+            },
+            {
+              "symbol": "JNJ",
+              "cumulative_return": 0.06649,
+              "benchmark_cumulative_return": 0.274752
+            },
+            {
+              "symbol": "JPM",
+              "cumulative_return": -0.036121,
+              "benchmark_cumulative_return": 0.029048
+            },
+            {
+              "symbol": "KO",
+              "cumulative_return": -0.012145,
+              "benchmark_cumulative_return": 0.326134
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": 0.027748,
+              "benchmark_cumulative_return": -0.026466
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": 0.125496,
+              "benchmark_cumulative_return": 0.08455
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": -0.043591,
+              "benchmark_cumulative_return": -0.297675
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": -0.197414,
+              "benchmark_cumulative_return": 0.131153
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": -0.112591,
+              "benchmark_cumulative_return": -0.172329
+            },
+            {
+              "symbol": "UNH",
+              "cumulative_return": -0.05183,
+              "benchmark_cumulative_return": 0.266517
+            },
+            {
+              "symbol": "WMT",
+              "cumulative_return": -0.092621,
+              "benchmark_cumulative_return": 0.076115
+            },
+            {
+              "symbol": "XOM",
+              "cumulative_return": 0.302552,
+              "benchmark_cumulative_return": 0.522436
+            }
+          ],
+          "strategy": {
+            "count": 20,
+            "winners": 10,
+            "losers": 10,
+            "profit_ratio": 0.5,
+            "win_rate": 0.362205,
+            "cumulative_return": 0.023404,
+            "median_return": 0.007801,
+            "annualized_return": 0.03177,
+            "sharpe": 0.144064,
+            "max_drawdown": -0.16984,
+            "trades": 127,
+            "beat_benchmark": 8
+          },
+          "benchmark": {
+            "count": 20,
+            "winners": 14,
+            "losers": 6,
+            "profit_ratio": 0.7,
+            "win_rate": null,
+            "cumulative_return": 0.112983,
+            "median_return": 0.080333,
+            "annualized_return": 0.147176,
+            "sharpe": 0.626089,
+            "max_drawdown": -0.232268,
+            "trades": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "momentum_12_1",
+      "name": "12-1 时间序列动量",
+      "note": "12-1 动量大于 0 且收盘在 200 日均线上方开多；动量转负或跌破均线平仓",
+      "years": {
+        "2024": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.348955
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.463283
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 1.136026
+            },
+            {
+              "symbol": "BAC",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.29646
+            },
+            {
+              "symbol": "CAT",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.239315
+            },
+            {
+              "symbol": "COST",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.408238
+            },
+            {
+              "symbol": "CVX",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.031041
+            },
+            {
+              "symbol": "GE",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.324256
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.370051
+            },
+            {
+              "symbol": "JNJ",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.095955
+            },
+            {
+              "symbol": "JPM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.393015
+            },
+            {
+              "symbol": "KO",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.040789
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.690808
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.136517
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.902497
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 1.787951
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.625634
+            },
+            {
+              "symbol": "UNH",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.062076
+            },
+            {
+              "symbol": "WMT",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.701613
+            },
+            {
+              "symbol": "XOM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.050899
+            }
+          ],
+          "strategy": {
+            "count": 20,
+            "winners": 0,
+            "losers": 0,
+            "profit_ratio": 0.0,
+            "win_rate": null,
+            "cumulative_return": 0.0,
+            "median_return": 0.0,
+            "annualized_return": 0.0,
+            "sharpe": 0.0,
+            "max_drawdown": 0.0,
+            "trades": 0,
+            "beat_benchmark": 3
+          },
+          "benchmark": {
+            "count": 20,
+            "winners": 17,
+            "losers": 3,
+            "profit_ratio": 0.85,
+            "win_rate": null,
+            "cumulative_return": 0.436362,
+            "median_return": 0.359503,
+            "annualized_return": 0.436362,
+            "sharpe": 1.177188,
+            "max_drawdown": -0.184433,
+            "trades": 0
+          }
+        },
+        "2025": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": 0.034652,
+              "benchmark_cumulative_return": 0.085616
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": -0.043955,
+              "benchmark_cumulative_return": 0.052099
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": 0.208998,
+              "benchmark_cumulative_return": 0.49284
+            },
+            {
+              "symbol": "BAC",
+              "cumulative_return": 0.171961,
+              "benchmark_cumulative_return": 0.251422
+            },
+            {
+              "symbol": "CAT",
+              "cumulative_return": 0.415573,
+              "benchmark_cumulative_return": 0.579198
+            },
+            {
+              "symbol": "COST",
+              "cumulative_return": -0.104449,
+              "benchmark_cumulative_return": -0.058858
+            },
+            {
+              "symbol": "CVX",
+              "cumulative_return": 0.037868,
+              "benchmark_cumulative_return": 0.052265
+            },
+            {
+              "symbol": "GE",
+              "cumulative_return": 0.496726,
+              "benchmark_cumulative_return": 0.846813
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": 0.500626,
+              "benchmark_cumulative_return": 0.65346
+            },
+            {
+              "symbol": "JNJ",
+              "cumulative_return": 0.002098,
+              "benchmark_cumulative_return": 0.430992
+            },
+            {
+              "symbol": "JPM",
+              "cumulative_return": 0.178858,
+              "benchmark_cumulative_return": 0.344208
+            },
+            {
+              "symbol": "KO",
+              "cumulative_return": -0.009084,
+              "benchmark_cumulative_return": 0.122872
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": -0.109534,
+              "benchmark_cumulative_return": 0.127376
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": -0.01352,
+              "benchmark_cumulative_return": 0.147378
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": 0.177838,
+              "benchmark_cumulative_return": 0.051923
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": -0.001873,
+              "benchmark_cumulative_return": 0.388785
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": -0.316527,
+              "benchmark_cumulative_return": 0.113609
+            },
+            {
+              "symbol": "UNH",
+              "cumulative_return": -0.184531,
+              "benchmark_cumulative_return": -0.347428
+            },
+            {
+              "symbol": "WMT",
+              "cumulative_return": 0.145908,
+              "benchmark_cumulative_return": 0.233094
+            },
+            {
+              "symbol": "XOM",
+              "cumulative_return": 0.027523,
+              "benchmark_cumulative_return": 0.118713
+            }
+          ],
+          "strategy": {
+            "count": 20,
+            "winners": 12,
+            "losers": 8,
+            "profit_ratio": 0.6,
+            "win_rate": 0.311321,
+            "cumulative_return": 0.080758,
+            "median_return": 0.031088,
+            "annualized_return": 0.081588,
+            "sharpe": 0.411535,
+            "max_drawdown": -0.220013,
+            "trades": 106,
+            "beat_benchmark": 2
+          },
+          "benchmark": {
+            "count": 20,
+            "winners": 18,
+            "losers": 2,
+            "profit_ratio": 0.9,
+            "win_rate": null,
+            "cumulative_return": 0.234319,
+            "median_return": 0.137377,
+            "annualized_return": 0.236631,
+            "sharpe": 0.812695,
+            "max_drawdown": -0.286542,
+            "trades": 0
+          }
+        },
+        "2026": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": 0.240516,
+              "benchmark_cumulative_return": 0.279077
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": -0.017508,
+              "benchmark_cumulative_return": 0.07443
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": -0.142568,
+              "benchmark_cumulative_return": -0.070558
+            },
+            {
+              "symbol": "BAC",
+              "cumulative_return": -0.080732,
+              "benchmark_cumulative_return": -0.080727
+            },
+            {
+              "symbol": "CAT",
+              "cumulative_return": 0.388419,
+              "benchmark_cumulative_return": 0.199225
+            },
+            {
+              "symbol": "COST",
+              "cumulative_return": -0.073196,
+              "benchmark_cumulative_return": 0.163485
+            },
+            {
+              "symbol": "CVX",
+              "cumulative_return": 0.365259,
+              "benchmark_cumulative_return": 0.530149
+            },
+            {
+              "symbol": "GE",
+              "cumulative_return": -0.172653,
+              "benchmark_cumulative_return": -0.072688
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": -0.025555,
+              "benchmark_cumulative_return": 0.023035
+            },
+            {
+              "symbol": "JNJ",
+              "cumulative_return": 0.274752,
+              "benchmark_cumulative_return": 0.274752
+            },
+            {
+              "symbol": "JPM",
+              "cumulative_return": -0.085615,
+              "benchmark_cumulative_return": 0.029048
+            },
+            {
+              "symbol": "KO",
+              "cumulative_return": 0.297392,
+              "benchmark_cumulative_return": 0.326134
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": -0.100804,
+              "benchmark_cumulative_return": -0.026466
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": -0.028957,
+              "benchmark_cumulative_return": 0.08455
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": -0.098361,
+              "benchmark_cumulative_return": -0.297675
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": 0.041077,
+              "benchmark_cumulative_return": 0.131153
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": -0.29266,
+              "benchmark_cumulative_return": -0.172329
+            },
+            {
+              "symbol": "UNH",
+              "cumulative_return": 0.046547,
+              "benchmark_cumulative_return": 0.266517
+            },
+            {
+              "symbol": "WMT",
+              "cumulative_return": -0.004707,
+              "benchmark_cumulative_return": 0.076115
+            },
+            {
+              "symbol": "XOM",
+              "cumulative_return": 0.522436,
+              "benchmark_cumulative_return": 0.522436
+            }
+          ],
+          "strategy": {
+            "count": 20,
+            "winners": 8,
+            "losers": 12,
+            "profit_ratio": 0.4,
+            "win_rate": 0.268657,
+            "cumulative_return": 0.052654,
+            "median_return": -0.021532,
+            "annualized_return": 0.071603,
+            "sharpe": 0.091975,
+            "max_drawdown": -0.177341,
+            "trades": 67,
+            "beat_benchmark": 2
+          },
+          "benchmark": {
+            "count": 20,
+            "winners": 14,
+            "losers": 6,
+            "profit_ratio": 0.7,
+            "win_rate": null,
+            "cumulative_return": 0.112983,
+            "median_return": 0.080333,
+            "annualized_return": 0.147176,
+            "sharpe": 0.626089,
+            "max_drawdown": -0.232268,
+            "trades": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "donchian_breakout",
+      "name": "唐奇安通道突破",
+      "note": "收盘突破20日最高价开多；跌破10日最低价或 ATR 跟踪止损平仓",
+      "years": {
+        "2024": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": 0.220356,
+              "benchmark_cumulative_return": 0.348955
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": -0.047951,
+              "benchmark_cumulative_return": 0.463283
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": 0.160677,
+              "benchmark_cumulative_return": 1.136026
+            },
+            {
+              "symbol": "BAC",
+              "cumulative_return": 0.15212,
+              "benchmark_cumulative_return": 0.29646
+            },
+            {
+              "symbol": "CAT",
+              "cumulative_return": 0.095927,
+              "benchmark_cumulative_return": 0.239315
+            },
+            {
+              "symbol": "COST",
+              "cumulative_return": 0.249929,
+              "benchmark_cumulative_return": 0.408238
+            },
+            {
+              "symbol": "CVX",
+              "cumulative_return": -0.072688,
+              "benchmark_cumulative_return": -0.031041
+            },
+            {
+              "symbol": "GE",
+              "cumulative_return": -0.123336,
+              "benchmark_cumulative_return": 0.324256
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": 0.260295,
+              "benchmark_cumulative_return": 0.370051
+            },
+            {
+              "symbol": "JNJ",
+              "cumulative_return": -0.005303,
+              "benchmark_cumulative_return": -0.095955
+            },
+            {
+              "symbol": "JPM",
+              "cumulative_return": -0.006241,
+              "benchmark_cumulative_return": 0.393015
+            },
+            {
+              "symbol": "KO",
+              "cumulative_return": 0.025848,
+              "benchmark_cumulative_return": 0.040789
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": -0.013966,
+              "benchmark_cumulative_return": 0.690808
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": -0.094986,
+              "benchmark_cumulative_return": 0.136517
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": 0.011168,
+              "benchmark_cumulative_return": 0.902497
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": 0.139783,
+              "benchmark_cumulative_return": 1.787951
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": 0.431005,
+              "benchmark_cumulative_return": 0.625634
+            },
+            {
+              "symbol": "UNH",
+              "cumulative_return": -0.087137,
+              "benchmark_cumulative_return": -0.062076
+            },
+            {
+              "symbol": "WMT",
+              "cumulative_return": 0.440953,
+              "benchmark_cumulative_return": 0.701613
+            },
+            {
+              "symbol": "XOM",
+              "cumulative_return": 0.047564,
+              "benchmark_cumulative_return": 0.050899
+            }
+          ],
+          "strategy": {
+            "count": 20,
+            "winners": 12,
+            "losers": 8,
+            "profit_ratio": 0.6,
+            "win_rate": 0.494382,
+            "cumulative_return": 0.089201,
+            "median_return": 0.036706,
+            "annualized_return": 0.089201,
+            "sharpe": 0.486542,
+            "max_drawdown": -0.14527,
+            "trades": 89,
+            "beat_benchmark": 1
+          },
+          "benchmark": {
+            "count": 20,
+            "winners": 17,
+            "losers": 3,
+            "profit_ratio": 0.85,
+            "win_rate": null,
+            "cumulative_return": 0.436362,
+            "median_return": 0.359503,
+            "annualized_return": 0.436362,
+            "sharpe": 1.177188,
+            "max_drawdown": -0.184433,
+            "trades": 0
+          }
+        },
+        "2025": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": 0.029001,
+              "benchmark_cumulative_return": 0.085616
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": -0.048402,
+              "benchmark_cumulative_return": 0.052099
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": 0.328934,
+              "benchmark_cumulative_return": 0.49284
+            },
+            {
+              "symbol": "BAC",
+              "cumulative_return": 0.075811,
+              "benchmark_cumulative_return": 0.251422
+            },
+            {
+              "symbol": "CAT",
+              "cumulative_return": 0.499345,
+              "benchmark_cumulative_return": 0.579198
+            },
+            {
+              "symbol": "COST",
+              "cumulative_return": 0.008369,
+              "benchmark_cumulative_return": -0.058858
+            },
+            {
+              "symbol": "CVX",
+              "cumulative_return": -0.086987,
+              "benchmark_cumulative_return": 0.052265
+            },
+            {
+              "symbol": "GE",
+              "cumulative_return": 0.300902,
+              "benchmark_cumulative_return": 0.846813
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": 0.392991,
+              "benchmark_cumulative_return": 0.65346
+            },
+            {
+              "symbol": "JNJ",
+              "cumulative_return": 0.137364,
+              "benchmark_cumulative_return": 0.430992
+            },
+            {
+              "symbol": "JPM",
+              "cumulative_return": 0.18431,
+              "benchmark_cumulative_return": 0.344208
+            },
+            {
+              "symbol": "KO",
+              "cumulative_return": 0.052353,
+              "benchmark_cumulative_return": 0.122872
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": 0.044557,
+              "benchmark_cumulative_return": 0.127376
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": 0.20744,
+              "benchmark_cumulative_return": 0.147378
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": 0.170186,
+              "benchmark_cumulative_return": 0.051923
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": 0.179641,
+              "benchmark_cumulative_return": 0.388785
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": 0.048699,
+              "benchmark_cumulative_return": 0.113609
+            },
+            {
+              "symbol": "UNH",
+              "cumulative_return": -0.113075,
+              "benchmark_cumulative_return": -0.347428
+            },
+            {
+              "symbol": "WMT",
+              "cumulative_return": 0.066916,
+              "benchmark_cumulative_return": 0.233094
+            },
+            {
+              "symbol": "XOM",
+              "cumulative_return": -0.172772,
+              "benchmark_cumulative_return": 0.118713
+            }
+          ],
+          "strategy": {
+            "count": 20,
+            "winners": 16,
+            "losers": 4,
+            "profit_ratio": 0.8,
+            "win_rate": 0.430233,
+            "cumulative_return": 0.115279,
+            "median_return": 0.071363,
+            "annualized_return": 0.116354,
+            "sharpe": 0.606875,
+            "max_drawdown": -0.142887,
+            "trades": 86,
+            "beat_benchmark": 4
+          },
+          "benchmark": {
+            "count": 20,
+            "winners": 18,
+            "losers": 2,
+            "profit_ratio": 0.9,
+            "win_rate": null,
+            "cumulative_return": 0.234319,
+            "median_return": 0.137377,
+            "annualized_return": 0.236631,
+            "sharpe": 0.812695,
+            "max_drawdown": -0.286542,
+            "trades": 0
+          }
+        },
+        "2026": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": 0.111513,
+              "benchmark_cumulative_return": 0.279077
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": -0.058056,
+              "benchmark_cumulative_return": 0.07443
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": -0.017623,
+              "benchmark_cumulative_return": -0.070558
+            },
+            {
+              "symbol": "BAC",
+              "cumulative_return": 0.149596,
+              "benchmark_cumulative_return": -0.080727
+            },
+            {
+              "symbol": "CAT",
+              "cumulative_return": 0.20393,
+              "benchmark_cumulative_return": 0.199225
+            },
+            {
+              "symbol": "COST",
+              "cumulative_return": 0.019793,
+              "benchmark_cumulative_return": 0.163485
+            },
+            {
+              "symbol": "CVX",
+              "cumulative_return": 0.27618,
+              "benchmark_cumulative_return": 0.530149
+            },
+            {
+              "symbol": "GE",
+              "cumulative_return": -0.157331,
+              "benchmark_cumulative_return": -0.072688
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": 0.016301,
+              "benchmark_cumulative_return": 0.023035
+            },
+            {
+              "symbol": "JNJ",
+              "cumulative_return": 0.002762,
+              "benchmark_cumulative_return": 0.274752
+            },
+            {
+              "symbol": "JPM",
+              "cumulative_return": 0.046536,
+              "benchmark_cumulative_return": 0.029048
+            },
+            {
+              "symbol": "KO",
+              "cumulative_return": 0.116556,
+              "benchmark_cumulative_return": 0.326134
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": -0.081095,
+              "benchmark_cumulative_return": -0.026466
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": 0.224675,
+              "benchmark_cumulative_return": 0.08455
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": -0.081907,
+              "benchmark_cumulative_return": -0.297675
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": -0.269389,
+              "benchmark_cumulative_return": 0.131153
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": -0.054811,
+              "benchmark_cumulative_return": -0.172329
+            },
+            {
+              "symbol": "UNH",
+              "cumulative_return": 0.074341,
+              "benchmark_cumulative_return": 0.266517
+            },
+            {
+              "symbol": "WMT",
+              "cumulative_return": 0.018371,
+              "benchmark_cumulative_return": 0.076115
+            },
+            {
+              "symbol": "XOM",
+              "cumulative_return": 0.140264,
+              "benchmark_cumulative_return": 0.522436
+            }
+          ],
+          "strategy": {
+            "count": 20,
+            "winners": 13,
+            "losers": 7,
+            "profit_ratio": 0.65,
+            "win_rate": 0.447368,
+            "cumulative_return": 0.03403,
+            "median_return": 0.019082,
+            "annualized_return": 0.044637,
+            "sharpe": 0.279198,
+            "max_drawdown": -0.163634,
+            "trades": 76,
+            "beat_benchmark": 7
+          },
+          "benchmark": {
+            "count": 20,
+            "winners": 14,
+            "losers": 6,
+            "profit_ratio": 0.7,
+            "win_rate": null,
+            "cumulative_return": 0.112983,
+            "median_return": 0.080333,
+            "annualized_return": 0.147176,
+            "sharpe": 0.626089,
+            "max_drawdown": -0.232268,
+            "trades": 0
+          }
+        }
+      }
+    }
+  ]
+}
