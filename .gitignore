@@ -13,14 +13,8 @@ env/
 .env
 *.pem
 
-# 原始大文件不入库。算法结果放在 outdata/ 并提交，方便直接看到存放位置。
+# 未整理的抓取缓存不入库。XBRL 财报和因子表随仓库一起提交。
 data/raw/
-data/xbrl/raw/
-data/xbrl/*.parquet
-data/xbrl/*.csv
-data/xbrl/company_tickers.json
-data/factors/*.parquet
-data/factors/*.csv
 *.ipynb
 output/
 

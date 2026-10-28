@@ -1,0 +1,304 @@
+ticker,concept,fallback_used_or_none
+ABNB,Revenues,RevenueFromContractWithCustomerExcludingAssessedTax
+ABNB,GrossProfit,none
+ABNB,SharesOutstanding,none
+ABNB,EarningsPerShareDiluted,none
+ADBE,ResearchAndDevelopmentExpense,none
+ADP,OperatingIncomeLoss,none
+ADP,CapitalExpenditure,none
+ADSK,Revenues,RevenueFromContractWithCustomerExcludingAssessedTax
+AEP,GrossProfit,none
+AEP,SharesOutstanding,EntityCommonStockSharesOutstanding（dei 分类法，口径可能与流通股不同）
+AEP,ResearchAndDevelopmentExpense,none
+ALNY,GrossProfit,none
+AMGN,ResearchAndDevelopmentExpense,none
+AMZN,Revenues,RevenueFromContractWithCustomerExcludingAssessedTax
+AMZN,ResearchAndDevelopmentExpense,none
+APP,GrossProfit,none
+ARM,Assets,none
+ARM,Revenues,none
+ARM,NetIncomeLoss,none
+ARM,OperatingIncomeLoss,none
+ARM,GrossProfit,none
+ARM,StockholdersEquity,none
+ARM,Cash,none
+ARM,SharesOutstanding,none
+ARM,EarningsPerShareDiluted,none
+ARM,ResearchAndDevelopmentExpense,none
+ARM,CapitalExpenditure,none
+ARM,OperatingCashFlow,none
+ARM,AssetsCurrent,none
+ARM,LiabilitiesCurrent,none
+ASML,Assets,none
+ASML,Revenues,none
+ASML,NetIncomeLoss,none
+ASML,OperatingIncomeLoss,none
+ASML,GrossProfit,none
+ASML,StockholdersEquity,none
+ASML,Cash,none
+ASML,SharesOutstanding,none
+ASML,EarningsPerShareDiluted,none
+ASML,ResearchAndDevelopmentExpense,none
+ASML,CapitalExpenditure,none
+ASML,OperatingCashFlow,none
+ASML,AssetsCurrent,none
+ASML,LiabilitiesCurrent,none
+AXON,Revenues,RevenueFromContractWithCustomerExcludingAssessedTax
+BKNG,SharesOutstanding,EntityCommonStockSharesOutstanding（dei 分类法，口径可能与流通股不同）
+BKNG,ResearchAndDevelopmentExpense,none
+BKR,Revenues,RevenueFromContractWithCustomerExcludingAssessedTax
+BKR,CapitalExpenditure,none
+CCEP,Assets,none
+CCEP,Revenues,none
+CCEP,NetIncomeLoss,none
+CCEP,OperatingIncomeLoss,none
+CCEP,GrossProfit,none
+CCEP,StockholdersEquity,none
+CCEP,Cash,none
+CCEP,SharesOutstanding,none
+CCEP,EarningsPerShareDiluted,none
+CCEP,ResearchAndDevelopmentExpense,none
+CCEP,CapitalExpenditure,none
+CCEP,OperatingCashFlow,none
+CCEP,AssetsCurrent,none
+CCEP,LiabilitiesCurrent,none
+CDNS,Revenues,RevenueFromContractWithCustomerExcludingAssessedTax
+CDNS,GrossProfit,none
+CEG,GrossProfit,none
+CEG,ResearchAndDevelopmentExpense,none
+CHTR,GrossProfit,none
+CHTR,SharesOutstanding,EntityCommonStockSharesOutstanding（dei 分类法，口径可能与流通股不同）
+CHTR,ResearchAndDevelopmentExpense,none
+CMCSA,GrossProfit,none
+CMCSA,SharesOutstanding,EntityCommonStockSharesOutstanding（dei 分类法，口径可能与流通股不同）
+CMCSA,ResearchAndDevelopmentExpense,none
+COST,ResearchAndDevelopmentExpense,none
+CPRT,ResearchAndDevelopmentExpense,none
+CRWD,Revenues,none
+CSGP,ResearchAndDevelopmentExpense,none
+CSX,GrossProfit,none
+CSX,ResearchAndDevelopmentExpense,none
+CTAS,ResearchAndDevelopmentExpense,none
+CTSH,GrossProfit,none
+CTSH,ResearchAndDevelopmentExpense,none
+DASH,Revenues,RevenueFromContractWithCustomerExcludingAssessedTax
+DASH,GrossProfit,none
+DASH,SharesOutstanding,none
+DDOG,Revenues,RevenueFromContractWithCustomerExcludingAssessedTax
+EA,ResearchAndDevelopmentExpense,none
+EXC,GrossProfit,none
+EXC,ResearchAndDevelopmentExpense,none
+FANG,GrossProfit,none
+FANG,ResearchAndDevelopmentExpense,none
+FANG,CapitalExpenditure,none
+FAST,Revenues,RevenueFromContractWithCustomerExcludingAssessedTax
+FAST,ResearchAndDevelopmentExpense,none
+FER,Assets,none
+FER,Revenues,none
+FER,NetIncomeLoss,none
+FER,OperatingIncomeLoss,none
+FER,GrossProfit,none
+FER,StockholdersEquity,none
+FER,Cash,none
+FER,SharesOutstanding,none
+FER,EarningsPerShareDiluted,none
+FER,ResearchAndDevelopmentExpense,none
+FER,CapitalExpenditure,none
+FER,OperatingCashFlow,none
+FER,AssetsCurrent,none
+FER,LiabilitiesCurrent,none
+FTNT,Revenues,RevenueFromContractWithCustomerExcludingAssessedTax
+GEHC,Revenues,RevenueFromContractWithCustomerExcludingAssessedTax
+GOOG,GrossProfit,none
+GOOGL,GrossProfit,none
+IDXX,Revenues,RevenueFromContractWithCustomerExcludingAssessedTax
+INTC,Revenues,RevenueFromContractWithCustomerExcludingAssessedTax
+INTU,GrossProfit,none
+ISRG,Revenues,RevenueFromContractWithCustomerExcludingAssessedTax
+KDP,Revenues,RevenueFromContractWithCustomerExcludingAssessedTax
+KHC,Revenues,none
+LIN,Revenues,RevenueFromContractWithCustomerExcludingAssessedTax
+LIN,GrossProfit,none
+LRCX,CapitalExpenditure,none
+MAR,GrossProfit,none
+MAR,ResearchAndDevelopmentExpense,none
+META,GrossProfit,none
+META,SharesOutstanding,none
+MNST,Revenues,RevenueFromContractWithCustomerExcludingAssessedTax
+MNST,NetIncomeLoss,ProfitLoss
+MNST,ResearchAndDevelopmentExpense,none
+MRVL,Revenues,RevenueFromContractWithCustomerExcludingAssessedTax
+MSTR,SharesOutstanding,none
+NXPI,Revenues,RevenueFromContractWithCustomerExcludingAssessedTax
+NXPI,SharesOutstanding,EntityCommonStockSharesOutstanding（dei 分类法，口径可能与流通股不同）
+ODFL,Revenues,none
+ODFL,GrossProfit,none
+ODFL,ResearchAndDevelopmentExpense,none
+ODFL,CapitalExpenditure,none
+ORLY,Revenues,RevenueFromContractWithCustomerExcludingAssessedTax
+ORLY,ResearchAndDevelopmentExpense,none
+PAYX,GrossProfit,none
+PAYX,ResearchAndDevelopmentExpense,none
+PCAR,OperatingIncomeLoss,none
+PCAR,GrossProfit,none
+PCAR,SharesOutstanding,EntityCommonStockSharesOutstanding（dei 分类法，口径可能与流通股不同）
+PCAR,AssetsCurrent,none
+PCAR,LiabilitiesCurrent,none
+PDD,Assets,none
+PDD,Revenues,none
+PDD,NetIncomeLoss,none
+PDD,OperatingIncomeLoss,none
+PDD,GrossProfit,none
+PDD,StockholdersEquity,none
+PDD,Cash,none
+PDD,SharesOutstanding,none
+PDD,EarningsPerShareDiluted,none
+PDD,ResearchAndDevelopmentExpense,none
+PDD,CapitalExpenditure,none
+PDD,OperatingCashFlow,none
+PDD,AssetsCurrent,none
+PDD,LiabilitiesCurrent,none
+PEP,SharesOutstanding,EntityCommonStockSharesOutstanding（dei 分类法，口径可能与流通股不同）
+PEP,CapitalExpenditure,none
+PLTR,Revenues,RevenueFromContractWithCustomerExcludingAssessedTax
+PYPL,GrossProfit,none
+QCOM,GrossProfit,none
+QCOM,CapitalExpenditure,none
+REGN,GrossProfit,none
+REGN,CapitalExpenditure,none
+ROP,Revenues,RevenueFromContractWithCustomerExcludingAssessedTax
+ROP,CapitalExpenditure,none
+ROST,Revenues,RevenueFromContractWithCustomerExcludingAssessedTax
+ROST,GrossProfit,none
+ROST,ResearchAndDevelopmentExpense,none
+SBUX,GrossProfit,none
+SBUX,ResearchAndDevelopmentExpense,none
+SHOP,SharesOutstanding,none
+STX,GrossProfit,none
+TEAM,Revenues,RevenueFromContractWithCustomerExcludingAssessedTax
+TEAM,SharesOutstanding,none
+TMUS,GrossProfit,none
+TMUS,ResearchAndDevelopmentExpense,none
+TRI,Assets,none
+TRI,Revenues,none
+TRI,NetIncomeLoss,none
+TRI,OperatingIncomeLoss,none
+TRI,GrossProfit,none
+TRI,StockholdersEquity,none
+TRI,Cash,none
+TRI,SharesOutstanding,none
+TRI,EarningsPerShareDiluted,none
+TRI,ResearchAndDevelopmentExpense,none
+TRI,CapitalExpenditure,none
+TRI,OperatingCashFlow,none
+TRI,AssetsCurrent,none
+TRI,LiabilitiesCurrent,none
+TTWO,Revenues,RevenueFromContractWithCustomerExcludingAssessedTax
+TXN,Revenues,RevenueFromContractWithCustomerExcludingAssessedTax
+TXN,SharesOutstanding,EntityCommonStockSharesOutstanding（dei 分类法，口径可能与流通股不同）
+VRSK,GrossProfit,none
+VRTX,GrossProfit,none
+WBD,GrossProfit,none
+WBD,ResearchAndDevelopmentExpense,none
+WDAY,GrossProfit,none
+WDC,Revenues,RevenueFromContractWithCustomerExcludingAssessedTax
+WDC,ResearchAndDevelopmentExpense,none
+WMT,GrossProfit,none
+WMT,ResearchAndDevelopmentExpense,none
+XEL,GrossProfit,none
+XEL,ResearchAndDevelopmentExpense,none
+AAPL,TotalDebt,LongTermDebt（短期标签缺失，未加总）
+ABNB,TotalDebt,LongTermDebt（短期标签缺失，未加总）
+ADBE,TotalDebt,"mixed: DebtCurrent（缺少长期债务）, LongTermDebt+DebtCurrent, LongTermDebt（短期标签缺失，未加总）"
+ADI,TotalDebt,"mixed: DebtCurrent（缺少长期债务）, LongTermDebt+DebtCurrent, LongTermDebt（短期标签缺失，未加总）, ShortTermBorrowings（缺少长期债务）"
+ADP,TotalDebt,"mixed: DebtCurrent（缺少长期债务）, LongTermDebt+ShortTermBorrowings, LongTermDebt（短期标签缺失，未加总）, ShortTermBorrowings（缺少长期债务）"
+ADSK,TotalDebt,"mixed: LongTermDebt+ShortTermBorrowings, LongTermDebt（短期标签缺失，未加总）, ShortTermBorrowings（缺少长期债务）"
+AEP,TotalDebt,"mixed: LongTermDebt+ShortTermBorrowings, ShortTermBorrowings（缺少长期债务）"
+ALNY,TotalDebt,LongTermDebt（短期标签缺失，未加总）
+AMAT,TotalDebt,"mixed: LongTermDebt+ShortTermBorrowings, LongTermDebt（短期标签缺失，未加总）, ShortTermBorrowings（缺少长期债务）"
+AMD,TotalDebt,"mixed: DebtCurrent（缺少长期债务）, LongTermDebt+DebtCurrent, LongTermDebt+ShortTermBorrowings, LongTermDebt（短期标签缺失，未加总）, ShortTermBorrowings（缺少长期债务）"
+AMGN,TotalDebt,"mixed: LongTermDebt+DebtCurrent, LongTermDebt（短期标签缺失，未加总）"
+AMZN,TotalDebt,"mixed: LongTermDebt+ShortTermBorrowings, LongTermDebt（短期标签缺失，未加总）"
+APP,TotalDebt,"mixed: LongTermDebt+ShortTermBorrowings, LongTermDebt（短期标签缺失，未加总）, ShortTermBorrowings（缺少长期债务）"
+AVGO,TotalDebt,"mixed: DebtCurrent（缺少长期债务）, LongTermDebt+DebtCurrent, LongTermDebt（短期标签缺失，未加总）"
+AXON,TotalDebt,LongTermDebt（短期标签缺失，未加总）
+BKNG,TotalDebt,"mixed: LongTermDebt+ShortTermBorrowings, LongTermDebt（短期标签缺失，未加总）"
+BKR,TotalDebt,"mixed: DebtCurrent（缺少长期债务）, LongTermDebt+DebtCurrent"
+CDNS,TotalDebt,none
+CEG,TotalDebt,"mixed: LongTermDebt+ShortTermBorrowings, ShortTermBorrowings（缺少长期债务）"
+CHTR,TotalDebt,"mixed: LongTermDebt+DebtCurrent, LongTermDebt（短期标签缺失，未加总）, ShortTermBorrowings（缺少长期债务）"
+CMCSA,TotalDebt,DebtCurrent（缺少长期债务）
+COST,TotalDebt,"mixed: LongTermDebt+ShortTermBorrowings, LongTermDebt（短期标签缺失，未加总）, ShortTermBorrowings（缺少长期债务）"
+CPRT,TotalDebt,"mixed: LongTermDebt+ShortTermBorrowings, LongTermDebt（短期标签缺失，未加总）, ShortTermBorrowings（缺少长期债务）"
+CRWD,TotalDebt,Liabilities（粗略，含经营负债）
+CSCO,TotalDebt,"mixed: DebtCurrent（缺少长期债务）, LongTermDebt+DebtCurrent, LongTermDebt+ShortTermBorrowings, LongTermDebt（短期标签缺失，未加总）, ShortTermBorrowings（缺少长期债务）"
+CSGP,TotalDebt,LongTermDebt（短期标签缺失，未加总）
+CSX,TotalDebt,LongTermDebt（短期标签缺失，未加总）
+CTAS,TotalDebt,"mixed: DebtCurrent（缺少长期债务）, LongTermDebt+DebtCurrent, LongTermDebt+ShortTermBorrowings, LongTermDebt（短期标签缺失，未加总）, ShortTermBorrowings（缺少长期债务）"
+CTSH,TotalDebt,"mixed: DebtCurrent（缺少长期债务）, LongTermDebt+DebtCurrent, ShortTermBorrowings（缺少长期债务）"
+DASH,TotalDebt,Liabilities（粗略，含经营负债）
+DDOG,TotalDebt,Liabilities（粗略，含经营负债）
+DXCM,TotalDebt,LongTermDebt（短期标签缺失，未加总）
+EA,TotalDebt,Liabilities（粗略，含经营负债）
+EXC,TotalDebt,"mixed: LongTermDebt+ShortTermBorrowings, LongTermDebt（短期标签缺失，未加总）, ShortTermBorrowings（缺少长期债务）"
+FANG,TotalDebt,"mixed: LongTermDebt+DebtCurrent, LongTermDebt（短期标签缺失，未加总）"
+FAST,TotalDebt,LongTermDebt（短期标签缺失，未加总）
+FTNT,TotalDebt,LongTermDebt（短期标签缺失，未加总）
+GEHC,TotalDebt,"mixed: LongTermDebt+ShortTermBorrowings, ShortTermBorrowings（缺少长期债务）"
+GILD,TotalDebt,"mixed: DebtCurrent（缺少长期债务）, LongTermDebt+DebtCurrent"
+GOOG,TotalDebt,"mixed: DebtCurrent（缺少长期债务）, LongTermDebt+DebtCurrent, LongTermDebt（短期标签缺失，未加总）"
+GOOGL,TotalDebt,"mixed: DebtCurrent（缺少长期债务）, LongTermDebt+DebtCurrent, LongTermDebt（短期标签缺失，未加总）"
+HON,TotalDebt,"mixed: LongTermDebt+ShortTermBorrowings, LongTermDebt（短期标签缺失，未加总）"
+IDXX,TotalDebt,LongTermDebt（短期标签缺失，未加总）
+INSM,TotalDebt,"mixed: LongTermDebt+DebtCurrent, LongTermDebt（短期标签缺失，未加总）"
+INTC,TotalDebt,"mixed: DebtCurrent（缺少长期债务）, LongTermDebt+DebtCurrent, LongTermDebt+ShortTermBorrowings"
+INTU,TotalDebt,"mixed: LongTermDebt+DebtCurrent, LongTermDebt+ShortTermBorrowings, LongTermDebt（短期标签缺失，未加总）"
+ISRG,TotalDebt,Liabilities（粗略，含经营负债）
+KDP,TotalDebt,"mixed: DebtCurrent（缺少长期债务）, LongTermDebt+DebtCurrent"
+KHC,TotalDebt,"mixed: LongTermDebt+ShortTermBorrowings, ShortTermBorrowings（缺少长期债务）"
+KLAC,TotalDebt,"mixed: LongTermDebt+ShortTermBorrowings, LongTermDebt（短期标签缺失，未加总）"
+LIN,TotalDebt,LongTermDebt+ShortTermBorrowings
+LRCX,TotalDebt,"mixed: LongTermDebt+DebtCurrent, LongTermDebt（短期标签缺失，未加总）"
+MAR,TotalDebt,LongTermDebt（短期标签缺失，未加总）
+MCHP,TotalDebt,"mixed: LongTermDebt（短期标签缺失，未加总）, ShortTermBorrowings（缺少长期债务）"
+MDLZ,TotalDebt,"mixed: LongTermDebt+ShortTermBorrowings, ShortTermBorrowings（缺少长期债务）"
+MELI,TotalDebt,LongTermDebt（短期标签缺失，未加总）
+META,TotalDebt,LongTermDebt（短期标签缺失，未加总）
+MNST,TotalDebt,LongTermDebt（短期标签缺失，未加总）
+MPWR,TotalDebt,Liabilities（粗略，含经营负债）
+MRVL,TotalDebt,LongTermDebt+ShortTermBorrowings
+MSFT,TotalDebt,"mixed: LongTermDebt+ShortTermBorrowings, LongTermDebt（短期标签缺失，未加总）, ShortTermBorrowings（缺少长期债务）"
+MSTR,TotalDebt,LongTermDebt（短期标签缺失，未加总）
+MU,TotalDebt,"mixed: DebtCurrent（缺少长期债务）, LongTermDebt+DebtCurrent, LongTermDebt（短期标签缺失，未加总）"
+NFLX,TotalDebt,"mixed: LongTermDebt+ShortTermBorrowings, LongTermDebt（短期标签缺失，未加总）, ShortTermBorrowings（缺少长期债务）"
+NVDA,TotalDebt,"mixed: LongTermDebt+DebtCurrent, LongTermDebt（短期标签缺失，未加总）"
+NXPI,TotalDebt,"mixed: DebtCurrent（缺少长期债务）, LongTermDebt+DebtCurrent, LongTermDebt（短期标签缺失，未加总）"
+ODFL,TotalDebt,LongTermDebt（短期标签缺失，未加总）
+ORLY,TotalDebt,LongTermDebt（短期标签缺失，未加总）
+PANW,TotalDebt,LongTermDebt（短期标签缺失，未加总）
+PAYX,TotalDebt,"mixed: LongTermDebt+ShortTermBorrowings, LongTermDebt（短期标签缺失，未加总）, ShortTermBorrowings（缺少长期债务）"
+PCAR,TotalDebt,none
+PEP,TotalDebt,"mixed: LongTermDebt+DebtCurrent, LongTermDebt+ShortTermBorrowings, ShortTermBorrowings（缺少长期债务）"
+PLTR,TotalDebt,Liabilities（粗略，含经营负债）
+PYPL,TotalDebt,"mixed: DebtCurrent（缺少长期债务）, LongTermDebt（短期标签缺失，未加总）"
+QCOM,TotalDebt,"mixed: LongTermDebt+DebtCurrent, LongTermDebt+ShortTermBorrowings, LongTermDebt（短期标签缺失，未加总）, ShortTermBorrowings（缺少长期债务）"
+REGN,TotalDebt,ShortTermBorrowings（缺少长期债务）
+ROP,TotalDebt,LongTermDebt（短期标签缺失，未加总）
+ROST,TotalDebt,"mixed: LongTermDebt+ShortTermBorrowings, LongTermDebt（短期标签缺失，未加总）"
+SBUX,TotalDebt,"mixed: LongTermDebt+ShortTermBorrowings, LongTermDebt（短期标签缺失，未加总）, ShortTermBorrowings（缺少长期债务）"
+SHOP,TotalDebt,none
+SNPS,TotalDebt,"mixed: DebtCurrent（缺少长期债务）, LongTermDebt（短期标签缺失，未加总）, ShortTermBorrowings（缺少长期债务）"
+STX,TotalDebt,LongTermDebt（短期标签缺失，未加总）
+TEAM,TotalDebt,Liabilities（粗略，含经营负债）
+TMUS,TotalDebt,"mixed: DebtCurrent（缺少长期债务）, LongTermDebt+DebtCurrent, LongTermDebt+ShortTermBorrowings, LongTermDebt（短期标签缺失，未加总）, ShortTermBorrowings（缺少长期债务）"
+TSLA,TotalDebt,"mixed: LongTermDebt+DebtCurrent, LongTermDebt（短期标签缺失，未加总）"
+TTWO,TotalDebt,"mixed: LongTermDebt+ShortTermBorrowings, LongTermDebt（短期标签缺失，未加总）, ShortTermBorrowings（缺少长期债务）"
+TXN,TotalDebt,"mixed: LongTermDebt+DebtCurrent, LongTermDebt（短期标签缺失，未加总）"
+VRSK,TotalDebt,"mixed: DebtCurrent（缺少长期债务）, LongTermDebt+DebtCurrent, LongTermDebt+ShortTermBorrowings, ShortTermBorrowings（缺少长期债务）"
+VRTX,TotalDebt,LongTermDebt（短期标签缺失，未加总）
+WBD,TotalDebt,"mixed: DebtCurrent（缺少长期债务）, LongTermDebt+DebtCurrent, LongTermDebt（短期标签缺失，未加总）"
+WDAY,TotalDebt,LongTermDebt（短期标签缺失，未加总）
+WDC,TotalDebt,"mixed: LongTermDebt+ShortTermBorrowings, LongTermDebt（短期标签缺失，未加总）, ShortTermBorrowings（缺少长期债务）"
+WMT,TotalDebt,"mixed: LongTermDebt+ShortTermBorrowings, ShortTermBorrowings（缺少长期债务）"
+XEL,TotalDebt,"mixed: LongTermDebt+ShortTermBorrowings, ShortTermBorrowings（缺少长期债务）"
+ZS,TotalDebt,LongTermDebt（短期标签缺失，未加总）
