@@ -1,0 +1,242 @@
+{
+    "updated":  "2026-10-26 23:57:59",
+    "tickers":  {
+                    "ADM":  {
+                                "status":  "ok",
+                                "attempts":  2,
+                                "source":  "stockanalysis",
+                                "rows":  1255,
+                                "first":  "2021-10-26",
+                                "last":  "2026-10-26"
+                            },
+                    "BG":  {
+                               "status":  "ok",
+                               "attempts":  1,
+                               "source":  "stockanalysis",
+                               "rows":  1255,
+                               "first":  "2021-10-26",
+                               "last":  "2026-10-26"
+                           },
+                    "TSN":  {
+                                "status":  "ok",
+                                "attempts":  1,
+                                "source":  "stockanalysis",
+                                "rows":  1255,
+                                "first":  "2021-10-26",
+                                "last":  "2026-10-26"
+                            },
+                    "CALM":  {
+                                 "status":  "ok",
+                                 "attempts":  1,
+                                 "source":  "stockanalysis",
+                                 "rows":  1255,
+                                 "first":  "2021-10-26",
+                                 "last":  "2026-10-26"
+                             },
+                    "DOLE":  {
+                                 "status":  "ok",
+                                 "attempts":  1,
+                                 "source":  "stockanalysis",
+                                 "rows":  1255,
+                                 "first":  "2021-10-26",
+                                 "last":  "2026-10-26"
+                             },
+                    "ALCO":  {
+                                 "status":  "ok",
+                                 "attempts":  1,
+                                 "source":  "stockanalysis",
+                                 "rows":  1255,
+                                 "first":  "2021-10-26",
+                                 "last":  "2026-10-26"
+                             },
+                    "LMNR":  {
+                                 "status":  "ok",
+                                 "attempts":  1,
+                                 "source":  "stockanalysis",
+                                 "rows":  1255,
+                                 "first":  "2021-10-26",
+                                 "last":  "2026-10-26"
+                             },
+                    "VITL":  {
+                                 "status":  "ok",
+                                 "attempts":  1,
+                                 "source":  "stockanalysis",
+                                 "rows":  1255,
+                                 "first":  "2021-10-26",
+                                 "last":  "2026-10-26"
+                             },
+                    "AVO":  {
+                                "status":  "ok",
+                                "attempts":  1,
+                                "source":  "stockanalysis",
+                                "rows":  1255,
+                                "first":  "2021-10-26",
+                                "last":  "2026-10-26"
+                            },
+                    "LND":  {
+                                "status":  "ok",
+                                "attempts":  1,
+                                "source":  "stockanalysis",
+                                "rows":  1255,
+                                "first":  "2021-10-26",
+                                "last":  "2026-10-26"
+                            },
+                    "VFF":  {
+                                "status":  "ok",
+                                "attempts":  1,
+                                "source":  "stockanalysis",
+                                "rows":  1255,
+                                "first":  "2021-10-26",
+                                "last":  "2026-10-26"
+                            },
+                    "AFRI":  {
+                                 "status":  "ok",
+                                 "attempts":  1,
+                                 "source":  "stockanalysis",
+                                 "rows":  1240,
+                                 "first":  "2021-10-26",
+                                 "last":  "2026-10-26"
+                             },
+                    "DE":  {
+                               "status":  "ok",
+                               "attempts":  1,
+                               "source":  "stockanalysis",
+                               "rows":  1255,
+                               "first":  "2021-10-26",
+                               "last":  "2026-10-26"
+                           },
+                    "AGCO":  {
+                                 "status":  "ok",
+                                 "attempts":  1,
+                                 "source":  "stockanalysis",
+                                 "rows":  1255,
+                                 "first":  "2021-10-26",
+                                 "last":  "2026-10-26"
+                             },
+                    "CNH":  {
+                                "status":  "ok",
+                                "attempts":  1,
+                                "source":  "stockanalysis",
+                                "rows":  1255,
+                                "first":  "2021-10-26",
+                                "last":  "2026-10-26"
+                            },
+                    "TTC":  {
+                                "status":  "ok",
+                                "attempts":  1,
+                                "source":  "stockanalysis",
+                                "rows":  1255,
+                                "first":  "2021-10-26",
+                                "last":  "2026-10-26"
+                            },
+                    "CTVA":  {
+                                 "status":  "short",
+                                 "attempts":  4,
+                                 "source":  "stockanalysis",
+                                 "rows":  17,
+                                 "first":  "2026-10-02",
+                                 "last":  "2026-10-26"
+                             },
+                    "NTR":  {
+                                "status":  "ok",
+                                "attempts":  1,
+                                "source":  "stockanalysis",
+                                "rows":  1255,
+                                "first":  "2021-10-26",
+                                "last":  "2026-10-26"
+                            },
+                    "MOS":  {
+                                "status":  "ok",
+                                "attempts":  1,
+                                "source":  "stockanalysis",
+                                "rows":  1255,
+                                "first":  "2021-10-26",
+                                "last":  "2026-10-26"
+                            },
+                    "CF":  {
+                               "status":  "ok",
+                               "attempts":  1,
+                               "source":  "stockanalysis",
+                               "rows":  1255,
+                               "first":  "2021-10-26",
+                               "last":  "2026-10-26"
+                           },
+                    "FMC":  {
+                                "status":  "ok",
+                                "attempts":  1,
+                                "source":  "stockanalysis",
+                                "rows":  1255,
+                                "first":  "2021-10-26",
+                                "last":  "2026-10-26"
+                            },
+                    "IPI":  {
+                                "status":  "ok",
+                                "attempts":  1,
+                                "source":  "stockanalysis",
+                                "rows":  1255,
+                                "first":  "2021-10-26",
+                                "last":  "2026-10-26"
+                            },
+                    "ICL":  {
+                                "status":  "ok",
+                                "attempts":  1,
+                                "source":  "stockanalysis",
+                                "rows":  1255,
+                                "first":  "2021-10-26",
+                                "last":  "2026-10-26"
+                            },
+                    "SMG":  {
+                                "status":  "ok",
+                                "attempts":  1,
+                                "source":  "stockanalysis",
+                                "rows":  1255,
+                                "first":  "2021-10-26",
+                                "last":  "2026-10-26"
+                            },
+                    "ZTS":  {
+                                "status":  "ok",
+                                "attempts":  1,
+                                "source":  "stockanalysis",
+                                "rows":  1255,
+                                "first":  "2021-10-26",
+                                "last":  "2026-10-26"
+                            },
+                    "ELAN":  {
+                                 "status":  "ok",
+                                 "attempts":  1,
+                                 "source":  "stockanalysis",
+                                 "rows":  1255,
+                                 "first":  "2021-10-26",
+                                 "last":  "2026-10-26"
+                             },
+                    "DAR":  {
+                                "status":  "ok",
+                                "attempts":  1,
+                                "source":  "stockanalysis",
+                                "rows":  1255,
+                                "first":  "2021-10-26",
+                                "last":  "2026-10-26"
+                            },
+                    "NEOG":  {
+                                 "status":  "ok",
+                                 "attempts":  1,
+                                 "source":  "stockanalysis",
+                                 "rows":  1255,
+                                 "first":  "2021-10-26",
+                                 "last":  "2026-10-26"
+                             },
+                    "PPC":  {
+                                "status":  "ok",
+                                "attempts":  1,
+                                "source":  "stockanalysis",
+                                "rows":  1255,
+                                "first":  "2021-10-26",
+                                "last":  "2026-10-26"
+                            },
+                    "SDOT":  {
+                                 "status":  "quarantined",
+                                 "rows":  1254,
+                                 "reason":  "单日 +247%、20 次超 40%、成交量 105 股，数据异常"
+                             }
+                }
+}
