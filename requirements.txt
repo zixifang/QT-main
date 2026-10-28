@@ -10,5 +10,7 @@ lxml==5.3.0
 # 指数增强：截面回归、组合权重，以及 parquet 缓存。
 scipy==1.14.1
 pyarrow==18.1.0
+# 随机森林涨跌预测。只在 algorithms/random_forest.py 里使用。
+scikit-learn==1.6.1
 # SEC EDGAR 的 companyfacts 下载。版本与当前环境里已有的 requests 一致。
 requests==2.34.2
