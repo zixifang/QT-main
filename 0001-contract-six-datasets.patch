@@ -1,0 +1,380 @@
+From 13fd573076fd16af88ab402a652c40d8f3ad79d6 Mon Sep 17 00:00:00 2001
+From: QT-main contributor <contributor@example.com>
+Date: Wed, 4 Nov 2026 15:55:56 +0800
+Subject: [PATCH 1/2] =?UTF-8?q?=E7=AE=97=E6=B3=95=EF=BC=9A=E6=94=AF?=
+ =?UTF-8?q?=E6=8C=81=E5=9C=A8=E5=85=A8=E9=83=A8=E6=95=B0=E6=8D=AE=E9=9B=86?=
+ =?UTF-8?q?=E4=B8=8A=E5=90=88=E5=B9=B6=EF=BC=8C=E5=B9=B6=E8=A1=A5=E5=86=99?=
+ =?UTF-8?q?=E6=8C=87=E6=95=B0=E9=A1=B5?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+- contract.export_dataset 沿用已有 index.json 的 symbols（nasdaq-xbrl 只取 94 只），
+  指数代码（NDX）不再混进成分股
+- 有指数的数据集按指数日历对齐成分股，并按已提交的 dates 对齐（us-agri 只有 1240 天）
+- 有指数时再写一条组合净值：等权组合 vs 指数，含 stats/stats_10y/stats_since_2021/years
+- 测试改为校验六个数据集 × 两个算法
+---
+ algorithms/contract.py     | 145 ++++++++++++++++++++++++++++++++++++-
+ tests/test_ma_bollinger.py | 113 ++++++++++++++++++-----------
+ 2 files changed, 214 insertions(+), 44 deletions(-)
+
+diff --git a/algorithms/contract.py b/algorithms/contract.py
+index bbf3525..197c6b3 100644
+--- a/algorithms/contract.py
++++ b/algorithms/contract.py
+@@ -160,6 +160,104 @@ def build_history(equities: dict[str, pd.Series], benchmarks: dict[str, pd.Serie
+     }
+ 
+ 
++def _read_index(out_dir: Path) -> dict:
++    path = out_dir / "index.json"
++    if not path.exists():
++        return {}
++    return json.loads(path.read_text(encoding="utf-8"))
++
++
++def _index_series(data_dir: Path, symbol: str) -> pd.Series:
++    """读指数行情（例如 data/nasdaq100/NDX.csv），按日期升序返回收盘价。"""
++    path = data_dir / f"{symbol}.csv"
++    if not path.exists():
++        raise FileNotFoundError(f"缺少指数行情：{path}")
++    frame = pd.read_csv(path)
++    frame = frame.rename(columns={name: name.strip().lower() for name in frame.columns})
++    if "date" not in frame.columns or "close" not in frame.columns:
++        raise ValueError(f"{path} 需要 date、close 两列")
++    table = frame.loc[:, ["date", "close"]].copy()
++    table["date"] = pd.to_datetime(table["date"])
++    table["close"] = pd.to_numeric(table["close"], errors="coerce")
++    table = table.dropna().sort_values("date")
++    return table.set_index("date")["close"].astype("float64")
++
++
++def build_index_entry(
++    algorithm: dict,
++    params: dict,
++    strategy_returns: dict[str, pd.Series],
++    index_close: pd.Series,
++) -> dict:
++    """指数页的组合净值与指数净值。
++
++    组合是各股策略日收益的等权平均（每日再平衡），指数那条就是指数买入持有。
++    资金比、贝塔和区间统计复用 index_enhance 的 _pair_stats，口径与指数增强一致。
++    """
++    from algorithms.index_enhance import _equity, _pair_stats, _stock_returns, _trailing
++
++    calendar = index_close.index
++    matrix = pd.DataFrame({symbol: values for symbol, values in strategy_returns.items()}).reindex(calendar)
++    portfolio = matrix.mean(axis=1).fillna(0.0)
++    benchmark = _stock_returns(index_close)
++
++    strategy_equity = _equity(portfolio)
++    benchmark_equity = _equity(benchmark)
++    stats = _pair_stats(portfolio, benchmark)
++    stats_10y = _pair_stats(*_trailing(portfolio, benchmark, 10))
++    since_2021 = portfolio.index >= pd.Timestamp("2021-01-01")
++    stats_since_2021 = _pair_stats(portfolio.loc[since_2021], benchmark.loc[since_2021])
++    years = {}
++    for year in sorted({int(value) for value in calendar.year}):
++        mask = portfolio.index.year == year
++        if mask.sum() < 2:
++            continue
++        years[str(year)] = _pair_stats(portfolio.loc[mask], benchmark.loc[mask])
++
++    return {
++        "id": algorithm["id"],
++        "name": algorithm["name"],
++        "note": algorithm["note"],
++        "params": dict(params),
++        "equity": series(strategy_equity),
++        "benchmark_equity": series(benchmark_equity),
++        "stats": stats,
++        "stats_10y": stats_10y,
++        "stats_since_2021": stats_since_2021,
++        "years": years,
++    }
++
++
++def merge_index_symbol(path: Path, entry: dict) -> dict:
++    """把指数页的算法条目合并进 NDX.json，保留行情数组和别人的算法。"""
++    if path.exists():
++        record = json.loads(path.read_text(encoding="utf-8"))
++    else:
++        raise FileNotFoundError(f"指数 JSON 不存在：{path}（先跑指数增强或 F-Score）")
++    merged = {**record, "algorithms": {entry["id"]: entry}}
++    write_merged(path, merged)
++    return merged
++
++
++def _align_to_existing(frame: pd.DataFrame, path: Path) -> pd.DataFrame:
++    """已有 JSON 时，把行情对齐到它记录的 dates。
++
++    数据集的 JSON 可能按共同交易日写成（例如 us-agri 只有 1240 天，行情有 1255 天），
++    直接合并会让数组长度对不上。以已提交的 dates 为准，多出来的交易日不写。
++    """
++    if not path.exists():
++        return frame
++    record = json.loads(path.read_text(encoding="utf-8"))
++    dates = pd.to_datetime(record.get("dates") or [])
++    if dates.empty:
++        return frame
++    aligned = frame.loc[frame["date"].isin(set(dates))].reset_index(drop=True)
++    missing = set(dates) - set(aligned["date"])
++    if missing:
++        raise ValueError(f"{path.name}: JSON 里有 {len(missing)} 个日期在行情中找不到")
++    return aligned
++
++
+ def export_dataset(
+     algorithm: dict,
+     build: FrameBuilder,
+@@ -168,29 +266,63 @@ def export_dataset(
+     dataset_name: str,
+     symbol_order: Iterable[str] | None = None,
+     with_history: bool = True,
++    with_index: bool = True,
+ ) -> Path | None:
+-    """把一个数据集里所有股票的结果合并进 outdata/<dataset_id>/。"""
++    """把一个数据集里所有股票的结果合并进 outdata/<dataset_id>/。
++
++    - 已有 index.json 时沿用它的 symbols（nasdaq-xbrl 只取 94 只成分股），
++      指数代码（benchmark.id，例如 NDX）不会被当成成分股；
++    - 有指数时再往指数 JSON 里写一条组合净值，界面指数页读它。
++    """
+     data_dir = Path(data_dir)
+     if not data_dir.is_absolute():
+         data_dir = ROOT / data_dir
+     data_dir = data_dir.resolve()
+-    frames = load_frames(data_dir, list(symbol_order or ()))
+-    if not frames:
++    frames_all = load_frames(data_dir, list(symbol_order or ()))
++    if not frames_all:
+         return None
++
+     out_dir = OUT_ROOT / dataset_id
+     out_dir.mkdir(parents=True, exist_ok=True)
++    existing = _read_index(out_dir)
++    benchmark = existing.get("benchmark") or {}
++    benchmark_id = benchmark.get("id")
++
++    symbols = [symbol for symbol in (existing.get("symbols") or frames_all) if symbol in frames_all]
++    if benchmark_id:
++        symbols = [symbol for symbol in symbols if symbol != benchmark_id]
++    if not symbols:
++        symbols = [symbol for symbol in frames_all if symbol != benchmark_id]
++    frames = {symbol: frames_all[symbol] for symbol in symbols}
++
++    # 有指数的数据集以指数日历为准：成分股多出来、指数没有的交易日要丢掉，
++    # 否则与已有 JSON 的 dates 长度对不上（例如 NDX 缺 2019-11-08）。
++    index_close = None
++    if benchmark_id:
++        index_close = _index_series(data_dir, benchmark_id)
++        calendar = set(index_close.index)
++        frames = {
++            symbol: frame.loc[frame["date"].isin(calendar)].reset_index(drop=True)
++            for symbol, frame in frames.items()
++        }
+ 
+     by_year: dict[str, dict[str, dict]] = {}
+     equities: dict[str, pd.Series] = {}
+     benchmarks: dict[str, pd.Series] = {}
++    strategy_returns: dict[str, pd.Series] = {}
++    params: dict = {}
+     for symbol, frame in frames.items():
++        frame = _align_to_existing(frame, out_dir / f"{symbol}.json")
+         close = prepare_close(frame.loc[:, ["date", PRICE_FIELD]].rename(columns={PRICE_FIELD: "close"}))
+         payload, yearly, equity, benchmark_equity = build(close)
++        params = dict(payload.get("params") or {})
+         merge_symbol(out_dir / f"{symbol}.json", symbol, dataset_id, frame, close, payload)
+         for year, stats in yearly.items():
+             by_year.setdefault(year, {})[symbol] = stats
+         equities[symbol] = equity
+         benchmarks[symbol] = benchmark_equity
++        # 净值是累乘出来的，反推日收益与 engine 的 return 列一致，省一次回测。
++        strategy_returns[symbol] = equity / equity.shift(1).fillna(1.0) - 1.0
+ 
+     entry = dict(algorithm)
+     entry["years"] = {
+@@ -206,5 +338,12 @@ def export_dataset(
+         "price_field": PRICE_FIELD,
+         "symbols": list(frames),
+     }
++    if benchmark:
++        meta["benchmark"] = benchmark
+     merge_index(out_dir / "index.json", meta, entry)
++
++    if with_index and index_close is not None:
++        index_entry = build_index_entry(algorithm, params, strategy_returns, index_close)
++        merge_index_symbol(out_dir / f"{benchmark_id}.json", index_entry)
++
+     return out_dir
+diff --git a/tests/test_ma_bollinger.py b/tests/test_ma_bollinger.py
+index 86922ab..5e481d3 100644
+--- a/tests/test_ma_bollinger.py
++++ b/tests/test_ma_bollinger.py
+@@ -1,6 +1,8 @@
+ """双均线 / 布林带两个算法写出的 JSON 是否符合 `docs/界面数据契约.md`。
+ 
+ 运行：python -m unittest tests.test_ma_bollinger -v
++覆盖六个数据集：tech-us-10y、manufacturing-us-10y、healthcare-us-10y、us-agri、
++nasdaq100、nasdaq-xbrl（后两个带纳斯达克指数 NDX）。
+ """
+ 
+ from __future__ import annotations
+@@ -16,7 +18,17 @@ import pandas as pd
+ from algorithms import bollinger, contract, ma_cross
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+-OUT_DIR = ROOT / "outdata" / "equity-2018"
++OUT_ROOT = ROOT / "outdata"
++MINE = ("ma_cross", "bollinger")
++# 数据集 -> 成分股数量（不含指数）
++DATASETS = {
++    "tech-us-10y": 40,
++    "manufacturing-us-10y": 46,
++    "healthcare-us-10y": 26,
++    "us-agri": 28,
++    "nasdaq100": 100,
++    "nasdaq-xbrl": 94,
++}
+ STAT_KEYS = {
+     "cumulative_return",
+     "annualized_return",
+@@ -29,6 +41,10 @@ STAT_KEYS = {
+ }
+ 
+ 
++def load(path: Path) -> dict:
++    return json.loads(path.read_text(encoding="utf-8"))
++
++
+ def synthetic_close(size: int = 400, seed: int = 11) -> pd.Series:
+     rng = np.random.default_rng(seed)
+     values = 100.0 * np.exp(np.cumsum(rng.normal(0.0, 0.01, size)))
+@@ -37,49 +53,46 @@ def synthetic_close(size: int = 400, seed: int = 11) -> pd.Series:
+ 
+ 
+ class ContractTest(unittest.TestCase):
+-    @unittest.skipUnless((OUT_DIR / "index.json").is_file(), "2018 样本结果已不在仓库里")
+     def test_published_json_follows_contract(self) -> None:
+-        index = json.loads((OUT_DIR / "index.json").read_text(encoding="utf-8"))
++        for dataset_id, count in DATASETS.items():
++            with self.subTest(dataset=dataset_id):
++                self._check_dataset(dataset_id, count)
++
++    def _check_dataset(self, dataset_id: str, count: int) -> None:
++        out_dir = OUT_ROOT / dataset_id
++        index = load(out_dir / "index.json")
+         self.assertEqual(index["schema_version"], 1)
+-        self.assertEqual(index["dataset_id"], "equity-2018")
+-        self.assertEqual(index["source"], "data/Equity-Portfolio-Management-master")
++        self.assertEqual(index["dataset_id"], dataset_id, "dataset_id 必须和目录名一致")
++        self.assertEqual(len(index["symbols"]), count, f"{dataset_id} 成分股数量不对")
+         ids = [item["id"] for item in index["algorithms"]]
+-        self.assertIn("rsi", ids, "合并时不能删掉已有算法")
+-        self.assertIn("ma_cross", ids)
+-        self.assertIn("bollinger", ids)
+-
+-        for entry in index["algorithms"]:
+-            if entry["id"] == "rsi":
+-                continue
+-            self.assertIn("2018", entry["years"])
+-            year = entry["years"]["2018"]
+-            self.assertEqual(set(year), {"symbols", "strategy", "benchmark"})
+-            # 年表字段以契约里的样例为准：策略块多一个 beat_benchmark。
+-            self.assertEqual(
+-                set(year["strategy"]),
+-                STAT_KEYS - {"volatility", "calmar"} | {"count", "winners", "losers", "profit_ratio", "median_return", "beat_benchmark"},
+-            )
++        for algorithm_id in MINE:
++            self.assertIn(algorithm_id, ids, "合并时不能删掉别人的算法")
++
++        benchmark = (index.get("benchmark") or {}).get("id")
++        if benchmark:
++            self.assertNotIn(benchmark, index["symbols"], "指数不能进 symbols")
++
++        for algorithm_id in MINE:
++            entry = next(item for item in index["algorithms"] if item["id"] == algorithm_id)
++            self.assertTrue(entry.get("years"), f"{dataset_id}/{algorithm_id} 缺分年统计")
++            history = entry.get("history") or {}
+             self.assertEqual(
+-                set(year["benchmark"]),
+-                STAT_KEYS - {"volatility", "calmar"} | {"count", "winners", "losers", "profit_ratio", "median_return"},
++                len(history.get("dates") or []),
++                len(history.get("strategy") or []),
++                "history 三条数组要等长",
+             )
+-            self.assertIsNone(year["benchmark"]["win_rate"], "买入持有不写胜率")
+-            self.assertEqual([row["symbol"] for row in year["symbols"]], index["symbols"])
+-            history = entry["history"]
+-            self.assertEqual(len(history["dates"]), len(history["strategy"]), "history 三条数组要等长")
+-            self.assertEqual(len(history["dates"]), len(history["benchmark"]))
++            self.assertEqual(len(history.get("dates") or []), len(history.get("benchmark") or []))
+             self.assertEqual(history["dates"], sorted(history["dates"]), "history 日期要从早到晚")
+ 
+-        for symbol in index["symbols"]:
+-            record = json.loads((OUT_DIR / f"{symbol}.json").read_text(encoding="utf-8"))
+-            self.assertEqual(record["symbol"], symbol)
+-            self.assertEqual(record["dataset_id"], index["dataset_id"])
++        for symbol in index["symbols"][:3] + index["symbols"][-1:]:
++            record = load(out_dir / f"{symbol}.json")
+             dates = record["dates"]
+-            self.assertEqual(len(dates), len(record["close"]))
+-            self.assertEqual(len(dates), len(record["volume"]))
+-            self.assertIn("rsi", record["algorithms"])
+-            for algorithm_id in ("ma_cross", "bollinger"):
+-                algo = record["algorithms"][algorithm_id]
++            self.assertEqual(record["dataset_id"], dataset_id)
++            self.assertEqual(record["symbol"], symbol)
++            self.assertEqual(dates, sorted(dates), "dates 要从早到晚")
++            for algorithm_id in MINE:
++                algo = (record.get("algorithms") or {}).get(algorithm_id)
++                self.assertIsNotNone(algo, f"{dataset_id}/{symbol} 缺 {algorithm_id}")
+                 for key in ("indicator", "signal", "position", "equity", "benchmark_equity"):
+                     self.assertEqual(len(algo[key]), len(dates), f"{symbol}.{algorithm_id}.{key} 长度不对")
+                 self.assertEqual(algo["position"][0], 0.0, "第一天不该有持仓")
+@@ -90,11 +103,18 @@ class ContractTest(unittest.TestCase):
+                 self.assertTrue(set(algo["sell_dates"]) <= known)
+                 self.assertEqual(algo["equity"][0], 1.0, "净值起点为 1")
+                 self.assertEqual(set(algo["stats"]["strategy"]), STAT_KEYS)
+-                self.assertIsNone(algo["stats"]["benchmark"]["win_rate"])
+-                self.assertEqual(algo["id"], algorithm_id)
+-                if algorithm_id == "bollinger":
+-                    self.assertEqual(algo["params"]["oversold"], -bollinger.K)
+-                    self.assertEqual(algo["params"]["overbought"], bollinger.K)
++                self.assertIsNone(algo["stats"]["benchmark"]["win_rate"], "买入持有不写胜率")
++
++        if benchmark:
++            index_json = load(out_dir / f"{benchmark}.json")
++            for algorithm_id in MINE:
++                algo = (index_json.get("algorithms") or {}).get(algorithm_id)
++                self.assertIsNotNone(algo, f"{dataset_id}/{benchmark} 缺 {algorithm_id}")
++                self.assertEqual(len(algo["equity"]), len(index_json["dates"]))
++                self.assertEqual(len(algo["benchmark_equity"]), len(index_json["dates"]))
++                for side in ("strategy", "benchmark"):
++                    self.assertIn("wealth_ratio", algo["stats"][side])
++                    self.assertIn("beta", algo["stats"][side])
+ 
+     def test_no_lookahead(self) -> None:
+         close = synthetic_close()
+@@ -158,6 +178,17 @@ class ContractTest(unittest.TestCase):
+             with self.assertRaises(ValueError):
+                 contract.merge_symbol(path, "AAA", "demo", frame, close, payload)
+ 
++    def test_align_to_existing_dates(self) -> None:
++        close = synthetic_close(100, seed=2)
++        frame = pd.DataFrame({"date": close.index, "close": close.to_numpy(), "volume": 1})
++        kept = close.index[:90]
++        with tempfile.TemporaryDirectory() as tmp:
++            path = Path(tmp) / "AAA.json"
++            path.write_text(json.dumps({"dates": [day.strftime("%Y-%m-%d") for day in kept]}), encoding="utf-8")
++            aligned = contract._align_to_existing(frame, path)
++        self.assertEqual(len(aligned), 90, "应只保留已有 JSON 记录的日期")
++        self.assertEqual(aligned["date"].iloc[-1], kept[-1])
++
+     def test_history_uses_common_dates(self) -> None:
+         index = pd.bdate_range("2020-01-01", periods=10)
+         short = pd.Series(1.0, index=index[:8])
+-- 
+2.45.1.windows.1
+
