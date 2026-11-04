@@ -2489,6 +2489,4892 @@
           }
         }
       }
+    },
+    {
+      "id": "macd",
+      "name": "MACD 趋势跟踪",
+      "note": "MACD(12,26,9) 线高于信号线时持有，跌破时空仓",
+      "years": {
+        "2016": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": 0.052345,
+              "benchmark_cumulative_return": -0.009659
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": 0.012981,
+              "benchmark_cumulative_return": 0.09332
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": 0.032351,
+              "benchmark_cumulative_return": -0.017835
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": -0.020392,
+              "benchmark_cumulative_return": -0.077594
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": -0.010161,
+              "benchmark_cumulative_return": -0.09793
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": 0.049266,
+              "benchmark_cumulative_return": 0.629322
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": 0.105231,
+              "benchmark_cumulative_return": 0.101722
+            },
+            {
+              "symbol": "AMD",
+              "cumulative_return": 0.198814,
+              "benchmark_cumulative_return": 0.70015
+            },
+            {
+              "symbol": "INTC",
+              "cumulative_return": 0.020674,
+              "benchmark_cumulative_return": -0.019989
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": -0.008309,
+              "benchmark_cumulative_return": 0.052703
+            },
+            {
+              "symbol": "QCOM",
+              "cumulative_return": -0.02945,
+              "benchmark_cumulative_return": 0.007977
+            },
+            {
+              "symbol": "MU",
+              "cumulative_return": -0.080372,
+              "benchmark_cumulative_return": 0.290171
+            },
+            {
+              "symbol": "TSM",
+              "cumulative_return": -0.028338,
+              "benchmark_cumulative_return": -0.059536
+            },
+            {
+              "symbol": "ASML",
+              "cumulative_return": 0.071165,
+              "benchmark_cumulative_return": 0.109134
+            },
+            {
+              "symbol": "CRM",
+              "cumulative_return": -0.012868,
+              "benchmark_cumulative_return": -0.060003
+            },
+            {
+              "symbol": "ADBE",
+              "cumulative_return": -0.006301,
+              "benchmark_cumulative_return": -0.042236
+            },
+            {
+              "symbol": "ORCL",
+              "cumulative_return": -0.036974,
+              "benchmark_cumulative_return": 0.004179
+            },
+            {
+              "symbol": "NOW",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.004019
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": 0.004096,
+              "benchmark_cumulative_return": 0.240481
+            },
+            {
+              "symbol": "SHOP",
+              "cumulative_return": -0.053543,
+              "benchmark_cumulative_return": 0.020228
+            },
+            {
+              "symbol": "XYZ",
+              "cumulative_return": 0.056726,
+              "benchmark_cumulative_return": 0.247027
+            },
+            {
+              "symbol": "PYPL",
+              "cumulative_return": -0.005541,
+              "benchmark_cumulative_return": -0.000253
+            },
+            {
+              "symbol": "CSCO",
+              "cumulative_return": 0.004321,
+              "benchmark_cumulative_return": -0.0
+            },
+            {
+              "symbol": "IBM",
+              "cumulative_return": 0.002849,
+              "benchmark_cumulative_return": 0.082224
+            },
+            {
+              "symbol": "TXN",
+              "cumulative_return": -0.009141,
+              "benchmark_cumulative_return": 0.074304
+            },
+            {
+              "symbol": "AMAT",
+              "cumulative_return": -0.017649,
+              "benchmark_cumulative_return": 0.164506
+            },
+            {
+              "symbol": "LRCX",
+              "cumulative_return": -0.012766,
+              "benchmark_cumulative_return": 0.082899
+            },
+            {
+              "symbol": "KLAC",
+              "cumulative_return": -0.007886,
+              "benchmark_cumulative_return": 0.100804
+            },
+            {
+              "symbol": "SMCI",
+              "cumulative_return": 0.003375,
+              "benchmark_cumulative_return": 0.293819
+            },
+            {
+              "symbol": "PANW",
+              "cumulative_return": -0.027384,
+              "benchmark_cumulative_return": -0.143493
+            },
+            {
+              "symbol": "SNPS",
+              "cumulative_return": -0.019554,
+              "benchmark_cumulative_return": -0.014895
+            },
+            {
+              "symbol": "CDNS",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.028131
+            },
+            {
+              "symbol": "ADI",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.183655
+            },
+            {
+              "symbol": "MRVL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.082345
+            },
+            {
+              "symbol": "ANET",
+              "cumulative_return": -0.037303,
+              "benchmark_cumulative_return": 0.198835
+            }
+          ],
+          "strategy": {
+            "count": 35,
+            "winners": 13,
+            "losers": 18,
+            "profit_ratio": 0.371429,
+            "win_rate": 0.382353,
+            "cumulative_return": 0.005436,
+            "median_return": -0.005541,
+            "annualized_return": 0.049078,
+            "sharpe": -0.291071,
+            "max_drawdown": -0.027644,
+            "trades": 34,
+            "beat_benchmark": 13
+          },
+          "benchmark": {
+            "count": 35,
+            "winners": 21,
+            "losers": 13,
+            "profit_ratio": 0.6,
+            "win_rate": null,
+            "cumulative_return": 0.090978,
+            "median_return": 0.052703,
+            "annualized_return": 0.997432,
+            "sharpe": 1.081028,
+            "max_drawdown": -0.094858,
+            "trades": 0
+          }
+        },
+        "2017": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": 0.368992,
+              "benchmark_cumulative_return": 0.484644
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": 0.091356,
+              "benchmark_cumulative_return": 0.407306
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": 0.041201,
+              "benchmark_cumulative_return": 0.329295
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": 0.039282,
+              "benchmark_cumulative_return": 0.559564
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": 0.111849,
+              "benchmark_cumulative_return": 0.533768
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": 0.255282,
+              "benchmark_cumulative_return": 0.819879
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": 0.246989,
+              "benchmark_cumulative_return": 0.457017
+            },
+            {
+              "symbol": "AMD",
+              "cumulative_return": -0.450848,
+              "benchmark_cumulative_return": -0.093474
+            },
+            {
+              "symbol": "INTC",
+              "cumulative_return": 0.213601,
+              "benchmark_cumulative_return": 0.308702
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": 0.126249,
+              "benchmark_cumulative_return": 0.481861
+            },
+            {
+              "symbol": "QCOM",
+              "cumulative_return": 0.202514,
+              "benchmark_cumulative_return": 0.020464
+            },
+            {
+              "symbol": "MU",
+              "cumulative_return": 0.161807,
+              "benchmark_cumulative_return": 0.875912
+            },
+            {
+              "symbol": "TSM",
+              "cumulative_return": 0.146386,
+              "benchmark_cumulative_return": 0.424066
+            },
+            {
+              "symbol": "ASML",
+              "cumulative_return": 0.173273,
+              "benchmark_cumulative_return": 0.564579
+            },
+            {
+              "symbol": "CRM",
+              "cumulative_return": 0.260161,
+              "benchmark_cumulative_return": 0.493281
+            },
+            {
+              "symbol": "ADBE",
+              "cumulative_return": 0.338187,
+              "benchmark_cumulative_return": 0.702186
+            },
+            {
+              "symbol": "ORCL",
+              "cumulative_return": 0.03951,
+              "benchmark_cumulative_return": 0.249368
+            },
+            {
+              "symbol": "NOW",
+              "cumulative_return": 0.435883,
+              "benchmark_cumulative_return": 0.753968
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": 0.191566,
+              "benchmark_cumulative_return": 0.550565
+            },
+            {
+              "symbol": "SHOP",
+              "cumulative_return": 0.464241,
+              "benchmark_cumulative_return": 1.35596
+            },
+            {
+              "symbol": "XYZ",
+              "cumulative_return": 0.811575,
+              "benchmark_cumulative_return": 1.543654
+            },
+            {
+              "symbol": "PYPL",
+              "cumulative_return": 0.184795,
+              "benchmark_cumulative_return": 0.865214
+            },
+            {
+              "symbol": "CSCO",
+              "cumulative_return": 0.145651,
+              "benchmark_cumulative_return": 0.312682
+            },
+            {
+              "symbol": "IBM",
+              "cumulative_return": 0.005262,
+              "benchmark_cumulative_return": -0.039879
+            },
+            {
+              "symbol": "TXN",
+              "cumulative_return": 0.189618,
+              "benchmark_cumulative_return": 0.467459
+            },
+            {
+              "symbol": "AMAT",
+              "cumulative_return": 0.432261,
+              "benchmark_cumulative_return": 0.598613
+            },
+            {
+              "symbol": "LRCX",
+              "cumulative_return": 0.315386,
+              "benchmark_cumulative_return": 0.762069
+            },
+            {
+              "symbol": "KLAC",
+              "cumulative_return": 0.119851,
+              "benchmark_cumulative_return": 0.368048
+            },
+            {
+              "symbol": "SMCI",
+              "cumulative_return": -0.183832,
+              "benchmark_cumulative_return": -0.253832
+            },
+            {
+              "symbol": "PANW",
+              "cumulative_return": 0.45596,
+              "benchmark_cumulative_return": 0.159056
+            },
+            {
+              "symbol": "SNPS",
+              "cumulative_return": 0.215372,
+              "benchmark_cumulative_return": 0.448182
+            },
+            {
+              "symbol": "CDNS",
+              "cumulative_return": 0.15577,
+              "benchmark_cumulative_return": 0.658208
+            },
+            {
+              "symbol": "ADI",
+              "cumulative_return": 0.163639,
+              "benchmark_cumulative_return": 0.253013
+            },
+            {
+              "symbol": "MRVL",
+              "cumulative_return": 0.468746,
+              "benchmark_cumulative_return": 0.568865
+            },
+            {
+              "symbol": "ANET",
+              "cumulative_return": 0.267524,
+              "benchmark_cumulative_return": 1.434432
+            }
+          ],
+          "strategy": {
+            "count": 35,
+            "winners": 33,
+            "losers": 2,
+            "profit_ratio": 0.942857,
+            "win_rate": 0.473837,
+            "cumulative_return": 0.205859,
+            "median_return": 0.189618,
+            "annualized_return": 0.206832,
+            "sharpe": 1.140399,
+            "max_drawdown": -0.124244,
+            "trades": 344,
+            "beat_benchmark": 4
+          },
+          "benchmark": {
+            "count": 35,
+            "winners": 32,
+            "losers": 3,
+            "profit_ratio": 0.914286,
+            "win_rate": null,
+            "cumulative_return": 0.52642,
+            "median_return": 0.484644,
+            "annualized_return": 0.529181,
+            "sharpe": 1.79482,
+            "max_drawdown": -0.150319,
+            "trades": 0
+          }
+        },
+        "2018": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": -0.043327,
+              "benchmark_cumulative_return": -0.053902
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": 0.000751,
+              "benchmark_cumulative_return": 0.207953
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": -0.089192,
+              "benchmark_cumulative_return": -0.008012
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": 0.104528,
+              "benchmark_cumulative_return": 0.284317
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": -0.416497,
+              "benchmark_cumulative_return": -0.257112
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": -0.353275,
+              "benchmark_cumulative_return": -0.308152
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": -0.015814,
+              "benchmark_cumulative_return": 0.068894
+            },
+            {
+              "symbol": "AMD",
+              "cumulative_return": 1.326975,
+              "benchmark_cumulative_return": 0.79572
+            },
+            {
+              "symbol": "INTC",
+              "cumulative_return": -0.284492,
+              "benchmark_cumulative_return": 0.042265
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": 0.07111,
+              "benchmark_cumulative_return": 0.03622
+            },
+            {
+              "symbol": "QCOM",
+              "cumulative_return": 0.041629,
+              "benchmark_cumulative_return": -0.075888
+            },
+            {
+              "symbol": "MU",
+              "cumulative_return": -0.198073,
+              "benchmark_cumulative_return": -0.228356
+            },
+            {
+              "symbol": "TSM",
+              "cumulative_return": 0.065286,
+              "benchmark_cumulative_return": -0.035059
+            },
+            {
+              "symbol": "ASML",
+              "cumulative_return": -0.16837,
+              "benchmark_cumulative_return": -0.096776
+            },
+            {
+              "symbol": "CRM",
+              "cumulative_return": 0.024542,
+              "benchmark_cumulative_return": 0.339822
+            },
+            {
+              "symbol": "ADBE",
+              "cumulative_return": 0.017294,
+              "benchmark_cumulative_return": 0.291029
+            },
+            {
+              "symbol": "ORCL",
+              "cumulative_return": -0.002881,
+              "benchmark_cumulative_return": -0.029696
+            },
+            {
+              "symbol": "NOW",
+              "cumulative_return": -0.146275,
+              "benchmark_cumulative_return": 0.365519
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": 0.439626,
+              "benchmark_cumulative_return": 0.394353
+            },
+            {
+              "symbol": "SHOP",
+              "cumulative_return": 0.210201,
+              "benchmark_cumulative_return": 0.370792
+            },
+            {
+              "symbol": "XYZ",
+              "cumulative_return": 0.060993,
+              "benchmark_cumulative_return": 0.617825
+            },
+            {
+              "symbol": "PYPL",
+              "cumulative_return": -0.084111,
+              "benchmark_cumulative_return": 0.142217
+            },
+            {
+              "symbol": "CSCO",
+              "cumulative_return": -0.007792,
+              "benchmark_cumulative_return": 0.165716
+            },
+            {
+              "symbol": "IBM",
+              "cumulative_return": -0.102472,
+              "benchmark_cumulative_return": -0.22558
+            },
+            {
+              "symbol": "TXN",
+              "cumulative_return": -0.067859,
+              "benchmark_cumulative_return": -0.071695
+            },
+            {
+              "symbol": "AMAT",
+              "cumulative_return": -0.168115,
+              "benchmark_cumulative_return": -0.34922
+            },
+            {
+              "symbol": "LRCX",
+              "cumulative_return": -0.123746,
+              "benchmark_cumulative_return": -0.244008
+            },
+            {
+              "symbol": "KLAC",
+              "cumulative_return": -0.023695,
+              "benchmark_cumulative_return": -0.124895
+            },
+            {
+              "symbol": "SMCI",
+              "cumulative_return": -0.261819,
+              "benchmark_cumulative_return": -0.340659
+            },
+            {
+              "symbol": "PANW",
+              "cumulative_return": 0.137079,
+              "benchmark_cumulative_return": 0.299503
+            },
+            {
+              "symbol": "SNPS",
+              "cumulative_return": -0.010756,
+              "benchmark_cumulative_return": -0.011732
+            },
+            {
+              "symbol": "CDNS",
+              "cumulative_return": -0.133594,
+              "benchmark_cumulative_return": 0.039694
+            },
+            {
+              "symbol": "ADI",
+              "cumulative_return": 0.073715,
+              "benchmark_cumulative_return": -0.016391
+            },
+            {
+              "symbol": "MRVL",
+              "cumulative_return": -0.35873,
+              "benchmark_cumulative_return": -0.236229
+            },
+            {
+              "symbol": "ANET",
+              "cumulative_return": -0.334893,
+              "benchmark_cumulative_return": -0.105612
+            }
+          ],
+          "strategy": {
+            "count": 35,
+            "winners": 13,
+            "losers": 22,
+            "profit_ratio": 0.371429,
+            "win_rate": 0.366667,
+            "cumulative_return": -0.023487,
+            "median_return": -0.023695,
+            "annualized_return": -0.023437,
+            "sharpe": -0.110837,
+            "max_drawdown": -0.253978,
+            "trades": 360,
+            "beat_benchmark": 16
+          },
+          "benchmark": {
+            "count": 35,
+            "winners": 16,
+            "losers": 19,
+            "profit_ratio": 0.457143,
+            "win_rate": null,
+            "cumulative_return": 0.046939,
+            "median_return": -0.011732,
+            "annualized_return": 0.047263,
+            "sharpe": 0.218574,
+            "max_drawdown": -0.330557,
+            "trades": 0
+          }
+        },
+        "2019": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": 0.518397,
+              "benchmark_cumulative_return": 0.889577
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": 0.042643,
+              "benchmark_cumulative_return": 0.575581
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": 0.131644,
+              "benchmark_cumulative_return": 0.281762
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": 0.066814,
+              "benchmark_cumulative_return": 0.230277
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": 0.434557,
+              "benchmark_cumulative_return": 0.565718
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": 0.543781,
+              "benchmark_cumulative_return": 0.76943
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": 0.05284,
+              "benchmark_cumulative_return": 0.257001
+            },
+            {
+              "symbol": "AMD",
+              "cumulative_return": 0.347644,
+              "benchmark_cumulative_return": 1.484291
+            },
+            {
+              "symbol": "INTC",
+              "cumulative_return": 0.27795,
+              "benchmark_cumulative_return": 0.307119
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": 0.156311,
+              "benchmark_cumulative_return": 0.290516
+            },
+            {
+              "symbol": "QCOM",
+              "cumulative_return": 0.563352,
+              "benchmark_cumulative_return": 0.607641
+            },
+            {
+              "symbol": "MU",
+              "cumulative_return": 0.707273,
+              "benchmark_cumulative_return": 0.694926
+            },
+            {
+              "symbol": "TSM",
+              "cumulative_return": 0.462341,
+              "benchmark_cumulative_return": 0.648419
+            },
+            {
+              "symbol": "ASML",
+              "cumulative_return": 0.403347,
+              "benchmark_cumulative_return": 0.9323
+            },
+            {
+              "symbol": "CRM",
+              "cumulative_return": 0.038869,
+              "benchmark_cumulative_return": 0.187413
+            },
+            {
+              "symbol": "ADBE",
+              "cumulative_return": 0.099416,
+              "benchmark_cumulative_return": 0.457788
+            },
+            {
+              "symbol": "ORCL",
+              "cumulative_return": 0.225731,
+              "benchmark_cumulative_return": 0.193433
+            },
+            {
+              "symbol": "NOW",
+              "cumulative_return": 0.022885,
+              "benchmark_cumulative_return": 0.585622
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": 0.045201,
+              "benchmark_cumulative_return": 0.208884
+            },
+            {
+              "symbol": "UBER",
+              "cumulative_return": -0.037408,
+              "benchmark_cumulative_return": -0.28458
+            },
+            {
+              "symbol": "SHOP",
+              "cumulative_return": 0.524733,
+              "benchmark_cumulative_return": 1.87165
+            },
+            {
+              "symbol": "XYZ",
+              "cumulative_return": 0.094544,
+              "benchmark_cumulative_return": 0.11535
+            },
+            {
+              "symbol": "PYPL",
+              "cumulative_return": -0.06708,
+              "benchmark_cumulative_return": 0.28636
+            },
+            {
+              "symbol": "CSCO",
+              "cumulative_return": 0.137736,
+              "benchmark_cumulative_return": 0.138126
+            },
+            {
+              "symbol": "IBM",
+              "cumulative_return": 0.245188,
+              "benchmark_cumulative_return": 0.235761
+            },
+            {
+              "symbol": "TXN",
+              "cumulative_return": 0.230995,
+              "benchmark_cumulative_return": 0.395634
+            },
+            {
+              "symbol": "AMAT",
+              "cumulative_return": 0.478815,
+              "benchmark_cumulative_return": 0.898552
+            },
+            {
+              "symbol": "LRCX",
+              "cumulative_return": 0.444153,
+              "benchmark_cumulative_return": 1.193335
+            },
+            {
+              "symbol": "KLAC",
+              "cumulative_return": 0.637419,
+              "benchmark_cumulative_return": 1.039876
+            },
+            {
+              "symbol": "SMCI",
+              "cumulative_return": 0.271919,
+              "benchmark_cumulative_return": 0.74058
+            },
+            {
+              "symbol": "PANW",
+              "cumulative_return": 0.174285,
+              "benchmark_cumulative_return": 0.227768
+            },
+            {
+              "symbol": "CRWD",
+              "cumulative_return": -0.256132,
+              "benchmark_cumulative_return": -0.140172
+            },
+            {
+              "symbol": "SNPS",
+              "cumulative_return": 0.232289,
+              "benchmark_cumulative_return": 0.652422
+            },
+            {
+              "symbol": "CDNS",
+              "cumulative_return": 0.293291,
+              "benchmark_cumulative_return": 0.595216
+            },
+            {
+              "symbol": "ADI",
+              "cumulative_return": 0.291036,
+              "benchmark_cumulative_return": 0.413095
+            },
+            {
+              "symbol": "MRVL",
+              "cumulative_return": 0.393938,
+              "benchmark_cumulative_return": 0.657413
+            },
+            {
+              "symbol": "ANET",
+              "cumulative_return": -0.00954,
+              "benchmark_cumulative_return": -0.034646
+            }
+          ],
+          "strategy": {
+            "count": 37,
+            "winners": 33,
+            "losers": 4,
+            "profit_ratio": 0.891892,
+            "win_rate": 0.494565,
+            "cumulative_return": 0.249221,
+            "median_return": 0.232289,
+            "annualized_return": 0.244507,
+            "sharpe": 1.024679,
+            "max_drawdown": -0.175196,
+            "trades": 368,
+            "beat_benchmark": 5
+          },
+          "benchmark": {
+            "count": 37,
+            "winners": 34,
+            "losers": 3,
+            "profit_ratio": 0.918919,
+            "win_rate": null,
+            "cumulative_return": 0.518093,
+            "median_return": 0.457788,
+            "annualized_return": 0.512257,
+            "sharpe": 1.388632,
+            "max_drawdown": -0.228965,
+            "trades": 0
+          }
+        },
+        "2020": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": 0.756176,
+              "benchmark_cumulative_return": 0.823068
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": 0.179559,
+              "benchmark_cumulative_return": 0.425341
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": 0.416997,
+              "benchmark_cumulative_return": 0.308536
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": 0.258731,
+              "benchmark_cumulative_return": 0.762561
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": 0.417775,
+              "benchmark_cumulative_return": 0.330865
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": 0.212763,
+              "benchmark_cumulative_return": 1.222956
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": 4.760548,
+              "benchmark_cumulative_return": 7.43437
+            },
+            {
+              "symbol": "AMD",
+              "cumulative_return": 0.650482,
+              "benchmark_cumulative_return": 0.999782
+            },
+            {
+              "symbol": "INTC",
+              "cumulative_return": -0.081379,
+              "benchmark_cumulative_return": -0.146887
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": 0.432997,
+              "benchmark_cumulative_return": 0.4488
+            },
+            {
+              "symbol": "QCOM",
+              "cumulative_return": 0.026527,
+              "benchmark_cumulative_return": 0.770832
+            },
+            {
+              "symbol": "MU",
+              "cumulative_return": 0.197778,
+              "benchmark_cumulative_return": 0.397918
+            },
+            {
+              "symbol": "TSM",
+              "cumulative_return": 0.522629,
+              "benchmark_cumulative_return": 0.926684
+            },
+            {
+              "symbol": "ASML",
+              "cumulative_return": 0.090279,
+              "benchmark_cumulative_return": 0.662808
+            },
+            {
+              "symbol": "CRM",
+              "cumulative_return": 0.253509,
+              "benchmark_cumulative_return": 0.368237
+            },
+            {
+              "symbol": "ADBE",
+              "cumulative_return": 0.169407,
+              "benchmark_cumulative_return": 0.516388
+            },
+            {
+              "symbol": "ORCL",
+              "cumulative_return": -0.014933,
+              "benchmark_cumulative_return": 0.242509
+            },
+            {
+              "symbol": "NOW",
+              "cumulative_return": 0.172232,
+              "benchmark_cumulative_return": 0.949667
+            },
+            {
+              "symbol": "SNOW",
+              "cumulative_return": 0.242256,
+              "benchmark_cumulative_return": 0.108179
+            },
+            {
+              "symbol": "PLTR",
+              "cumulative_return": 0.516602,
+              "benchmark_cumulative_return": 1.478947
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": 0.023419,
+              "benchmark_cumulative_return": 0.671138
+            },
+            {
+              "symbol": "UBER",
+              "cumulative_return": 0.431599,
+              "benchmark_cumulative_return": 0.714862
+            },
+            {
+              "symbol": "SHOP",
+              "cumulative_return": 0.826845,
+              "benchmark_cumulative_return": 1.8471
+            },
+            {
+              "symbol": "XYZ",
+              "cumulative_return": 1.275262,
+              "benchmark_cumulative_return": 2.4789
+            },
+            {
+              "symbol": "PYPL",
+              "cumulative_return": 0.663476,
+              "benchmark_cumulative_return": 1.16511
+            },
+            {
+              "symbol": "CSCO",
+              "cumulative_return": -0.127876,
+              "benchmark_cumulative_return": -0.034865
+            },
+            {
+              "symbol": "IBM",
+              "cumulative_return": 0.071606,
+              "benchmark_cumulative_return": -0.011626
+            },
+            {
+              "symbol": "TXN",
+              "cumulative_return": 0.21421,
+              "benchmark_cumulative_return": 0.317013
+            },
+            {
+              "symbol": "AMAT",
+              "cumulative_return": 0.220959,
+              "benchmark_cumulative_return": 0.4329
+            },
+            {
+              "symbol": "LRCX",
+              "cumulative_return": 0.32033,
+              "benchmark_cumulative_return": 0.641804
+            },
+            {
+              "symbol": "KLAC",
+              "cumulative_return": -0.008002,
+              "benchmark_cumulative_return": 0.479421
+            },
+            {
+              "symbol": "SMCI",
+              "cumulative_return": 0.180316,
+              "benchmark_cumulative_return": 0.318068
+            },
+            {
+              "symbol": "PANW",
+              "cumulative_return": 1.06989,
+              "benchmark_cumulative_return": 0.536822
+            },
+            {
+              "symbol": "CRWD",
+              "cumulative_return": 1.18469,
+              "benchmark_cumulative_return": 3.247444
+            },
+            {
+              "symbol": "SNPS",
+              "cumulative_return": 0.289562,
+              "benchmark_cumulative_return": 0.862356
+            },
+            {
+              "symbol": "CDNS",
+              "cumulative_return": 0.285241,
+              "benchmark_cumulative_return": 0.966984
+            },
+            {
+              "symbol": "ADI",
+              "cumulative_return": 0.187767,
+              "benchmark_cumulative_return": 0.268732
+            },
+            {
+              "symbol": "MRVL",
+              "cumulative_return": -0.038037,
+              "benchmark_cumulative_return": 0.802539
+            },
+            {
+              "symbol": "ANET",
+              "cumulative_return": 0.222208,
+              "benchmark_cumulative_return": 0.428564
+            }
+          ],
+          "strategy": {
+            "count": 39,
+            "winners": 34,
+            "losers": 5,
+            "profit_ratio": 0.871795,
+            "win_rate": 0.442308,
+            "cumulative_return": 0.448062,
+            "median_return": 0.242256,
+            "annualized_return": 0.556785,
+            "sharpe": 1.051353,
+            "max_drawdown": -0.20673,
+            "trades": 364,
+            "beat_benchmark": 6
+          },
+          "benchmark": {
+            "count": 39,
+            "winners": 36,
+            "losers": 3,
+            "profit_ratio": 0.923077,
+            "win_rate": null,
+            "cumulative_return": 0.901662,
+            "median_return": 0.641804,
+            "annualized_return": 1.706194,
+            "sharpe": 1.279717,
+            "max_drawdown": -0.368003,
+            "trades": 0
+          }
+        },
+        "2021": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": 0.281397,
+              "benchmark_cumulative_return": 0.346482
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": 0.260929,
+              "benchmark_cumulative_return": 0.524769
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": 0.05973,
+              "benchmark_cumulative_return": 0.652958
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": 0.081757,
+              "benchmark_cumulative_return": 0.023768
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": -0.085876,
+              "benchmark_cumulative_return": 0.23133
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": 0.904158,
+              "benchmark_cumulative_return": 1.254821
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": 0.331694,
+              "benchmark_cumulative_return": 0.497556
+            },
+            {
+              "symbol": "AMD",
+              "cumulative_return": 0.271886,
+              "benchmark_cumulative_return": 0.569076
+            },
+            {
+              "symbol": "INTC",
+              "cumulative_return": -0.302174,
+              "benchmark_cumulative_return": 0.060525
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": 0.124339,
+              "benchmark_cumulative_return": 0.564849
+            },
+            {
+              "symbol": "QCOM",
+              "cumulative_return": 0.308661,
+              "benchmark_cumulative_return": 0.222532
+            },
+            {
+              "symbol": "MU",
+              "cumulative_return": -0.130083,
+              "benchmark_cumulative_return": 0.242081
+            },
+            {
+              "symbol": "TSM",
+              "cumulative_return": -0.020382,
+              "benchmark_cumulative_return": 0.120947
+            },
+            {
+              "symbol": "ASML",
+              "cumulative_return": 0.198485,
+              "benchmark_cumulative_return": 0.641331
+            },
+            {
+              "symbol": "CRM",
+              "cumulative_return": 0.214351,
+              "benchmark_cumulative_return": 0.142003
+            },
+            {
+              "symbol": "ADBE",
+              "cumulative_return": 0.368428,
+              "benchmark_cumulative_return": 0.133848
+            },
+            {
+              "symbol": "ORCL",
+              "cumulative_return": 0.022958,
+              "benchmark_cumulative_return": 0.368894
+            },
+            {
+              "symbol": "NOW",
+              "cumulative_return": 0.294565,
+              "benchmark_cumulative_return": 0.179278
+            },
+            {
+              "symbol": "SNOW",
+              "cumulative_return": -0.034804,
+              "benchmark_cumulative_return": 0.203802
+            },
+            {
+              "symbol": "PLTR",
+              "cumulative_return": -0.337482,
+              "benchmark_cumulative_return": -0.226752
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": -0.113741,
+              "benchmark_cumulative_return": 0.114123
+            },
+            {
+              "symbol": "UBER",
+              "cumulative_return": -0.00576,
+              "benchmark_cumulative_return": -0.177843
+            },
+            {
+              "symbol": "SHOP",
+              "cumulative_return": 0.065456,
+              "benchmark_cumulative_return": 0.216829
+            },
+            {
+              "symbol": "XYZ",
+              "cumulative_return": -0.231021,
+              "benchmark_cumulative_return": -0.257903
+            },
+            {
+              "symbol": "PYPL",
+              "cumulative_return": 0.102124,
+              "benchmark_cumulative_return": -0.194791
+            },
+            {
+              "symbol": "CSCO",
+              "cumulative_return": 0.238138,
+              "benchmark_cumulative_return": 0.457613
+            },
+            {
+              "symbol": "IBM",
+              "cumulative_return": -0.016507,
+              "benchmark_cumulative_return": 0.166528
+            },
+            {
+              "symbol": "TXN",
+              "cumulative_return": -0.092155,
+              "benchmark_cumulative_return": 0.17531
+            },
+            {
+              "symbol": "AMAT",
+              "cumulative_return": 0.293326,
+              "benchmark_cumulative_return": 0.836369
+            },
+            {
+              "symbol": "LRCX",
+              "cumulative_return": 0.079213,
+              "benchmark_cumulative_return": 0.536627
+            },
+            {
+              "symbol": "KLAC",
+              "cumulative_return": 0.248699,
+              "benchmark_cumulative_return": 0.680472
+            },
+            {
+              "symbol": "SMCI",
+              "cumulative_return": 0.096775,
+              "benchmark_cumulative_return": 0.388187
+            },
+            {
+              "symbol": "PANW",
+              "cumulative_return": 0.188065,
+              "benchmark_cumulative_return": 0.566617
+            },
+            {
+              "symbol": "CRWD",
+              "cumulative_return": 0.155997,
+              "benchmark_cumulative_return": -0.033377
+            },
+            {
+              "symbol": "SNPS",
+              "cumulative_return": 0.216838,
+              "benchmark_cumulative_return": 0.421463
+            },
+            {
+              "symbol": "CDNS",
+              "cumulative_return": 0.201157,
+              "benchmark_cumulative_return": 0.365902
+            },
+            {
+              "symbol": "ADI",
+              "cumulative_return": 0.056504,
+              "benchmark_cumulative_return": 0.20964
+            },
+            {
+              "symbol": "MRVL",
+              "cumulative_return": 0.232466,
+              "benchmark_cumulative_return": 0.84623
+            },
+            {
+              "symbol": "ANET",
+              "cumulative_return": 0.553977,
+              "benchmark_cumulative_return": 0.978869
+            }
+          ],
+          "strategy": {
+            "count": 39,
+            "winners": 28,
+            "losers": 11,
+            "profit_ratio": 0.717949,
+            "win_rate": 0.434447,
+            "cumulative_return": 0.13031,
+            "median_return": 0.124339,
+            "annualized_return": 0.13031,
+            "sharpe": 0.632814,
+            "max_drawdown": -0.175989,
+            "trades": 389,
+            "beat_benchmark": 9
+          },
+          "benchmark": {
+            "count": 39,
+            "winners": 34,
+            "losers": 5,
+            "profit_ratio": 0.871795,
+            "win_rate": null,
+            "cumulative_return": 0.33464,
+            "median_return": 0.242081,
+            "annualized_return": 0.33464,
+            "sharpe": 0.97444,
+            "max_drawdown": -0.233709,
+            "trades": 0
+          }
+        },
+        "2022": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": -0.025624,
+              "benchmark_cumulative_return": -0.264042
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": -0.370729,
+              "benchmark_cumulative_return": -0.280248
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": -0.365606,
+              "benchmark_cumulative_return": -0.390896
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": -0.288116,
+              "benchmark_cumulative_return": -0.496152
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": -0.705668,
+              "benchmark_cumulative_return": -0.642218
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": -0.363668,
+              "benchmark_cumulative_return": -0.502646
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": -0.342392,
+              "benchmark_cumulative_return": -0.650315
+            },
+            {
+              "symbol": "AMD",
+              "cumulative_return": 0.044614,
+              "benchmark_cumulative_return": -0.549896
+            },
+            {
+              "symbol": "INTC",
+              "cumulative_return": -0.161238,
+              "benchmark_cumulative_return": -0.466427
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": -0.229576,
+              "benchmark_cumulative_return": -0.132697
+            },
+            {
+              "symbol": "QCOM",
+              "cumulative_return": -0.444683,
+              "benchmark_cumulative_return": -0.385826
+            },
+            {
+              "symbol": "MU",
+              "cumulative_return": -0.218563,
+              "benchmark_cumulative_return": -0.459297
+            },
+            {
+              "symbol": "TSM",
+              "cumulative_return": -0.008017,
+              "benchmark_cumulative_return": -0.367485
+            },
+            {
+              "symbol": "ASML",
+              "cumulative_return": 0.073978,
+              "benchmark_cumulative_return": -0.30523
+            },
+            {
+              "symbol": "CRM",
+              "cumulative_return": -0.483587,
+              "benchmark_cumulative_return": -0.478259
+            },
+            {
+              "symbol": "ADBE",
+              "cumulative_return": -0.344981,
+              "benchmark_cumulative_return": -0.406535
+            },
+            {
+              "symbol": "ORCL",
+              "cumulative_return": 0.140248,
+              "benchmark_cumulative_return": -0.046459
+            },
+            {
+              "symbol": "NOW",
+              "cumulative_return": -0.448796,
+              "benchmark_cumulative_return": -0.401843
+            },
+            {
+              "symbol": "SNOW",
+              "cumulative_return": -0.635491,
+              "benchmark_cumulative_return": -0.576266
+            },
+            {
+              "symbol": "PLTR",
+              "cumulative_return": -0.548691,
+              "benchmark_cumulative_return": -0.647446
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": -0.164584,
+              "benchmark_cumulative_return": -0.510524
+            },
+            {
+              "symbol": "UBER",
+              "cumulative_return": -0.10037,
+              "benchmark_cumulative_return": -0.410208
+            },
+            {
+              "symbol": "SHOP",
+              "cumulative_return": -0.634206,
+              "benchmark_cumulative_return": -0.748002
+            },
+            {
+              "symbol": "XYZ",
+              "cumulative_return": -0.614729,
+              "benchmark_cumulative_return": -0.610922
+            },
+            {
+              "symbol": "PYPL",
+              "cumulative_return": -0.484637,
+              "benchmark_cumulative_return": -0.622335
+            },
+            {
+              "symbol": "CSCO",
+              "cumulative_return": -0.186434,
+              "benchmark_cumulative_return": -0.224627
+            },
+            {
+              "symbol": "IBM",
+              "cumulative_return": -0.040044,
+              "benchmark_cumulative_return": 0.10637
+            },
+            {
+              "symbol": "TXN",
+              "cumulative_return": 0.070181,
+              "benchmark_cumulative_return": -0.098574
+            },
+            {
+              "symbol": "AMAT",
+              "cumulative_return": -0.179886,
+              "benchmark_cumulative_return": -0.375426
+            },
+            {
+              "symbol": "LRCX",
+              "cumulative_return": -0.189959,
+              "benchmark_cumulative_return": -0.407231
+            },
+            {
+              "symbol": "KLAC",
+              "cumulative_return": -0.124876,
+              "benchmark_cumulative_return": -0.111985
+            },
+            {
+              "symbol": "SMCI",
+              "cumulative_return": 1.191615,
+              "benchmark_cumulative_return": 0.868032
+            },
+            {
+              "symbol": "PANW",
+              "cumulative_return": -0.41844,
+              "benchmark_cumulative_return": -0.248114
+            },
+            {
+              "symbol": "CRWD",
+              "cumulative_return": -0.608235,
+              "benchmark_cumulative_return": -0.485763
+            },
+            {
+              "symbol": "SNPS",
+              "cumulative_return": -0.129318,
+              "benchmark_cumulative_return": -0.133541
+            },
+            {
+              "symbol": "CDNS",
+              "cumulative_return": -0.116295,
+              "benchmark_cumulative_return": -0.137966
+            },
+            {
+              "symbol": "ADI",
+              "cumulative_return": -0.095962,
+              "benchmark_cumulative_return": -0.049123
+            },
+            {
+              "symbol": "MRVL",
+              "cumulative_return": -0.443345,
+              "benchmark_cumulative_return": -0.574844
+            },
+            {
+              "symbol": "ANET",
+              "cumulative_return": 0.236317,
+              "benchmark_cumulative_return": -0.155826
+            }
+          ],
+          "strategy": {
+            "count": 39,
+            "winners": 6,
+            "losers": 33,
+            "profit_ratio": 0.153846,
+            "win_rate": 0.246719,
+            "cumulative_return": -0.22461,
+            "median_return": -0.218563,
+            "annualized_return": -0.225151,
+            "sharpe": -0.653425,
+            "max_drawdown": -0.384344,
+            "trades": 381,
+            "beat_benchmark": 26
+          },
+          "benchmark": {
+            "count": 39,
+            "winners": 2,
+            "losers": 37,
+            "profit_ratio": 0.051282,
+            "win_rate": null,
+            "cumulative_return": -0.343097,
+            "median_return": -0.401843,
+            "annualized_return": -0.343989,
+            "sharpe": -0.627445,
+            "max_drawdown": -0.48805,
+            "trades": 0
+          }
+        },
+        "2023": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": 0.235787,
+              "benchmark_cumulative_return": 0.49008
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": 0.177126,
+              "benchmark_cumulative_return": 0.581913
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": 0.226331,
+              "benchmark_cumulative_return": 0.583248
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": 0.135024,
+              "benchmark_cumulative_return": 0.80881
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": 0.651436,
+              "benchmark_cumulative_return": 1.941333
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": 0.972868,
+              "benchmark_cumulative_return": 2.390172
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": 1.395033,
+              "benchmark_cumulative_return": 1.017211
+            },
+            {
+              "symbol": "AMD",
+              "cumulative_return": 0.693975,
+              "benchmark_cumulative_return": 1.2759
+            },
+            {
+              "symbol": "INTC",
+              "cumulative_return": 0.508518,
+              "benchmark_cumulative_return": 0.945624
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": 0.459273,
+              "benchmark_cumulative_return": 1.041842
+            },
+            {
+              "symbol": "QCOM",
+              "cumulative_return": 0.268657,
+              "benchmark_cumulative_return": 0.350736
+            },
+            {
+              "symbol": "MU",
+              "cumulative_return": 0.184788,
+              "benchmark_cumulative_return": 0.719312
+            },
+            {
+              "symbol": "TSM",
+              "cumulative_return": 0.352668,
+              "benchmark_cumulative_return": 0.423297
+            },
+            {
+              "symbol": "ASML",
+              "cumulative_return": 0.172971,
+              "benchmark_cumulative_return": 0.399032
+            },
+            {
+              "symbol": "CRM",
+              "cumulative_return": 0.618922,
+              "benchmark_cumulative_return": 0.984614
+            },
+            {
+              "symbol": "ADBE",
+              "cumulative_return": 0.564954,
+              "benchmark_cumulative_return": 0.772799
+            },
+            {
+              "symbol": "ORCL",
+              "cumulative_return": 0.138406,
+              "benchmark_cumulative_return": 0.309416
+            },
+            {
+              "symbol": "NOW",
+              "cumulative_return": 0.55759,
+              "benchmark_cumulative_return": 0.819584
+            },
+            {
+              "symbol": "SNOW",
+              "cumulative_return": -0.091895,
+              "benchmark_cumulative_return": 0.386373
+            },
+            {
+              "symbol": "PLTR",
+              "cumulative_return": 0.136664,
+              "benchmark_cumulative_return": 1.674455
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": 0.540327,
+              "benchmark_cumulative_return": 0.651112
+            },
+            {
+              "symbol": "UBER",
+              "cumulative_return": 1.004706,
+              "benchmark_cumulative_return": 1.489689
+            },
+            {
+              "symbol": "SHOP",
+              "cumulative_return": 0.421348,
+              "benchmark_cumulative_return": 1.24431
+            },
+            {
+              "symbol": "XYZ",
+              "cumulative_return": 0.419437,
+              "benchmark_cumulative_return": 0.230904
+            },
+            {
+              "symbol": "PYPL",
+              "cumulative_return": -0.02386,
+              "benchmark_cumulative_return": -0.137742
+            },
+            {
+              "symbol": "CSCO",
+              "cumulative_return": -0.097734,
+              "benchmark_cumulative_return": 0.092959
+            },
+            {
+              "symbol": "IBM",
+              "cumulative_return": 0.236865,
+              "benchmark_cumulative_return": 0.218488
+            },
+            {
+              "symbol": "TXN",
+              "cumulative_return": 0.024042,
+              "benchmark_cumulative_return": 0.06409
+            },
+            {
+              "symbol": "AMAT",
+              "cumulative_return": 0.189126,
+              "benchmark_cumulative_return": 0.679731
+            },
+            {
+              "symbol": "LRCX",
+              "cumulative_return": 0.102716,
+              "benchmark_cumulative_return": 0.88629
+            },
+            {
+              "symbol": "KLAC",
+              "cumulative_return": 0.196318,
+              "benchmark_cumulative_return": 0.560494
+            },
+            {
+              "symbol": "ARM",
+              "cumulative_return": 0.421257,
+              "benchmark_cumulative_return": 0.181711
+            },
+            {
+              "symbol": "SMCI",
+              "cumulative_return": 0.853413,
+              "benchmark_cumulative_return": 2.462363
+            },
+            {
+              "symbol": "PANW",
+              "cumulative_return": 0.892583,
+              "benchmark_cumulative_return": 1.113229
+            },
+            {
+              "symbol": "CRWD",
+              "cumulative_return": 0.735689,
+              "benchmark_cumulative_return": 1.424922
+            },
+            {
+              "symbol": "SNPS",
+              "cumulative_return": 0.275849,
+              "benchmark_cumulative_return": 0.612672
+            },
+            {
+              "symbol": "CDNS",
+              "cumulative_return": 0.150787,
+              "benchmark_cumulative_return": 0.69553
+            },
+            {
+              "symbol": "ADI",
+              "cumulative_return": -0.084542,
+              "benchmark_cumulative_return": 0.233562
+            },
+            {
+              "symbol": "MRVL",
+              "cumulative_return": 0.456912,
+              "benchmark_cumulative_return": 0.636816
+            },
+            {
+              "symbol": "ANET",
+              "cumulative_return": 0.376665,
+              "benchmark_cumulative_return": 0.94075
+            }
+          ],
+          "strategy": {
+            "count": 40,
+            "winners": 36,
+            "losers": 4,
+            "profit_ratio": 0.9,
+            "win_rate": 0.458549,
+            "cumulative_return": 0.386275,
+            "median_return": 0.314258,
+            "annualized_return": 0.436025,
+            "sharpe": 1.287528,
+            "max_drawdown": -0.182134,
+            "trades": 386,
+            "beat_benchmark": 5
+          },
+          "benchmark": {
+            "count": 40,
+            "winners": 39,
+            "losers": 1,
+            "profit_ratio": 0.975,
+            "win_rate": null,
+            "cumulative_return": 0.804941,
+            "median_return": 0.687631,
+            "annualized_return": 0.828425,
+            "sharpe": 1.659034,
+            "max_drawdown": -0.21785,
+            "trades": 0
+          }
+        },
+        "2024": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": 0.083955,
+              "benchmark_cumulative_return": 0.307053
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": -0.002289,
+              "benchmark_cumulative_return": 0.129273
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": 0.187613,
+              "benchmark_cumulative_return": 0.360056
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": 0.116459,
+              "benchmark_cumulative_return": 0.443925
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": 0.359564,
+              "benchmark_cumulative_return": 0.660489
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": 0.863836,
+              "benchmark_cumulative_return": 1.712493
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": 0.704529,
+              "benchmark_cumulative_return": 0.625241
+            },
+            {
+              "symbol": "AMD",
+              "cumulative_return": -0.115371,
+              "benchmark_cumulative_return": -0.180585
+            },
+            {
+              "symbol": "INTC",
+              "cumulative_return": -0.056887,
+              "benchmark_cumulative_return": -0.595651
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": 0.144278,
+              "benchmark_cumulative_return": 1.104929
+            },
+            {
+              "symbol": "QCOM",
+              "cumulative_return": -0.147801,
+              "benchmark_cumulative_return": 0.083104
+            },
+            {
+              "symbol": "MU",
+              "cumulative_return": -0.056637,
+              "benchmark_cumulative_return": -0.009614
+            },
+            {
+              "symbol": "TSM",
+              "cumulative_return": 0.237104,
+              "benchmark_cumulative_return": 0.925825
+            },
+            {
+              "symbol": "ASML",
+              "cumulative_return": 0.137074,
+              "benchmark_cumulative_return": -0.076991
+            },
+            {
+              "symbol": "CRM",
+              "cumulative_return": 0.118448,
+              "benchmark_cumulative_return": 0.277637
+            },
+            {
+              "symbol": "ADBE",
+              "cumulative_return": -0.113891,
+              "benchmark_cumulative_return": -0.254643
+            },
+            {
+              "symbol": "ORCL",
+              "cumulative_return": 0.644787,
+              "benchmark_cumulative_return": 0.599904
+            },
+            {
+              "symbol": "NOW",
+              "cumulative_return": -0.035849,
+              "benchmark_cumulative_return": 0.500545
+            },
+            {
+              "symbol": "SNOW",
+              "cumulative_return": 0.264452,
+              "benchmark_cumulative_return": -0.22407
+            },
+            {
+              "symbol": "PLTR",
+              "cumulative_return": 1.384601,
+              "benchmark_cumulative_return": 3.404776
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": 0.256562,
+              "benchmark_cumulative_return": 0.830677
+            },
+            {
+              "symbol": "UBER",
+              "cumulative_return": 0.072248,
+              "benchmark_cumulative_return": -0.020302
+            },
+            {
+              "symbol": "SHOP",
+              "cumulative_return": -0.014827,
+              "benchmark_cumulative_return": 0.364955
+            },
+            {
+              "symbol": "XYZ",
+              "cumulative_return": -0.146262,
+              "benchmark_cumulative_return": 0.098772
+            },
+            {
+              "symbol": "PYPL",
+              "cumulative_return": -0.16798,
+              "benchmark_cumulative_return": 0.389839
+            },
+            {
+              "symbol": "CSCO",
+              "cumulative_return": -0.013091,
+              "benchmark_cumulative_return": 0.209956
+            },
+            {
+              "symbol": "IBM",
+              "cumulative_return": 0.461477,
+              "benchmark_cumulative_return": 0.392705
+            },
+            {
+              "symbol": "TXN",
+              "cumulative_return": 0.030329,
+              "benchmark_cumulative_return": 0.131364
+            },
+            {
+              "symbol": "AMAT",
+              "cumulative_return": -0.109568,
+              "benchmark_cumulative_return": 0.011291
+            },
+            {
+              "symbol": "LRCX",
+              "cumulative_return": -0.175621,
+              "benchmark_cumulative_return": -0.068448
+            },
+            {
+              "symbol": "KLAC",
+              "cumulative_return": -0.201872,
+              "benchmark_cumulative_return": 0.093621
+            },
+            {
+              "symbol": "ARM",
+              "cumulative_return": 0.276074,
+              "benchmark_cumulative_return": 0.641626
+            },
+            {
+              "symbol": "SMCI",
+              "cumulative_return": 0.318984,
+              "benchmark_cumulative_return": 0.072258
+            },
+            {
+              "symbol": "PANW",
+              "cumulative_return": 0.131451,
+              "benchmark_cumulative_return": 0.234129
+            },
+            {
+              "symbol": "CRWD",
+              "cumulative_return": 0.258028,
+              "benchmark_cumulative_return": 0.340122
+            },
+            {
+              "symbol": "SNPS",
+              "cumulative_return": -0.140028,
+              "benchmark_cumulative_return": -0.057389
+            },
+            {
+              "symbol": "CDNS",
+              "cumulative_return": -0.086606,
+              "benchmark_cumulative_return": 0.103132
+            },
+            {
+              "symbol": "ADI",
+              "cumulative_return": -0.18925,
+              "benchmark_cumulative_return": 0.088155
+            },
+            {
+              "symbol": "MRVL",
+              "cumulative_return": -0.111509,
+              "benchmark_cumulative_return": 0.837897
+            },
+            {
+              "symbol": "ANET",
+              "cumulative_return": 0.352097,
+              "benchmark_cumulative_return": 0.877288
+            }
+          ],
+          "strategy": {
+            "count": 40,
+            "winners": 22,
+            "losers": 18,
+            "profit_ratio": 0.55,
+            "win_rate": 0.442455,
+            "cumulative_return": 0.137965,
+            "median_return": 0.078102,
+            "annualized_return": 0.137965,
+            "sharpe": 0.456108,
+            "max_drawdown": -0.207259,
+            "trades": 391,
+            "beat_benchmark": 10
+          },
+          "benchmark": {
+            "count": 40,
+            "winners": 31,
+            "losers": 9,
+            "profit_ratio": 0.775,
+            "win_rate": null,
+            "cumulative_return": 0.384134,
+            "median_return": 0.255883,
+            "annualized_return": 0.384134,
+            "sharpe": 0.839096,
+            "max_drawdown": -0.303875,
+            "trades": 0
+          }
+        },
+        "2025": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": -0.107081,
+              "benchmark_cumulative_return": 0.090526
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": -0.09504,
+              "benchmark_cumulative_return": 0.155842
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": 0.257682,
+              "benchmark_cumulative_return": 0.659936
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": -0.226572,
+              "benchmark_cumulative_return": 0.052099
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": 0.126524,
+              "benchmark_cumulative_return": 0.130931
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": -0.115402,
+              "benchmark_cumulative_return": 0.389165
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": 0.158062,
+              "benchmark_cumulative_return": 0.113609
+            },
+            {
+              "symbol": "AMD",
+              "cumulative_return": 0.438386,
+              "benchmark_cumulative_return": 0.772994
+            },
+            {
+              "symbol": "INTC",
+              "cumulative_return": 0.109858,
+              "benchmark_cumulative_return": 0.840399
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": -0.031831,
+              "benchmark_cumulative_return": 0.50633
+            },
+            {
+              "symbol": "QCOM",
+              "cumulative_return": 0.083086,
+              "benchmark_cumulative_return": 0.138387
+            },
+            {
+              "symbol": "MU",
+              "cumulative_return": 0.59837,
+              "benchmark_cumulative_return": 2.402393
+            },
+            {
+              "symbol": "TSM",
+              "cumulative_return": 0.08152,
+              "benchmark_cumulative_return": 0.559495
+            },
+            {
+              "symbol": "ASML",
+              "cumulative_return": 0.053427,
+              "benchmark_cumulative_return": 0.558382
+            },
+            {
+              "symbol": "CRM",
+              "cumulative_return": -0.202001,
+              "benchmark_cumulative_return": -0.202466
+            },
+            {
+              "symbol": "ADBE",
+              "cumulative_return": 0.108534,
+              "benchmark_cumulative_return": -0.21294
+            },
+            {
+              "symbol": "ORCL",
+              "cumulative_return": 0.019394,
+              "benchmark_cumulative_return": 0.181281
+            },
+            {
+              "symbol": "NOW",
+              "cumulative_return": -0.206893,
+              "benchmark_cumulative_return": -0.277487
+            },
+            {
+              "symbol": "SNOW",
+              "cumulative_return": 0.083397,
+              "benchmark_cumulative_return": 0.420633
+            },
+            {
+              "symbol": "PLTR",
+              "cumulative_return": 0.705903,
+              "benchmark_cumulative_return": 1.350258
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": -0.021209,
+              "benchmark_cumulative_return": 0.051923
+            },
+            {
+              "symbol": "UBER",
+              "cumulative_return": 0.164993,
+              "benchmark_cumulative_return": 0.354609
+            },
+            {
+              "symbol": "SHOP",
+              "cumulative_return": -0.214309,
+              "benchmark_cumulative_return": 0.513872
+            },
+            {
+              "symbol": "XYZ",
+              "cumulative_return": -0.349672,
+              "benchmark_cumulative_return": -0.234145
+            },
+            {
+              "symbol": "PYPL",
+              "cumulative_return": -0.314147,
+              "benchmark_cumulative_return": -0.314412
+            },
+            {
+              "symbol": "CSCO",
+              "cumulative_return": 0.018217,
+              "benchmark_cumulative_return": 0.334737
+            },
+            {
+              "symbol": "IBM",
+              "cumulative_return": 0.477616,
+              "benchmark_cumulative_return": 0.382265
+            },
+            {
+              "symbol": "TXN",
+              "cumulative_return": 0.155606,
+              "benchmark_cumulative_return": -0.04473
+            },
+            {
+              "symbol": "AMAT",
+              "cumulative_return": 0.30055,
+              "benchmark_cumulative_return": 0.596031
+            },
+            {
+              "symbol": "LRCX",
+              "cumulative_return": 0.328413,
+              "benchmark_cumulative_return": 1.391633
+            },
+            {
+              "symbol": "KLAC",
+              "cumulative_return": 0.21583,
+              "benchmark_cumulative_return": 0.944813
+            },
+            {
+              "symbol": "ARM",
+              "cumulative_return": -0.087345,
+              "benchmark_cumulative_return": -0.113894
+            },
+            {
+              "symbol": "SMCI",
+              "cumulative_return": -0.258832,
+              "benchmark_cumulative_return": -0.039698
+            },
+            {
+              "symbol": "PANW",
+              "cumulative_return": -0.131216,
+              "benchmark_cumulative_return": 0.01231
+            },
+            {
+              "symbol": "CRWD",
+              "cumulative_return": 0.084282,
+              "benchmark_cumulative_return": 0.370002
+            },
+            {
+              "symbol": "SNPS",
+              "cumulative_return": 0.283247,
+              "benchmark_cumulative_return": -0.032223
+            },
+            {
+              "symbol": "CDNS",
+              "cumulative_return": 0.016072,
+              "benchmark_cumulative_return": 0.040338
+            },
+            {
+              "symbol": "ADI",
+              "cumulative_return": 0.345863,
+              "benchmark_cumulative_return": 0.297527
+            },
+            {
+              "symbol": "MRVL",
+              "cumulative_return": -0.328558,
+              "benchmark_cumulative_return": -0.228195
+            },
+            {
+              "symbol": "ANET",
+              "cumulative_return": -0.331087,
+              "benchmark_cumulative_return": 0.18547
+            }
+          ],
+          "strategy": {
+            "count": 40,
+            "winners": 24,
+            "losers": 16,
+            "profit_ratio": 0.6,
+            "win_rate": 0.367542,
+            "cumulative_return": 0.054841,
+            "median_return": 0.067473,
+            "annualized_return": 0.055533,
+            "sharpe": 0.255756,
+            "max_drawdown": -0.271306,
+            "trades": 419,
+            "beat_benchmark": 10
+          },
+          "benchmark": {
+            "count": 40,
+            "winners": 30,
+            "losers": 10,
+            "profit_ratio": 0.75,
+            "win_rate": null,
+            "cumulative_return": 0.32745,
+            "median_return": 0.183375,
+            "annualized_return": 0.331185,
+            "sharpe": 0.700915,
+            "max_drawdown": -0.35414,
+            "trades": 0
+          }
+        },
+        "2026": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": 0.237523,
+              "benchmark_cumulative_return": 0.264966
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": 0.063512,
+              "benchmark_cumulative_return": 0.110533
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": 0.129492,
+              "benchmark_cumulative_return": 0.112831
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": 0.096014,
+              "benchmark_cumulative_return": 0.100771
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": 0.084203,
+              "benchmark_cumulative_return": 0.120209
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": -0.072538,
+              "benchmark_cumulative_return": 0.189372
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": -0.171732,
+              "benchmark_cumulative_return": -0.183581
+            },
+            {
+              "symbol": "AMD",
+              "cumulative_return": 0.834297,
+              "benchmark_cumulative_return": 1.66539
+            },
+            {
+              "symbol": "INTC",
+              "cumulative_return": 1.281752,
+              "benchmark_cumulative_return": 1.659079
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": -0.22101,
+              "benchmark_cumulative_return": 0.005947
+            },
+            {
+              "symbol": "QCOM",
+              "cumulative_return": 0.337986,
+              "benchmark_cumulative_return": 0.024957
+            },
+            {
+              "symbol": "MU",
+              "cumulative_return": 1.152159,
+              "benchmark_cumulative_return": 2.205209
+            },
+            {
+              "symbol": "TSM",
+              "cumulative_return": 0.031584,
+              "benchmark_cumulative_return": 0.426111
+            },
+            {
+              "symbol": "ASML",
+              "cumulative_return": 0.17667,
+              "benchmark_cumulative_return": 0.549667
+            },
+            {
+              "symbol": "CRM",
+              "cumulative_return": 0.172538,
+              "benchmark_cumulative_return": -0.103213
+            },
+            {
+              "symbol": "ADBE",
+              "cumulative_return": -0.126563,
+              "benchmark_cumulative_return": -0.312323
+            },
+            {
+              "symbol": "ORCL",
+              "cumulative_return": -0.306214,
+              "benchmark_cumulative_return": -0.321242
+            },
+            {
+              "symbol": "NOW",
+              "cumulative_return": -0.043085,
+              "benchmark_cumulative_return": -0.086233
+            },
+            {
+              "symbol": "SNOW",
+              "cumulative_return": 0.120162,
+              "benchmark_cumulative_return": 0.527535
+            },
+            {
+              "symbol": "PLTR",
+              "cumulative_return": -0.060185,
+              "benchmark_cumulative_return": 0.130633
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": -0.222725,
+              "benchmark_cumulative_return": -0.247334
+            },
+            {
+              "symbol": "UBER",
+              "cumulative_return": -0.092039,
+              "benchmark_cumulative_return": -0.152001
+            },
+            {
+              "symbol": "SHOP",
+              "cumulative_return": -0.11823,
+              "benchmark_cumulative_return": 0.071628
+            },
+            {
+              "symbol": "XYZ",
+              "cumulative_return": 0.136699,
+              "benchmark_cumulative_return": 0.16531
+            },
+            {
+              "symbol": "PYPL",
+              "cumulative_return": 0.408659,
+              "benchmark_cumulative_return": -0.030579
+            },
+            {
+              "symbol": "CSCO",
+              "cumulative_return": 0.361982,
+              "benchmark_cumulative_return": 0.502581
+            },
+            {
+              "symbol": "IBM",
+              "cumulative_return": -0.263447,
+              "benchmark_cumulative_return": -0.215009
+            },
+            {
+              "symbol": "TXN",
+              "cumulative_return": 0.517691,
+              "benchmark_cumulative_return": 0.644884
+            },
+            {
+              "symbol": "AMAT",
+              "cumulative_return": 0.058865,
+              "benchmark_cumulative_return": 0.744121
+            },
+            {
+              "symbol": "LRCX",
+              "cumulative_return": 0.122907,
+              "benchmark_cumulative_return": 0.681105
+            },
+            {
+              "symbol": "KLAC",
+              "cumulative_return": 0.152572,
+              "benchmark_cumulative_return": 0.477051
+            },
+            {
+              "symbol": "ARM",
+              "cumulative_return": 0.723545,
+              "benchmark_cumulative_return": 1.177385
+            },
+            {
+              "symbol": "SMCI",
+              "cumulative_return": 0.504342,
+              "benchmark_cumulative_return": 0.222412
+            },
+            {
+              "symbol": "PANW",
+              "cumulative_return": 0.549653,
+              "benchmark_cumulative_return": 1.036048
+            },
+            {
+              "symbol": "CRWD",
+              "cumulative_return": -0.017916,
+              "benchmark_cumulative_return": 1.127229
+            },
+            {
+              "symbol": "SNPS",
+              "cumulative_return": 0.323438,
+              "benchmark_cumulative_return": 0.021736
+            },
+            {
+              "symbol": "CDNS",
+              "cumulative_return": -0.000898,
+              "benchmark_cumulative_return": 0.054002
+            },
+            {
+              "symbol": "ADI",
+              "cumulative_return": 0.401605,
+              "benchmark_cumulative_return": 0.501399
+            },
+            {
+              "symbol": "MRVL",
+              "cumulative_return": 1.079606,
+              "benchmark_cumulative_return": 1.891193
+            },
+            {
+              "symbol": "ANET",
+              "cumulative_return": -0.171504,
+              "benchmark_cumulative_return": 0.491414
+            }
+          ],
+          "strategy": {
+            "count": 40,
+            "winners": 26,
+            "losers": 14,
+            "profit_ratio": 0.65,
+            "win_rate": 0.36646,
+            "cumulative_return": 0.204284,
+            "median_return": 0.121535,
+            "annualized_return": 0.289697,
+            "sharpe": 0.584291,
+            "max_drawdown": -0.247637,
+            "trades": 322,
+            "beat_benchmark": 12
+          },
+          "benchmark": {
+            "count": 40,
+            "winners": 31,
+            "losers": 9,
+            "profit_ratio": 0.775,
+            "win_rate": null,
+            "cumulative_return": 0.40628,
+            "median_return": 0.177341,
+            "annualized_return": 0.594517,
+            "sharpe": 0.802603,
+            "max_drawdown": -0.3374,
+            "trades": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "random_forest",
+      "name": "随机森林预测",
+      "note": "用价量因子预测次日涨跌，时间顺序70/15/15划分，样本外才交易",
+      "years": {
+        "2016": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.009659
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.09332
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.017835
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.077594
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.09793
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.629322
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.101722
+            },
+            {
+              "symbol": "AMD",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.70015
+            },
+            {
+              "symbol": "INTC",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.019989
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.052703
+            },
+            {
+              "symbol": "QCOM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.007977
+            },
+            {
+              "symbol": "MU",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.290171
+            },
+            {
+              "symbol": "TSM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.059536
+            },
+            {
+              "symbol": "ASML",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.109134
+            },
+            {
+              "symbol": "CRM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.060003
+            },
+            {
+              "symbol": "ADBE",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.042236
+            },
+            {
+              "symbol": "ORCL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.004179
+            },
+            {
+              "symbol": "NOW",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.004019
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.240481
+            },
+            {
+              "symbol": "SHOP",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.020228
+            },
+            {
+              "symbol": "XYZ",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.247027
+            },
+            {
+              "symbol": "PYPL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.000253
+            },
+            {
+              "symbol": "CSCO",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.0
+            },
+            {
+              "symbol": "IBM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.082224
+            },
+            {
+              "symbol": "TXN",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.074304
+            },
+            {
+              "symbol": "AMAT",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.164506
+            },
+            {
+              "symbol": "LRCX",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.082899
+            },
+            {
+              "symbol": "KLAC",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.100804
+            },
+            {
+              "symbol": "SMCI",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.293819
+            },
+            {
+              "symbol": "PANW",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.143493
+            },
+            {
+              "symbol": "SNPS",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.014895
+            },
+            {
+              "symbol": "CDNS",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.028131
+            },
+            {
+              "symbol": "ADI",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.183655
+            },
+            {
+              "symbol": "MRVL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.082345
+            },
+            {
+              "symbol": "ANET",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.198835
+            }
+          ],
+          "strategy": {
+            "count": 35,
+            "winners": 0,
+            "losers": 0,
+            "profit_ratio": 0.0,
+            "win_rate": null,
+            "cumulative_return": 0.0,
+            "median_return": 0.0,
+            "annualized_return": 0.0,
+            "sharpe": 0.0,
+            "max_drawdown": 0.0,
+            "trades": 0,
+            "beat_benchmark": 13
+          },
+          "benchmark": {
+            "count": 35,
+            "winners": 21,
+            "losers": 13,
+            "profit_ratio": 0.6,
+            "win_rate": null,
+            "cumulative_return": 0.090978,
+            "median_return": 0.052703,
+            "annualized_return": 0.997432,
+            "sharpe": 1.081028,
+            "max_drawdown": -0.094858,
+            "trades": 0
+          }
+        },
+        "2017": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.484644
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.407306
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.329295
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.559564
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.533768
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.819879
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.457017
+            },
+            {
+              "symbol": "AMD",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.093474
+            },
+            {
+              "symbol": "INTC",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.308702
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.481861
+            },
+            {
+              "symbol": "QCOM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.020464
+            },
+            {
+              "symbol": "MU",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.875912
+            },
+            {
+              "symbol": "TSM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.424066
+            },
+            {
+              "symbol": "ASML",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.564579
+            },
+            {
+              "symbol": "CRM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.493281
+            },
+            {
+              "symbol": "ADBE",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.702186
+            },
+            {
+              "symbol": "ORCL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.249368
+            },
+            {
+              "symbol": "NOW",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.753968
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.550565
+            },
+            {
+              "symbol": "SHOP",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 1.35596
+            },
+            {
+              "symbol": "XYZ",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 1.543654
+            },
+            {
+              "symbol": "PYPL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.865214
+            },
+            {
+              "symbol": "CSCO",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.312682
+            },
+            {
+              "symbol": "IBM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.039879
+            },
+            {
+              "symbol": "TXN",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.467459
+            },
+            {
+              "symbol": "AMAT",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.598613
+            },
+            {
+              "symbol": "LRCX",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.762069
+            },
+            {
+              "symbol": "KLAC",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.368048
+            },
+            {
+              "symbol": "SMCI",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.253832
+            },
+            {
+              "symbol": "PANW",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.159056
+            },
+            {
+              "symbol": "SNPS",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.448182
+            },
+            {
+              "symbol": "CDNS",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.658208
+            },
+            {
+              "symbol": "ADI",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.253013
+            },
+            {
+              "symbol": "MRVL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.568865
+            },
+            {
+              "symbol": "ANET",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 1.434432
+            }
+          ],
+          "strategy": {
+            "count": 35,
+            "winners": 0,
+            "losers": 0,
+            "profit_ratio": 0.0,
+            "win_rate": null,
+            "cumulative_return": 0.0,
+            "median_return": 0.0,
+            "annualized_return": 0.0,
+            "sharpe": 0.0,
+            "max_drawdown": 0.0,
+            "trades": 0,
+            "beat_benchmark": 3
+          },
+          "benchmark": {
+            "count": 35,
+            "winners": 32,
+            "losers": 3,
+            "profit_ratio": 0.914286,
+            "win_rate": null,
+            "cumulative_return": 0.52642,
+            "median_return": 0.484644,
+            "annualized_return": 0.529181,
+            "sharpe": 1.79482,
+            "max_drawdown": -0.150319,
+            "trades": 0
+          }
+        },
+        "2018": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.053902
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.207953
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.008012
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.284317
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.257112
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.308152
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.068894
+            },
+            {
+              "symbol": "AMD",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.79572
+            },
+            {
+              "symbol": "INTC",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.042265
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.03622
+            },
+            {
+              "symbol": "QCOM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.075888
+            },
+            {
+              "symbol": "MU",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.228356
+            },
+            {
+              "symbol": "TSM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.035059
+            },
+            {
+              "symbol": "ASML",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.096776
+            },
+            {
+              "symbol": "CRM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.339822
+            },
+            {
+              "symbol": "ADBE",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.291029
+            },
+            {
+              "symbol": "ORCL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.029696
+            },
+            {
+              "symbol": "NOW",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.365519
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.394353
+            },
+            {
+              "symbol": "SHOP",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.370792
+            },
+            {
+              "symbol": "XYZ",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.617825
+            },
+            {
+              "symbol": "PYPL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.142217
+            },
+            {
+              "symbol": "CSCO",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.165716
+            },
+            {
+              "symbol": "IBM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.22558
+            },
+            {
+              "symbol": "TXN",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.071695
+            },
+            {
+              "symbol": "AMAT",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.34922
+            },
+            {
+              "symbol": "LRCX",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.244008
+            },
+            {
+              "symbol": "KLAC",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.124895
+            },
+            {
+              "symbol": "SMCI",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.340659
+            },
+            {
+              "symbol": "PANW",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.299503
+            },
+            {
+              "symbol": "SNPS",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.011732
+            },
+            {
+              "symbol": "CDNS",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.039694
+            },
+            {
+              "symbol": "ADI",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.016391
+            },
+            {
+              "symbol": "MRVL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.236229
+            },
+            {
+              "symbol": "ANET",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.105612
+            }
+          ],
+          "strategy": {
+            "count": 35,
+            "winners": 0,
+            "losers": 0,
+            "profit_ratio": 0.0,
+            "win_rate": null,
+            "cumulative_return": 0.0,
+            "median_return": 0.0,
+            "annualized_return": 0.0,
+            "sharpe": 0.0,
+            "max_drawdown": 0.0,
+            "trades": 0,
+            "beat_benchmark": 19
+          },
+          "benchmark": {
+            "count": 35,
+            "winners": 16,
+            "losers": 19,
+            "profit_ratio": 0.457143,
+            "win_rate": null,
+            "cumulative_return": 0.046939,
+            "median_return": -0.011732,
+            "annualized_return": 0.047263,
+            "sharpe": 0.218574,
+            "max_drawdown": -0.330557,
+            "trades": 0
+          }
+        },
+        "2019": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.889577
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.575581
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.281762
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.230277
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.565718
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.76943
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.257001
+            },
+            {
+              "symbol": "AMD",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 1.484291
+            },
+            {
+              "symbol": "INTC",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.307119
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.290516
+            },
+            {
+              "symbol": "QCOM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.607641
+            },
+            {
+              "symbol": "MU",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.694926
+            },
+            {
+              "symbol": "TSM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.648419
+            },
+            {
+              "symbol": "ASML",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.9323
+            },
+            {
+              "symbol": "CRM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.187413
+            },
+            {
+              "symbol": "ADBE",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.457788
+            },
+            {
+              "symbol": "ORCL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.193433
+            },
+            {
+              "symbol": "NOW",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.585622
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.208884
+            },
+            {
+              "symbol": "UBER",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.28458
+            },
+            {
+              "symbol": "SHOP",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 1.87165
+            },
+            {
+              "symbol": "XYZ",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.11535
+            },
+            {
+              "symbol": "PYPL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.28636
+            },
+            {
+              "symbol": "CSCO",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.138126
+            },
+            {
+              "symbol": "IBM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.235761
+            },
+            {
+              "symbol": "TXN",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.395634
+            },
+            {
+              "symbol": "AMAT",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.898552
+            },
+            {
+              "symbol": "LRCX",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 1.193335
+            },
+            {
+              "symbol": "KLAC",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 1.039876
+            },
+            {
+              "symbol": "SMCI",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.74058
+            },
+            {
+              "symbol": "PANW",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.227768
+            },
+            {
+              "symbol": "CRWD",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.140172
+            },
+            {
+              "symbol": "SNPS",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.652422
+            },
+            {
+              "symbol": "CDNS",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.595216
+            },
+            {
+              "symbol": "ADI",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.413095
+            },
+            {
+              "symbol": "MRVL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.657413
+            },
+            {
+              "symbol": "ANET",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.034646
+            }
+          ],
+          "strategy": {
+            "count": 37,
+            "winners": 0,
+            "losers": 0,
+            "profit_ratio": 0.0,
+            "win_rate": null,
+            "cumulative_return": 0.0,
+            "median_return": 0.0,
+            "annualized_return": 0.0,
+            "sharpe": 0.0,
+            "max_drawdown": 0.0,
+            "trades": 0,
+            "beat_benchmark": 3
+          },
+          "benchmark": {
+            "count": 37,
+            "winners": 34,
+            "losers": 3,
+            "profit_ratio": 0.918919,
+            "win_rate": null,
+            "cumulative_return": 0.518093,
+            "median_return": 0.457788,
+            "annualized_return": 0.512257,
+            "sharpe": 1.388632,
+            "max_drawdown": -0.228965,
+            "trades": 0
+          }
+        },
+        "2020": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.823068
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.425341
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.308536
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.762561
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.330865
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 1.222956
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 7.43437
+            },
+            {
+              "symbol": "AMD",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.999782
+            },
+            {
+              "symbol": "INTC",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.146887
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.4488
+            },
+            {
+              "symbol": "QCOM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.770832
+            },
+            {
+              "symbol": "MU",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.397918
+            },
+            {
+              "symbol": "TSM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.926684
+            },
+            {
+              "symbol": "ASML",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.662808
+            },
+            {
+              "symbol": "CRM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.368237
+            },
+            {
+              "symbol": "ADBE",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.516388
+            },
+            {
+              "symbol": "ORCL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.242509
+            },
+            {
+              "symbol": "NOW",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.949667
+            },
+            {
+              "symbol": "SNOW",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.108179
+            },
+            {
+              "symbol": "PLTR",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 1.478947
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.671138
+            },
+            {
+              "symbol": "UBER",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.714862
+            },
+            {
+              "symbol": "SHOP",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 1.8471
+            },
+            {
+              "symbol": "XYZ",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 2.4789
+            },
+            {
+              "symbol": "PYPL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 1.16511
+            },
+            {
+              "symbol": "CSCO",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.034865
+            },
+            {
+              "symbol": "IBM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.011626
+            },
+            {
+              "symbol": "TXN",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.317013
+            },
+            {
+              "symbol": "AMAT",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.4329
+            },
+            {
+              "symbol": "LRCX",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.641804
+            },
+            {
+              "symbol": "KLAC",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.479421
+            },
+            {
+              "symbol": "SMCI",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.318068
+            },
+            {
+              "symbol": "PANW",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.536822
+            },
+            {
+              "symbol": "CRWD",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 3.247444
+            },
+            {
+              "symbol": "SNPS",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.862356
+            },
+            {
+              "symbol": "CDNS",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.966984
+            },
+            {
+              "symbol": "ADI",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.268732
+            },
+            {
+              "symbol": "MRVL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.802539
+            },
+            {
+              "symbol": "ANET",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.428564
+            }
+          ],
+          "strategy": {
+            "count": 39,
+            "winners": 0,
+            "losers": 0,
+            "profit_ratio": 0.0,
+            "win_rate": null,
+            "cumulative_return": 0.0,
+            "median_return": 0.0,
+            "annualized_return": 0.0,
+            "sharpe": 0.0,
+            "max_drawdown": 0.0,
+            "trades": 0,
+            "beat_benchmark": 3
+          },
+          "benchmark": {
+            "count": 39,
+            "winners": 36,
+            "losers": 3,
+            "profit_ratio": 0.923077,
+            "win_rate": null,
+            "cumulative_return": 0.901662,
+            "median_return": 0.641804,
+            "annualized_return": 1.706194,
+            "sharpe": 1.279717,
+            "max_drawdown": -0.368003,
+            "trades": 0
+          }
+        },
+        "2021": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.346482
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.524769
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.652958
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.023768
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.23133
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 1.254821
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.497556
+            },
+            {
+              "symbol": "AMD",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.569076
+            },
+            {
+              "symbol": "INTC",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.060525
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.564849
+            },
+            {
+              "symbol": "QCOM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.222532
+            },
+            {
+              "symbol": "MU",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.242081
+            },
+            {
+              "symbol": "TSM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.120947
+            },
+            {
+              "symbol": "ASML",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.641331
+            },
+            {
+              "symbol": "CRM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.142003
+            },
+            {
+              "symbol": "ADBE",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.133848
+            },
+            {
+              "symbol": "ORCL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.368894
+            },
+            {
+              "symbol": "NOW",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.179278
+            },
+            {
+              "symbol": "SNOW",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.203802
+            },
+            {
+              "symbol": "PLTR",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.226752
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.114123
+            },
+            {
+              "symbol": "UBER",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.177843
+            },
+            {
+              "symbol": "SHOP",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.216829
+            },
+            {
+              "symbol": "XYZ",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.257903
+            },
+            {
+              "symbol": "PYPL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.194791
+            },
+            {
+              "symbol": "CSCO",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.457613
+            },
+            {
+              "symbol": "IBM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.166528
+            },
+            {
+              "symbol": "TXN",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.17531
+            },
+            {
+              "symbol": "AMAT",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.836369
+            },
+            {
+              "symbol": "LRCX",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.536627
+            },
+            {
+              "symbol": "KLAC",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.680472
+            },
+            {
+              "symbol": "SMCI",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.388187
+            },
+            {
+              "symbol": "PANW",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.566617
+            },
+            {
+              "symbol": "CRWD",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.033377
+            },
+            {
+              "symbol": "SNPS",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.421463
+            },
+            {
+              "symbol": "CDNS",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.365902
+            },
+            {
+              "symbol": "ADI",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.20964
+            },
+            {
+              "symbol": "MRVL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.84623
+            },
+            {
+              "symbol": "ANET",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.978869
+            }
+          ],
+          "strategy": {
+            "count": 39,
+            "winners": 0,
+            "losers": 0,
+            "profit_ratio": 0.0,
+            "win_rate": null,
+            "cumulative_return": 0.0,
+            "median_return": 0.0,
+            "annualized_return": 0.0,
+            "sharpe": 0.0,
+            "max_drawdown": 0.0,
+            "trades": 0,
+            "beat_benchmark": 5
+          },
+          "benchmark": {
+            "count": 39,
+            "winners": 34,
+            "losers": 5,
+            "profit_ratio": 0.871795,
+            "win_rate": null,
+            "cumulative_return": 0.33464,
+            "median_return": 0.242081,
+            "annualized_return": 0.33464,
+            "sharpe": 0.97444,
+            "max_drawdown": -0.233709,
+            "trades": 0
+          }
+        },
+        "2022": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.264042
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.280248
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.390896
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.496152
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.642218
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.502646
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.650315
+            },
+            {
+              "symbol": "AMD",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.549896
+            },
+            {
+              "symbol": "INTC",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.466427
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.132697
+            },
+            {
+              "symbol": "QCOM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.385826
+            },
+            {
+              "symbol": "MU",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.459297
+            },
+            {
+              "symbol": "TSM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.367485
+            },
+            {
+              "symbol": "ASML",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.30523
+            },
+            {
+              "symbol": "CRM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.478259
+            },
+            {
+              "symbol": "ADBE",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.406535
+            },
+            {
+              "symbol": "ORCL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.046459
+            },
+            {
+              "symbol": "NOW",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.401843
+            },
+            {
+              "symbol": "SNOW",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.576266
+            },
+            {
+              "symbol": "PLTR",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.647446
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.510524
+            },
+            {
+              "symbol": "UBER",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.410208
+            },
+            {
+              "symbol": "SHOP",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.748002
+            },
+            {
+              "symbol": "XYZ",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.610922
+            },
+            {
+              "symbol": "PYPL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.622335
+            },
+            {
+              "symbol": "CSCO",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.224627
+            },
+            {
+              "symbol": "IBM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.10637
+            },
+            {
+              "symbol": "TXN",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.098574
+            },
+            {
+              "symbol": "AMAT",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.375426
+            },
+            {
+              "symbol": "LRCX",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.407231
+            },
+            {
+              "symbol": "KLAC",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.111985
+            },
+            {
+              "symbol": "SMCI",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.868032
+            },
+            {
+              "symbol": "PANW",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.248114
+            },
+            {
+              "symbol": "CRWD",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.485763
+            },
+            {
+              "symbol": "SNPS",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.133541
+            },
+            {
+              "symbol": "CDNS",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.137966
+            },
+            {
+              "symbol": "ADI",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.049123
+            },
+            {
+              "symbol": "MRVL",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.574844
+            },
+            {
+              "symbol": "ANET",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.155826
+            }
+          ],
+          "strategy": {
+            "count": 39,
+            "winners": 0,
+            "losers": 0,
+            "profit_ratio": 0.0,
+            "win_rate": null,
+            "cumulative_return": 0.0,
+            "median_return": 0.0,
+            "annualized_return": 0.0,
+            "sharpe": 0.0,
+            "max_drawdown": 0.0,
+            "trades": 0,
+            "beat_benchmark": 37
+          },
+          "benchmark": {
+            "count": 39,
+            "winners": 2,
+            "losers": 37,
+            "profit_ratio": 0.051282,
+            "win_rate": null,
+            "cumulative_return": -0.343097,
+            "median_return": -0.401843,
+            "annualized_return": -0.343989,
+            "sharpe": -0.627445,
+            "max_drawdown": -0.48805,
+            "trades": 0
+          }
+        },
+        "2023": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": 0.051566,
+              "benchmark_cumulative_return": 0.49008
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": 0.02879,
+              "benchmark_cumulative_return": 0.581913
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": 0.039048,
+              "benchmark_cumulative_return": 0.583248
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": 0.042042,
+              "benchmark_cumulative_return": 0.80881
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": 0.050177,
+              "benchmark_cumulative_return": 1.941333
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": 0.076651,
+              "benchmark_cumulative_return": 2.390172
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": 0.001616,
+              "benchmark_cumulative_return": 1.017211
+            },
+            {
+              "symbol": "AMD",
+              "cumulative_return": 0.241718,
+              "benchmark_cumulative_return": 1.2759
+            },
+            {
+              "symbol": "INTC",
+              "cumulative_return": 0.044543,
+              "benchmark_cumulative_return": 0.945624
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": 0.103865,
+              "benchmark_cumulative_return": 1.041842
+            },
+            {
+              "symbol": "QCOM",
+              "cumulative_return": 0.117301,
+              "benchmark_cumulative_return": 0.350736
+            },
+            {
+              "symbol": "MU",
+              "cumulative_return": 0.164287,
+              "benchmark_cumulative_return": 0.719312
+            },
+            {
+              "symbol": "TSM",
+              "cumulative_return": 0.123304,
+              "benchmark_cumulative_return": 0.423297
+            },
+            {
+              "symbol": "ASML",
+              "cumulative_return": 0.09463,
+              "benchmark_cumulative_return": 0.399032
+            },
+            {
+              "symbol": "CRM",
+              "cumulative_return": 0.056728,
+              "benchmark_cumulative_return": 0.984614
+            },
+            {
+              "symbol": "ADBE",
+              "cumulative_return": 0.019554,
+              "benchmark_cumulative_return": 0.772799
+            },
+            {
+              "symbol": "ORCL",
+              "cumulative_return": -0.059562,
+              "benchmark_cumulative_return": 0.309416
+            },
+            {
+              "symbol": "NOW",
+              "cumulative_return": 0.132378,
+              "benchmark_cumulative_return": 0.819584
+            },
+            {
+              "symbol": "SNOW",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.386373
+            },
+            {
+              "symbol": "PLTR",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 1.674455
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": -0.019899,
+              "benchmark_cumulative_return": 0.651112
+            },
+            {
+              "symbol": "UBER",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 1.489689
+            },
+            {
+              "symbol": "SHOP",
+              "cumulative_return": 0.124906,
+              "benchmark_cumulative_return": 1.24431
+            },
+            {
+              "symbol": "XYZ",
+              "cumulative_return": 0.220004,
+              "benchmark_cumulative_return": 0.230904
+            },
+            {
+              "symbol": "PYPL",
+              "cumulative_return": 0.085574,
+              "benchmark_cumulative_return": -0.137742
+            },
+            {
+              "symbol": "CSCO",
+              "cumulative_return": -0.057168,
+              "benchmark_cumulative_return": 0.092959
+            },
+            {
+              "symbol": "IBM",
+              "cumulative_return": 0.072832,
+              "benchmark_cumulative_return": 0.218488
+            },
+            {
+              "symbol": "TXN",
+              "cumulative_return": 0.069015,
+              "benchmark_cumulative_return": 0.06409
+            },
+            {
+              "symbol": "AMAT",
+              "cumulative_return": 0.150448,
+              "benchmark_cumulative_return": 0.679731
+            },
+            {
+              "symbol": "LRCX",
+              "cumulative_return": 0.23448,
+              "benchmark_cumulative_return": 0.88629
+            },
+            {
+              "symbol": "KLAC",
+              "cumulative_return": 0.128908,
+              "benchmark_cumulative_return": 0.560494
+            },
+            {
+              "symbol": "ARM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.181711
+            },
+            {
+              "symbol": "SMCI",
+              "cumulative_return": 0.00121,
+              "benchmark_cumulative_return": 2.462363
+            },
+            {
+              "symbol": "PANW",
+              "cumulative_return": 0.187123,
+              "benchmark_cumulative_return": 1.113229
+            },
+            {
+              "symbol": "CRWD",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 1.424922
+            },
+            {
+              "symbol": "SNPS",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.612672
+            },
+            {
+              "symbol": "CDNS",
+              "cumulative_return": 0.097765,
+              "benchmark_cumulative_return": 0.69553
+            },
+            {
+              "symbol": "ADI",
+              "cumulative_return": 0.109871,
+              "benchmark_cumulative_return": 0.233562
+            },
+            {
+              "symbol": "MRVL",
+              "cumulative_return": 0.022752,
+              "benchmark_cumulative_return": 0.636816
+            },
+            {
+              "symbol": "ANET",
+              "cumulative_return": 0.100887,
+              "benchmark_cumulative_return": 0.94075
+            }
+          ],
+          "strategy": {
+            "count": 40,
+            "winners": 31,
+            "losers": 3,
+            "profit_ratio": 0.775,
+            "win_rate": 0.722581,
+            "cumulative_return": 0.071434,
+            "median_return": 0.062871,
+            "annualized_return": 0.072046,
+            "sharpe": 0.87474,
+            "max_drawdown": -0.039765,
+            "trades": 155,
+            "beat_benchmark": 2
+          },
+          "benchmark": {
+            "count": 40,
+            "winners": 39,
+            "losers": 1,
+            "profit_ratio": 0.975,
+            "win_rate": null,
+            "cumulative_return": 0.804941,
+            "median_return": 0.687631,
+            "annualized_return": 0.828425,
+            "sharpe": 1.659034,
+            "max_drawdown": -0.21785,
+            "trades": 0
+          }
+        },
+        "2024": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": 0.184052,
+              "benchmark_cumulative_return": 0.307053
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": 0.032234,
+              "benchmark_cumulative_return": 0.129273
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": 0.349834,
+              "benchmark_cumulative_return": 0.360056
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": 0.336131,
+              "benchmark_cumulative_return": 0.443925
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": 0.224403,
+              "benchmark_cumulative_return": 0.660489
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": 0.59921,
+              "benchmark_cumulative_return": 1.712493
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": 0.559138,
+              "benchmark_cumulative_return": 0.625241
+            },
+            {
+              "symbol": "AMD",
+              "cumulative_return": -0.127124,
+              "benchmark_cumulative_return": -0.180585
+            },
+            {
+              "symbol": "INTC",
+              "cumulative_return": -0.227857,
+              "benchmark_cumulative_return": -0.595651
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": 1.074374,
+              "benchmark_cumulative_return": 1.104929
+            },
+            {
+              "symbol": "QCOM",
+              "cumulative_return": -0.109086,
+              "benchmark_cumulative_return": 0.083104
+            },
+            {
+              "symbol": "MU",
+              "cumulative_return": 0.120897,
+              "benchmark_cumulative_return": -0.009614
+            },
+            {
+              "symbol": "TSM",
+              "cumulative_return": 0.335704,
+              "benchmark_cumulative_return": 0.925825
+            },
+            {
+              "symbol": "ASML",
+              "cumulative_return": 0.29369,
+              "benchmark_cumulative_return": -0.076991
+            },
+            {
+              "symbol": "CRM",
+              "cumulative_return": 0.602582,
+              "benchmark_cumulative_return": 0.277637
+            },
+            {
+              "symbol": "ADBE",
+              "cumulative_return": 0.088819,
+              "benchmark_cumulative_return": -0.254643
+            },
+            {
+              "symbol": "ORCL",
+              "cumulative_return": 0.260947,
+              "benchmark_cumulative_return": 0.599904
+            },
+            {
+              "symbol": "NOW",
+              "cumulative_return": 0.542894,
+              "benchmark_cumulative_return": 0.500545
+            },
+            {
+              "symbol": "SNOW",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": -0.22407
+            },
+            {
+              "symbol": "PLTR",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 3.404776
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": 0.089855,
+              "benchmark_cumulative_return": 0.830677
+            },
+            {
+              "symbol": "UBER",
+              "cumulative_return": -0.078779,
+              "benchmark_cumulative_return": -0.020302
+            },
+            {
+              "symbol": "SHOP",
+              "cumulative_return": 0.341443,
+              "benchmark_cumulative_return": 0.364955
+            },
+            {
+              "symbol": "XYZ",
+              "cumulative_return": 0.104885,
+              "benchmark_cumulative_return": 0.098772
+            },
+            {
+              "symbol": "PYPL",
+              "cumulative_return": 0.264263,
+              "benchmark_cumulative_return": 0.389839
+            },
+            {
+              "symbol": "CSCO",
+              "cumulative_return": 0.102747,
+              "benchmark_cumulative_return": 0.209956
+            },
+            {
+              "symbol": "IBM",
+              "cumulative_return": 0.276545,
+              "benchmark_cumulative_return": 0.392705
+            },
+            {
+              "symbol": "TXN",
+              "cumulative_return": 0.349749,
+              "benchmark_cumulative_return": 0.131364
+            },
+            {
+              "symbol": "AMAT",
+              "cumulative_return": -0.146467,
+              "benchmark_cumulative_return": 0.011291
+            },
+            {
+              "symbol": "LRCX",
+              "cumulative_return": 0.084389,
+              "benchmark_cumulative_return": -0.068448
+            },
+            {
+              "symbol": "KLAC",
+              "cumulative_return": 0.277015,
+              "benchmark_cumulative_return": 0.093621
+            },
+            {
+              "symbol": "ARM",
+              "cumulative_return": 0.0,
+              "benchmark_cumulative_return": 0.641626
+            },
+            {
+              "symbol": "SMCI",
+              "cumulative_return": -0.423931,
+              "benchmark_cumulative_return": 0.072258
+            },
+            {
+              "symbol": "PANW",
+              "cumulative_return": 0.655316,
+              "benchmark_cumulative_return": 0.234129
+            },
+            {
+              "symbol": "CRWD",
+              "cumulative_return": 0.316868,
+              "benchmark_cumulative_return": 0.340122
+            },
+            {
+              "symbol": "SNPS",
+              "cumulative_return": 0.192687,
+              "benchmark_cumulative_return": -0.057389
+            },
+            {
+              "symbol": "CDNS",
+              "cumulative_return": 0.036063,
+              "benchmark_cumulative_return": 0.103132
+            },
+            {
+              "symbol": "ADI",
+              "cumulative_return": 0.241516,
+              "benchmark_cumulative_return": 0.088155
+            },
+            {
+              "symbol": "MRVL",
+              "cumulative_return": 1.188693,
+              "benchmark_cumulative_return": 0.837897
+            },
+            {
+              "symbol": "ANET",
+              "cumulative_return": 0.388538,
+              "benchmark_cumulative_return": 0.877288
+            }
+          ],
+          "strategy": {
+            "count": 40,
+            "winners": 31,
+            "losers": 6,
+            "profit_ratio": 0.775,
+            "win_rate": 0.587274,
+            "cumulative_return": 0.235056,
+            "median_return": 0.232959,
+            "annualized_return": 0.235056,
+            "sharpe": 0.798028,
+            "max_drawdown": -0.188087,
+            "trades": 1163,
+            "beat_benchmark": 16
+          },
+          "benchmark": {
+            "count": 40,
+            "winners": 31,
+            "losers": 9,
+            "profit_ratio": 0.775,
+            "win_rate": null,
+            "cumulative_return": 0.384134,
+            "median_return": 0.255883,
+            "annualized_return": 0.384134,
+            "sharpe": 0.839096,
+            "max_drawdown": -0.303875,
+            "trades": 0
+          }
+        },
+        "2025": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": 0.104537,
+              "benchmark_cumulative_return": 0.090526
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": 0.068457,
+              "benchmark_cumulative_return": 0.155842
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": 0.400728,
+              "benchmark_cumulative_return": 0.659936
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": 0.176937,
+              "benchmark_cumulative_return": 0.052099
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": -0.14443,
+              "benchmark_cumulative_return": 0.130931
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": 0.013189,
+              "benchmark_cumulative_return": 0.389165
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": -0.032931,
+              "benchmark_cumulative_return": 0.113609
+            },
+            {
+              "symbol": "AMD",
+              "cumulative_return": 0.497253,
+              "benchmark_cumulative_return": 0.772994
+            },
+            {
+              "symbol": "INTC",
+              "cumulative_return": 0.033034,
+              "benchmark_cumulative_return": 0.840399
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": 0.609866,
+              "benchmark_cumulative_return": 0.50633
+            },
+            {
+              "symbol": "QCOM",
+              "cumulative_return": 0.193532,
+              "benchmark_cumulative_return": 0.138387
+            },
+            {
+              "symbol": "MU",
+              "cumulative_return": 0.431789,
+              "benchmark_cumulative_return": 2.402393
+            },
+            {
+              "symbol": "TSM",
+              "cumulative_return": 0.184399,
+              "benchmark_cumulative_return": 0.559495
+            },
+            {
+              "symbol": "ASML",
+              "cumulative_return": 0.46413,
+              "benchmark_cumulative_return": 0.558382
+            },
+            {
+              "symbol": "CRM",
+              "cumulative_return": -0.149856,
+              "benchmark_cumulative_return": -0.202466
+            },
+            {
+              "symbol": "ADBE",
+              "cumulative_return": -0.169287,
+              "benchmark_cumulative_return": -0.21294
+            },
+            {
+              "symbol": "ORCL",
+              "cumulative_return": -0.143709,
+              "benchmark_cumulative_return": 0.181281
+            },
+            {
+              "symbol": "NOW",
+              "cumulative_return": -0.365773,
+              "benchmark_cumulative_return": -0.277487
+            },
+            {
+              "symbol": "SNOW",
+              "cumulative_return": 0.122812,
+              "benchmark_cumulative_return": 0.420633
+            },
+            {
+              "symbol": "PLTR",
+              "cumulative_return": 0.319811,
+              "benchmark_cumulative_return": 1.350258
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": 0.1423,
+              "benchmark_cumulative_return": 0.051923
+            },
+            {
+              "symbol": "UBER",
+              "cumulative_return": 0.215596,
+              "benchmark_cumulative_return": 0.354609
+            },
+            {
+              "symbol": "SHOP",
+              "cumulative_return": 0.765128,
+              "benchmark_cumulative_return": 0.513872
+            },
+            {
+              "symbol": "XYZ",
+              "cumulative_return": -0.058426,
+              "benchmark_cumulative_return": -0.234145
+            },
+            {
+              "symbol": "PYPL",
+              "cumulative_return": -0.307381,
+              "benchmark_cumulative_return": -0.314412
+            },
+            {
+              "symbol": "CSCO",
+              "cumulative_return": 0.315868,
+              "benchmark_cumulative_return": 0.334737
+            },
+            {
+              "symbol": "IBM",
+              "cumulative_return": 0.224595,
+              "benchmark_cumulative_return": 0.382265
+            },
+            {
+              "symbol": "TXN",
+              "cumulative_return": -0.029448,
+              "benchmark_cumulative_return": -0.04473
+            },
+            {
+              "symbol": "AMAT",
+              "cumulative_return": 0.270671,
+              "benchmark_cumulative_return": 0.596031
+            },
+            {
+              "symbol": "LRCX",
+              "cumulative_return": 0.735859,
+              "benchmark_cumulative_return": 1.391633
+            },
+            {
+              "symbol": "KLAC",
+              "cumulative_return": 0.880615,
+              "benchmark_cumulative_return": 0.944813
+            },
+            {
+              "symbol": "ARM",
+              "cumulative_return": -0.209416,
+              "benchmark_cumulative_return": -0.113894
+            },
+            {
+              "symbol": "SMCI",
+              "cumulative_return": -0.130135,
+              "benchmark_cumulative_return": -0.039698
+            },
+            {
+              "symbol": "PANW",
+              "cumulative_return": 0.009111,
+              "benchmark_cumulative_return": 0.01231
+            },
+            {
+              "symbol": "CRWD",
+              "cumulative_return": 0.738049,
+              "benchmark_cumulative_return": 0.370002
+            },
+            {
+              "symbol": "SNPS",
+              "cumulative_return": 0.22189,
+              "benchmark_cumulative_return": -0.032223
+            },
+            {
+              "symbol": "CDNS",
+              "cumulative_return": -0.125386,
+              "benchmark_cumulative_return": 0.040338
+            },
+            {
+              "symbol": "ADI",
+              "cumulative_return": 0.018323,
+              "benchmark_cumulative_return": 0.297527
+            },
+            {
+              "symbol": "MRVL",
+              "cumulative_return": 0.42199,
+              "benchmark_cumulative_return": -0.228195
+            },
+            {
+              "symbol": "ANET",
+              "cumulative_return": 0.112652,
+              "benchmark_cumulative_return": 0.18547
+            }
+          ],
+          "strategy": {
+            "count": 40,
+            "winners": 28,
+            "losers": 12,
+            "profit_ratio": 0.7,
+            "win_rate": 0.595408,
+            "cumulative_return": 0.170674,
+            "median_return": 0.132556,
+            "annualized_return": 0.172458,
+            "sharpe": 0.485825,
+            "max_drawdown": -0.284179,
+            "trades": 1263,
+            "beat_benchmark": 14
+          },
+          "benchmark": {
+            "count": 40,
+            "winners": 30,
+            "losers": 10,
+            "profit_ratio": 0.75,
+            "win_rate": null,
+            "cumulative_return": 0.32745,
+            "median_return": 0.183375,
+            "annualized_return": 0.331185,
+            "sharpe": 0.700915,
+            "max_drawdown": -0.35414,
+            "trades": 0
+          }
+        },
+        "2026": {
+          "symbols": [
+            {
+              "symbol": "AAPL",
+              "cumulative_return": 0.276755,
+              "benchmark_cumulative_return": 0.264966
+            },
+            {
+              "symbol": "MSFT",
+              "cumulative_return": 0.091928,
+              "benchmark_cumulative_return": 0.110533
+            },
+            {
+              "symbol": "GOOGL",
+              "cumulative_return": -0.193975,
+              "benchmark_cumulative_return": 0.112831
+            },
+            {
+              "symbol": "AMZN",
+              "cumulative_return": -0.090668,
+              "benchmark_cumulative_return": 0.100771
+            },
+            {
+              "symbol": "META",
+              "cumulative_return": -0.236368,
+              "benchmark_cumulative_return": 0.120209
+            },
+            {
+              "symbol": "NVDA",
+              "cumulative_return": 0.25929,
+              "benchmark_cumulative_return": 0.189372
+            },
+            {
+              "symbol": "TSLA",
+              "cumulative_return": 0.022214,
+              "benchmark_cumulative_return": -0.183581
+            },
+            {
+              "symbol": "AMD",
+              "cumulative_return": 0.490367,
+              "benchmark_cumulative_return": 1.66539
+            },
+            {
+              "symbol": "INTC",
+              "cumulative_return": 0.191341,
+              "benchmark_cumulative_return": 1.659079
+            },
+            {
+              "symbol": "AVGO",
+              "cumulative_return": -0.010764,
+              "benchmark_cumulative_return": 0.005947
+            },
+            {
+              "symbol": "QCOM",
+              "cumulative_return": 0.071905,
+              "benchmark_cumulative_return": 0.024957
+            },
+            {
+              "symbol": "MU",
+              "cumulative_return": 0.583134,
+              "benchmark_cumulative_return": 2.205209
+            },
+            {
+              "symbol": "TSM",
+              "cumulative_return": 0.318234,
+              "benchmark_cumulative_return": 0.426111
+            },
+            {
+              "symbol": "ASML",
+              "cumulative_return": -0.011666,
+              "benchmark_cumulative_return": 0.549667
+            },
+            {
+              "symbol": "CRM",
+              "cumulative_return": -0.212572,
+              "benchmark_cumulative_return": -0.103213
+            },
+            {
+              "symbol": "ADBE",
+              "cumulative_return": 0.03419,
+              "benchmark_cumulative_return": -0.312323
+            },
+            {
+              "symbol": "ORCL",
+              "cumulative_return": -0.10865,
+              "benchmark_cumulative_return": -0.321242
+            },
+            {
+              "symbol": "NOW",
+              "cumulative_return": -0.113068,
+              "benchmark_cumulative_return": -0.086233
+            },
+            {
+              "symbol": "SNOW",
+              "cumulative_return": -0.056421,
+              "benchmark_cumulative_return": 0.527535
+            },
+            {
+              "symbol": "PLTR",
+              "cumulative_return": 0.293781,
+              "benchmark_cumulative_return": 0.130633
+            },
+            {
+              "symbol": "NFLX",
+              "cumulative_return": -0.140115,
+              "benchmark_cumulative_return": -0.247334
+            },
+            {
+              "symbol": "UBER",
+              "cumulative_return": -0.128551,
+              "benchmark_cumulative_return": -0.152001
+            },
+            {
+              "symbol": "SHOP",
+              "cumulative_return": 0.370123,
+              "benchmark_cumulative_return": 0.071628
+            },
+            {
+              "symbol": "XYZ",
+              "cumulative_return": 0.021346,
+              "benchmark_cumulative_return": 0.16531
+            },
+            {
+              "symbol": "PYPL",
+              "cumulative_return": -0.237309,
+              "benchmark_cumulative_return": -0.030579
+            },
+            {
+              "symbol": "CSCO",
+              "cumulative_return": 0.289218,
+              "benchmark_cumulative_return": 0.502581
+            },
+            {
+              "symbol": "IBM",
+              "cumulative_return": -0.397729,
+              "benchmark_cumulative_return": -0.215009
+            },
+            {
+              "symbol": "TXN",
+              "cumulative_return": 0.534772,
+              "benchmark_cumulative_return": 0.644884
+            },
+            {
+              "symbol": "AMAT",
+              "cumulative_return": 0.590006,
+              "benchmark_cumulative_return": 0.744121
+            },
+            {
+              "symbol": "LRCX",
+              "cumulative_return": 0.386988,
+              "benchmark_cumulative_return": 0.681105
+            },
+            {
+              "symbol": "KLAC",
+              "cumulative_return": 0.59737,
+              "benchmark_cumulative_return": 0.477051
+            },
+            {
+              "symbol": "ARM",
+              "cumulative_return": 1.35334,
+              "benchmark_cumulative_return": 1.177385
+            },
+            {
+              "symbol": "SMCI",
+              "cumulative_return": 0.105081,
+              "benchmark_cumulative_return": 0.222412
+            },
+            {
+              "symbol": "PANW",
+              "cumulative_return": -0.040581,
+              "benchmark_cumulative_return": 1.036048
+            },
+            {
+              "symbol": "CRWD",
+              "cumulative_return": 0.445251,
+              "benchmark_cumulative_return": 1.127229
+            },
+            {
+              "symbol": "SNPS",
+              "cumulative_return": 0.268468,
+              "benchmark_cumulative_return": 0.021736
+            },
+            {
+              "symbol": "CDNS",
+              "cumulative_return": -0.074768,
+              "benchmark_cumulative_return": 0.054002
+            },
+            {
+              "symbol": "ADI",
+              "cumulative_return": 0.039175,
+              "benchmark_cumulative_return": 0.501399
+            },
+            {
+              "symbol": "MRVL",
+              "cumulative_return": 1.216068,
+              "benchmark_cumulative_return": 1.891193
+            },
+            {
+              "symbol": "ANET",
+              "cumulative_return": 0.332397,
+              "benchmark_cumulative_return": 0.491414
+            }
+          ],
+          "strategy": {
+            "count": 40,
+            "winners": 25,
+            "losers": 15,
+            "profit_ratio": 0.625,
+            "win_rate": 0.570273,
+            "cumulative_return": 0.178238,
+            "median_return": 0.081917,
+            "annualized_return": 0.252811,
+            "sharpe": 0.527177,
+            "max_drawdown": -0.26583,
+            "trades": 989,
+            "beat_benchmark": 13
+          },
+          "benchmark": {
+            "count": 40,
+            "winners": 31,
+            "losers": 9,
+            "profit_ratio": 0.775,
+            "win_rate": null,
+            "cumulative_return": 0.40628,
+            "median_return": 0.177341,
+            "annualized_return": 0.594517,
+            "sharpe": 0.802603,
+            "max_drawdown": -0.3374,
+            "trades": 0
+          }
+        }
+      }
     }
   ]
 }
