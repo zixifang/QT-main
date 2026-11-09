@@ -1,0 +1,7 @@
+dataset_id,symbols,json_files,algorithms,algorithm_ids
+tech-us-10y,40,41,4,rsi|macd_trend|momentum_12_1|donchian_breakout
+manufacturing-us-10y,46,47,4,rsi|macd_trend|momentum_12_1|donchian_breakout
+healthcare-us-10y,26,27,5,macd|random_forest|macd_trend|momentum_12_1|donchian_breakout
+us-agri,28,29,4,mom_rotation|macd_trend|momentum_12_1|donchian_breakout
+nasdaq100,100,102,10,enhance-g1|enhance-g2|enhance-g3|enhance-g4|enhance-g5|enhance-g6|enhance-g7|macd_trend|momentum_12_1|donchian_breakout
+nasdaq-xbrl,94,96,5,fscore|transformer|macd_trend|momentum_12_1|donchian_breakout
