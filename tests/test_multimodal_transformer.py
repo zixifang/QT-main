@@ -35,6 +35,7 @@ if torch is not None:
         run_epoch,
         split_indices,
     )
+    from algorithms.transformer_splits import ratio_train_end
 
 
 def _prices(dates: pd.DatetimeIndex, n_stocks: int = 3) -> pd.DataFrame:
@@ -269,6 +270,25 @@ class MultimodalTransformerTest(unittest.TestCase):
         self.assertTrue(val_ends)
         self.assertTrue(all(end > 20 and end + dataset.horizon <= 35 for end in val_ends))
         self.assertTrue(all(end + dataset.horizon <= 20 for end in train_ends))
+        test_ends = {dataset.samples[index][1] for index in parts["test"]}
+        self.assertTrue(test_ends)
+        self.assertTrue(all(end > 35 for end in test_ends))
+        self.assertTrue(test_ends.isdisjoint(train_ends))
+        self.assertTrue(test_ends.isdisjoint(val_ends))
+
+    def test_ratio_split_keeps_last_fifth_for_test(self) -> None:
+        dates = pd.bdate_range("2021-10-26", periods=200)
+        window, horizon = 10, 3
+        cut = ratio_train_end(pd.DatetimeIndex(dates), window, horizon, 0.8)
+        dataset = StockMultimodalDataset(_prices(dates), _factors(dates), window=window, horizon=horizon)
+        parts = split_indices(dataset, train_end=cut, val_end=cut)
+        self.assertEqual(parts["val"], [])
+        train_ends = {dataset.samples[index][1] for index in parts["train"]}
+        test_ends = {dataset.samples[index][1] for index in parts["test"]}
+        self.assertLess(max(train_ends), min(test_ends))
+        possible = len(dates) - horizon - window + 1
+        self.assertEqual(len(test_ends), int(round(possible * 0.2)))
+        self.assertGreater(len(train_ends) / possible, 0.7)
 
     def test_average_rank_and_soft_spearman_loss(self) -> None:
         ranks = _average_rank(torch.tensor([10.0, 30.0, 20.0, 20.0]))

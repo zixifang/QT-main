@@ -35,7 +35,14 @@ TECH_ORDER = [
     "PANW", "CRWD", "SNPS", "CDNS", "ADI", "MRVL", "ANET",
 ]
 # 合并文件不是单只股票，不能按一只标的做 RSI。
-SKIP_STEMS = {"tech_us_10y", "manufacturing_us_10y", "nasdaq100"}
+SKIP_STEMS = {
+    "tech_us_10y",
+    "manufacturing_us_10y",
+    "healthcare_us_10y",
+    "us_agri_stocks_10y",
+    "nasdaq100",
+    "quality",
+}
 SKIP_FOLDERS = {"nasdaq100"}
 DATASETS = {
     "Equity-Portfolio-Management-master": {
@@ -47,6 +54,14 @@ DATASETS = {
         "dataset_id": "tech-us-10y",
         "name": "科技美股近十年日线",
         "symbol_order": TECH_ORDER,
+    },
+    "healthcare-us-10y": {
+        "dataset_id": "healthcare-us-10y",
+        "name": "美国医疗健康近十年日线",
+    },
+    "us-agri": {
+        "dataset_id": "us-agri",
+        "name": "美国农业股（28 只，5 年）",
     },
     "manufacturing-us-10y": {
         "dataset_id": "manufacturing-us-10y",
@@ -140,15 +155,23 @@ def load_frames(data_dir: Path, symbol_order: list[str] | None = None) -> dict[s
 
 
 def export_dataset(data_dir: Path, dataset_id: str, dataset_name: str, symbol_order: list[str] | None = None) -> Path | None:
+    """写入 RSI。目录里已有的其他算法保留，同名的 RSI 用这次的结果覆盖。"""
     frames = load_frames(data_dir, symbol_order)
     if not frames:
         return None
     out_dir = OUT_ROOT / dataset_id
     out_dir.mkdir(parents=True, exist_ok=True)
+    index_path = out_dir / "index.json"
+    existing_index = json.loads(index_path.read_text(encoding="utf-8")) if index_path.exists() else None
+    if existing_index and existing_index.get("symbols"):
+        allowed = set(existing_index["symbols"])
+        frames = {symbol: frame for symbol, frame in frames.items() if symbol in allowed}
+    if not frames:
+        return None
     by_symbol: dict[str, dict[str, dict]] = {}
     for symbol, frame in frames.items():
         payload, yearly = _symbol_payload(symbol, frame, dataset_id)
-        _write_json(out_dir / f"{symbol}.json", payload)
+        _merge_rsi_symbol(out_dir / f"{symbol}.json", payload, yearly)
         for year, stats in yearly.items():
             by_symbol.setdefault(year, {})
             by_symbol[year][symbol] = stats
@@ -157,17 +180,47 @@ def export_dataset(data_dir: Path, dataset_id: str, dataset_name: str, symbol_or
         year: _overview_year(frames, year_rows)
         for year, year_rows in sorted(by_symbol.items())
     }
-    index = {
-        "schema_version": SCHEMA_VERSION,
-        "dataset_id": dataset_id,
-        "name": dataset_name,
-        "source": data_dir.relative_to(ROOT).as_posix(),
-        "price_field": PRICE_FIELD,
-        "symbols": list(frames),
-        "algorithms": [algorithm],
-    }
-    _write_json(out_dir / "index.json", index)
+    if existing_index:
+        entries = [item for item in existing_index.get("algorithms") or [] if item.get("id") != ALGORITHM["id"]]
+        entries.append(algorithm)
+        existing_index["algorithms"] = entries
+        _write_json(index_path, existing_index)
+    else:
+        _write_json(
+            index_path,
+            {
+                "schema_version": SCHEMA_VERSION,
+                "dataset_id": dataset_id,
+                "name": dataset_name,
+                "source": data_dir.relative_to(ROOT).as_posix(),
+                "price_field": PRICE_FIELD,
+                "symbols": list(frames),
+                "algorithms": [algorithm],
+            },
+        )
     return out_dir
+
+
+def _merge_rsi_symbol(path: Path, payload: dict, yearly: dict[str, dict]) -> None:
+    entry = payload["algorithms"]["rsi"]
+    if not path.exists():
+        _write_json(path, payload)
+        return
+    current = json.loads(path.read_text(encoding="utf-8"))
+    dates = current.get("dates") or []
+    if dates != payload["dates"]:
+        close = pd.Series(current.get("close") or [], index=pd.to_datetime(dates), dtype="float64")
+        close = close.dropna()
+        if len(close) != len(dates):
+            raise ValueError(f"{payload['symbol']} 的收盘价和日期对不齐，不能写入 RSI")
+        close.index.name = "date"
+        entry, fresh_years = _rsi_from_close(close)
+        yearly.clear()
+        yearly.update(fresh_years)
+    if len(entry["equity"]) != len(dates):
+        raise ValueError(f"{payload['symbol']} 的 RSI 长度和行情日期不一致")
+    current.setdefault("algorithms", {})["rsi"] = entry
+    _write_json(path, current)
 
 
 def export_all(data_root: Path = DATA_ROOT) -> list[Path]:
@@ -195,16 +248,43 @@ def export_all(data_root: Path = DATA_ROOT) -> list[Path]:
     return written
 
 
-def _symbol_payload(symbol: str, frame: pd.DataFrame, dataset_id: str) -> tuple[dict, dict[str, dict]]:
-    close = prepare_close(frame.loc[:, ["date", PRICE_FIELD]].rename(columns={PRICE_FIELD: "close"}))
-    aligned = frame.set_index("date").reindex(close.index)
+def _rsi_from_close(close: pd.Series) -> tuple[dict, dict[str, dict]]:
     signal = rsi_position(close)
     indicator = compute_rsi(close)
     strategy = _performance(close, signal, FEE)
     benchmark = _performance(close, pd.Series(1.0, index=close.index), 0.0)
     yearly = _yearly_stats(strategy["frame"], benchmark["frame"])
-    dates = [timestamp.strftime("%Y-%m-%d") for timestamp in close.index]
     buy_dates, sell_dates = _trade_dates(close.index, strategy["position"])
+    entry = {
+        "id": "rsi",
+        "name": ALGORITHM["name"],
+        "note": ALGORITHM["note"],
+        "params": {
+            "period": RSI_PERIOD,
+            "oversold": RSI_OVERSOLD,
+            "overbought": RSI_OVERBOUGHT,
+            "fee": FEE,
+        },
+        "indicator": _series(indicator),
+        "signal": _series(signal),
+        "position": _series(strategy["position"]),
+        "buy_dates": buy_dates,
+        "sell_dates": sell_dates,
+        "equity": _series(strategy["equity"]),
+        "benchmark_equity": _series(benchmark["equity"]),
+        "stats": {
+            "strategy": _stats(strategy),
+            "benchmark": _stats(benchmark, hide_win_rate=True),
+        },
+    }
+    return entry, yearly
+
+
+def _symbol_payload(symbol: str, frame: pd.DataFrame, dataset_id: str) -> tuple[dict, dict[str, dict]]:
+    close = prepare_close(frame.loc[:, ["date", PRICE_FIELD]].rename(columns={PRICE_FIELD: "close"}))
+    aligned = frame.set_index("date").reindex(close.index)
+    entry, yearly = _rsi_from_close(close)
+    dates = [timestamp.strftime("%Y-%m-%d") for timestamp in close.index]
     return {
         "schema_version": SCHEMA_VERSION,
         "dataset_id": dataset_id,
@@ -216,30 +296,7 @@ def _symbol_payload(symbol: str, frame: pd.DataFrame, dataset_id: str) -> tuple[
         "low": _series(aligned.get("low")),
         "close": _series(close),
         "volume": _series(aligned.get("volume")),
-        "algorithms": {
-            "rsi": {
-                "id": "rsi",
-                "name": ALGORITHM["name"],
-                "note": ALGORITHM["note"],
-                "params": {
-                    "period": RSI_PERIOD,
-                    "oversold": RSI_OVERSOLD,
-                    "overbought": RSI_OVERBOUGHT,
-                    "fee": FEE,
-                },
-                "indicator": _series(indicator),
-                "signal": _series(signal),
-                "position": _series(strategy["position"]),
-                "buy_dates": buy_dates,
-                "sell_dates": sell_dates,
-                "equity": _series(strategy["equity"]),
-                "benchmark_equity": _series(benchmark["equity"]),
-                "stats": {
-                    "strategy": _stats(strategy),
-                    "benchmark": _stats(benchmark, hide_win_rate=True),
-                },
-            }
-        },
+        "algorithms": {"rsi": entry},
     }, yearly
 
 

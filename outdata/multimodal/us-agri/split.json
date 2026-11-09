@@ -1,0 +1,52 @@
+{
+  "train_end": "2025-10-24",
+  "val_end": "2025-10-24",
+  "window": 20,
+  "horizon": 5,
+  "announcement_lag": 0,
+  "form": "10-K",
+  "experiment": {
+    "train": {
+      "samples": 21783,
+      "start": "2021-11-22",
+      "end": "2024-12-27",
+      "days": 779
+    },
+    "val": {
+      "samples": 5488,
+      "start": "2025-01-07",
+      "end": "2025-10-17",
+      "days": 196
+    }
+  },
+  "test": {
+    "samples": 6888,
+    "start": "2025-10-27",
+    "end": "2026-10-19",
+    "days": 246
+  },
+  "embargo": {
+    "samples": 140,
+    "start": "2025-10-20",
+    "end": "2025-10-24",
+    "days": 5
+  },
+  "train": {
+    "samples": 21783,
+    "start": "2021-11-22",
+    "end": "2024-12-27",
+    "days": 779
+  },
+  "val": {
+    "samples": 5488,
+    "start": "2025-01-07",
+    "end": "2025-10-17",
+    "days": 196
+  },
+  "unused": {
+    "samples": 7028,
+    "start": "2025-10-20",
+    "end": "2026-10-19",
+    "days": 251
+  }
+}

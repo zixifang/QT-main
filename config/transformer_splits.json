@@ -1,0 +1,219 @@
+{
+  "window": 20,
+  "horizon": 5,
+  "train_end": "2022-12-30",
+  "val_end": "2024-12-31",
+  "experiment": "训练集加验证集。早停只用验证集。",
+  "test_rule": "决策日晚于验证截止日，且标签已在行情里。不参与训练，也不参与早停。",
+  "datasets": [
+    {
+      "id": "nasdaq-xbrl",
+      "name": "纳斯达克XBRL",
+      "price_start": "2015-01-02",
+      "price_end": "2026-10-16",
+      "symbols": 94,
+      "fundamentals": "10-K",
+      "experiment": {
+        "train": {
+          "samples": 144028,
+          "start": "2015-01-30",
+          "end": "2022-12-22",
+          "days": 1990
+        },
+        "val": {
+          "samples": 45403,
+          "start": "2023-01-03",
+          "end": "2024-12-23",
+          "days": 497
+        }
+      },
+      "test": {
+        "samples": 41637,
+        "start": "2025-01-02",
+        "end": "2026-10-09",
+        "days": 444
+      },
+      "embargo": {
+        "samples": 905,
+        "start": "2022-12-23",
+        "end": "2024-12-31",
+        "days": 10
+      }
+    },
+    {
+      "id": "nasdaq100",
+      "name": "纳斯达克100",
+      "price_start": "2015-01-02",
+      "price_end": "2026-10-16",
+      "symbols": 100,
+      "fundamentals": "缺失",
+      "experiment": {
+        "train": {
+          "samples": 158570,
+          "start": "2015-01-30",
+          "end": "2022-12-22",
+          "days": 1990
+        },
+        "val": {
+          "samples": 48784,
+          "start": "2023-01-03",
+          "end": "2024-12-23",
+          "days": 497
+        }
+      },
+      "test": {
+        "samples": 44327,
+        "start": "2025-01-02",
+        "end": "2026-10-09",
+        "days": 444
+      },
+      "embargo": {
+        "samples": 975,
+        "start": "2022-12-23",
+        "end": "2024-12-31",
+        "days": 10
+      }
+    },
+    {
+      "id": "tech-us-10y",
+      "name": "科技美股近十年日线",
+      "price_start": "2016-10-17",
+      "price_end": "2026-10-14",
+      "symbols": 40,
+      "fundamentals": "缺失",
+      "experiment": {
+        "train": {
+          "samples": 56747,
+          "start": "2016-11-11",
+          "end": "2022-12-22",
+          "days": 1539
+        },
+        "val": {
+          "samples": 19690,
+          "start": "2023-01-03",
+          "end": "2024-12-23",
+          "days": 497
+        }
+      },
+      "test": {
+        "samples": 17680,
+        "start": "2025-01-02",
+        "end": "2026-10-07",
+        "days": 442
+      },
+      "embargo": {
+        "samples": 395,
+        "start": "2022-12-23",
+        "end": "2024-12-31",
+        "days": 10
+      }
+    },
+    {
+      "id": "manufacturing-us-10y",
+      "name": "美国制造业近十年日线",
+      "price_start": "2016-10-17",
+      "price_end": "2026-10-14",
+      "symbols": 46,
+      "fundamentals": "缺失",
+      "experiment": {
+        "train": {
+          "samples": 67429,
+          "start": "2016-11-11",
+          "end": "2022-12-22",
+          "days": 1539
+        },
+        "val": {
+          "samples": 22538,
+          "start": "2023-01-03",
+          "end": "2024-12-23",
+          "days": 497
+        }
+      },
+      "test": {
+        "samples": 20332,
+        "start": "2025-01-02",
+        "end": "2026-10-07",
+        "days": 442
+      },
+      "embargo": {
+        "samples": 455,
+        "start": "2022-12-23",
+        "end": "2024-12-31",
+        "days": 10
+      }
+    },
+    {
+      "id": "healthcare-us-10y",
+      "name": "美国医疗健康近十年日线",
+      "price_start": "2016-10-21",
+      "price_end": "2026-10-20",
+      "symbols": 26,
+      "fundamentals": "缺失",
+      "experiment": {
+        "train": {
+          "samples": 39910,
+          "start": "2016-11-17",
+          "end": "2022-12-22",
+          "days": 1535
+        },
+        "val": {
+          "samples": 12922,
+          "start": "2023-01-03",
+          "end": "2024-12-23",
+          "days": 497
+        }
+      },
+      "test": {
+        "samples": 11596,
+        "start": "2025-01-02",
+        "end": "2026-10-13",
+        "days": 446
+      },
+      "embargo": {
+        "samples": 260,
+        "start": "2022-12-23",
+        "end": "2024-12-31",
+        "days": 10
+      }
+    },
+    {
+      "id": "us-agri",
+      "name": "美国农业股",
+      "price_start": "2021-10-26",
+      "price_end": "2026-10-26",
+      "symbols": 28,
+      "fundamentals": "缺失",
+      "experiment": {
+        "train": {
+          "samples": 27411,
+          "start": "2021-11-22",
+          "end": "2025-10-17",
+          "days": 980
+        },
+        "val": {
+          "samples": 0,
+          "start": "",
+          "end": "",
+          "days": 0
+        }
+      },
+      "test": {
+        "samples": 6888,
+        "start": "2025-10-27",
+        "end": "2026-10-19",
+        "days": 246
+      },
+      "embargo": {
+        "samples": 140,
+        "start": "2025-10-20",
+        "end": "2025-10-24",
+        "days": 5
+      },
+      "split": "ratio",
+      "train_ratio": 0.8,
+      "test_ratio": 0.2,
+      "train_end": "2025-10-24",
+      "note": "按决策日先后切，后20%为测试。标签跨过分界的交易日两边都不用，因此训练决策日略少于80%。没有单独的验证集。"
+    }
+  ]
+}

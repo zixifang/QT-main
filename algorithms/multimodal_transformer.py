@@ -446,6 +446,8 @@ def split_indices(
     训练样本的标签收盘价必须落在 train_end 当天或之前。
     决策日还在训练区间、但未来收益已经用到验证区间的样本，训练和验证都不用。
     验证样本同样要求标签落在 val_end 之内。
+    测试样本的决策日晚于 val_end，标签必须已经落在行情里。
+    决策日还在验证区间、但标签跨过 val_end 的样本不算测试，也不参与早停。
     """
     train_pos = _position_on_or_before(dataset.calendar, train_end)
     if val_end is None:
@@ -453,15 +455,19 @@ def split_indices(
     else:
         val_pos = _position_on_or_before(dataset.calendar, val_end)
     horizon = dataset.horizon
+    last = len(dataset.calendar) - 1
     train: list[int] = []
     val: list[int] = []
+    test: list[int] = []
     for index, (_, end) in enumerate(dataset.samples):
         label_pos = end + horizon
         if end <= train_pos and label_pos <= train_pos:
             train.append(index)
         elif end > train_pos and label_pos <= val_pos:
             val.append(index)
-    return {"train": train, "val": val}
+        elif end > val_pos and label_pos <= last:
+            test.append(index)
+    return {"train": train, "val": val, "test": test}
 
 
 class StockMultimodalDataset(Dataset):

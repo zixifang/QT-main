@@ -346,7 +346,7 @@ def export_dataset(data_dir: Path = DATA_DIR, out_dir: Path = OUT_DIR) -> Path:
     print(f"开始写入 {len(symbols)} 只成分股")
     for symbol in symbols:
         payload, year_maps, trade_maps = _symbol_payload(symbol, frames[symbol], factors, books)
-        _write_json(out_dir / f"{symbol}.json", payload)
+        _write_symbol_keeping_algorithms(out_dir / f"{symbol}.json", payload)
         for spec in PORTFOLIOS:
             for year, row in year_maps[spec["id"]].items():
                 overviews[spec["id"]].setdefault(year, {})[symbol] = row
@@ -398,7 +398,7 @@ def export_dataset(data_dir: Path = DATA_DIR, out_dir: Path = OUT_DIR) -> Path:
         "benchmark": {"id": INDEX_STEM, "name": BENCHMARK_NAME},
         "algorithms": algorithms,
     }
-    _write_json(out_dir / "index.json", index)
+    _write_index_keeping_algorithms(out_dir / "index.json", index)
     print(f"已写入 {out_dir.relative_to(ROOT).as_posix()}，{len(symbols)} 只，{len(PORTFOLIOS)} 个组合")
     return out_dir
 
@@ -1060,6 +1060,246 @@ def _write_merged_json(path: Path, payload: dict, catalog: bool = False) -> None
             algorithms.update(payload.get("algorithms") or {})
             payload = {**payload, "algorithms": algorithms}
     _write_json(path, payload)
+
+
+BENCH_ID = "BENCH"
+BENCH_NAME = "样本等权"
+BENCH_NOTE = (
+    "这组没有外部指数。基准是当天有行情的股票等权，单日涨跌超过 50% 的日子已记为 0。"
+    "七个组合的规则与纳斯达克100相同：只保留截面得分最高的 40%。"
+    "高波动对照在下一交易日开盘成交，其余在信号日收盘成交。"
+)
+
+
+def _write_symbol_keeping_algorithms(path: Path, payload: dict) -> None:
+    """日期一致时保留文件里的其他算法。日期变了就整份重写，避免旧曲线和日期错位。"""
+    if path.exists():
+        previous = json.loads(path.read_text(encoding="utf-8"))
+        if previous.get("dates") == payload.get("dates"):
+            algorithms = dict(previous.get("algorithms") or {})
+            algorithms.update(payload.get("algorithms") or {})
+            payload = {**payload, "algorithms": algorithms}
+    _write_json(path, payload)
+
+
+def _write_index_keeping_algorithms(path: Path, payload: dict) -> None:
+    if path.exists():
+        previous = json.loads(path.read_text(encoding="utf-8"))
+        fresh_ids = {item.get("id") for item in payload.get("algorithms") or []}
+        kept = [item for item in previous.get("algorithms") or [] if item.get("id") not in fresh_ids]
+        payload = {**payload, "algorithms": list(payload.get("algorithms") or []) + kept}
+    _write_json(path, payload)
+
+
+def _equal_weight_price(closes: pd.DataFrame, returns: pd.DataFrame) -> pd.Series:
+    """当天有前后收盘价的股票等权。收益已经去掉超过 50% 的跳变。"""
+    traded = closes.notna() & closes.shift(1).notna()
+    average = returns.where(traded).mean(axis=1).fillna(0.0)
+    average.iloc[0] = 0.0
+    price = (1.0 + average).cumprod()
+    price.name = "close"
+    return price
+
+
+def export_universe(data_dir: Path, dataset_id: str, dataset_name: str) -> Path:
+    """把七个组合写到任意行情目录。没有指数文件时，基准用样本等权。"""
+    from algorithms.rsi import load_frames
+
+    raw = load_frames(data_dir)
+    frames: dict[str, pd.DataFrame] = {}
+    for symbol, frame in raw.items():
+        if symbol in {INDEX_STEM, BENCH_ID}:
+            continue
+        indexed = frame.set_index("date").sort_index()
+        indexed = indexed.loc[~indexed.index.duplicated(keep="last")]
+        frames[symbol] = indexed
+    if not frames:
+        raise FileNotFoundError(f"没有可用的单只股票 CSV：{data_dir}")
+
+    out_dir = ROOT / "outdata" / dataset_id
+    out_dir.mkdir(parents=True, exist_ok=True)
+    index_path = out_dir / "index.json"
+    existing = json.loads(index_path.read_text(encoding="utf-8")) if index_path.exists() else None
+    if existing and existing.get("symbols"):
+        symbols = [symbol for symbol in existing["symbols"] if symbol in frames and symbol != BENCH_ID]
+        missing = [symbol for symbol in existing["symbols"] if symbol not in frames and symbol != BENCH_ID]
+        if missing:
+            print("缺少行情、沿用原文件：" + ", ".join(missing), flush=True)
+    else:
+        symbols = list(frames)
+    if not symbols:
+        raise FileNotFoundError(f"没有可写入的股票：{data_dir}")
+
+    calendar = pd.DatetimeIndex(sorted(set().union(*(set(frames[symbol].index) for symbol in symbols))))
+    closes = pd.DataFrame({symbol: frames[symbol]["close"] for symbol in symbols}).reindex(calendar)
+    volumes = _panel_field(frames, "volume", calendar)
+    opens = _panel_field(frames, "open", calendar)
+    highs = _panel_field(frames, "high", calendar)
+    lows = _panel_field(frames, "low", calendar)
+    asset = _cleaned_panel(closes)
+    benchmark_price = _equal_weight_price(closes, asset)
+    factors = build_factor_panels(closes, volumes, asset, opens, highs, lows)
+    books = {
+        spec["id"]: run_portfolio(
+            closes,
+            factors[spec["factor"]],
+            benchmark_price,
+            asset,
+            opens,
+            fee=float(spec["params"]["fee"]),
+            fill=str(spec.get("fill") or "close"),
+        )
+        for spec in PORTFOLIOS
+    }
+    _check_weights(books)
+
+    overviews = {spec["id"]: {} for spec in PORTFOLIOS}
+    trade_totals = {spec["id"]: {} for spec in PORTFOLIOS}
+    print(f"开始写入 {dataset_id}，{len(symbols)} 只", flush=True)
+    for number, symbol in enumerate(symbols, start=1):
+        view = frames[symbol].loc[frames[symbol]["close"].notna()]
+        path = out_dir / f"{symbol}.json"
+        if path.exists():
+            previous = json.loads(path.read_text(encoding="utf-8"))
+            previous_dates = previous.get("dates") or []
+            view_dates = [timestamp.strftime("%Y-%m-%d") for timestamp in view.index]
+            if previous_dates != view_dates:
+                view = frames[symbol].reindex(pd.to_datetime(previous_dates))
+                if view["close"].isna().any():
+                    raise ValueError(f"{symbol} 已有日期和行情对不齐")
+        payload, year_maps, trade_maps = _symbol_payload(symbol, view, factors, books)
+        payload["dataset_id"] = dataset_id
+        if path.exists():
+            if previous.get("dates") != payload.get("dates"):
+                raise ValueError(f"{symbol} 写入后的日期和原文件不一致")
+            stored = dict(previous.get("algorithms") or {})
+            stored.update(payload["algorithms"])
+            previous["algorithms"] = stored
+            _write_json(path, previous)
+        else:
+            _write_json(path, payload)
+        for spec in PORTFOLIOS:
+            for year, row in year_maps[spec["id"]].items():
+                overviews[spec["id"]].setdefault(year, {})[symbol] = row
+            for year, pair in trade_maps[spec["id"]].items():
+                bucket = trade_totals[spec["id"]].setdefault(year, [0, 0])
+                bucket[0] += pair[0]
+                bucket[1] += pair[1]
+        if number % 10 == 0 or number == len(symbols):
+            print(f"  {dataset_id} 已写入 {number}/{len(symbols)}", flush=True)
+
+    algorithms = []
+    for spec in PORTFOLIOS:
+        entry = {"id": spec["id"], "name": spec["name"], "note": spec["note"]}
+        entry["years"] = {
+            year: _overview_year(
+                symbols,
+                rows,
+                tuple(trade_totals[spec["id"]].get(year, (0, 0))),
+                books[spec["id"]]["return"].loc[books[spec["id"]]["return"].index.year == int(year)],
+                books[spec["id"]]["benchmark_return"].loc[books[spec["id"]]["benchmark_return"].index.year == int(year)],
+            )
+            for year, rows in sorted(overviews[spec["id"]].items())
+        }
+        algorithms.append(entry)
+        full_return = books[spec["id"]]["return"]
+        bench_return = books[spec["id"]]["benchmark_return"]
+        full = _describe_returns(full_return.to_numpy(dtype=float), (0, 0))
+        bench = _describe_returns(bench_return.to_numpy(dtype=float), (0, 0))
+        paired = _pair_stats(full_return, bench_return)
+        since = full_return.index >= pd.Timestamp(OOS_START)
+        reported = _pair_stats(full_return.loc[since], bench_return.loc[since])
+        print(
+            f"{spec['name']} 累计 {full['cumulative_return'] * 100:+.2f}%，"
+            f"等权基准 {bench['cumulative_return'] * 100:+.2f}%，"
+            f"可交易区间资金比 {paired['strategy'].get('wealth_ratio'):.2f}，"
+            f"贝塔 {paired['strategy'].get('beta'):.2f}，"
+            f"2021年以来资金比 {reported['strategy'].get('wealth_ratio'):.2f}，"
+            f"贝塔 {reported['strategy'].get('beta'):.2f}",
+            flush=True,
+        )
+
+    _write_json(
+        out_dir / f"{BENCH_ID}.json",
+        _benchmark_from_price(dataset_id, books, benchmark_price, BENCH_ID, BENCH_NAME, BENCH_NOTE),
+    )
+    if existing is None:
+        existing = {
+            "schema_version": SCHEMA_VERSION,
+            "dataset_id": dataset_id,
+            "name": dataset_name,
+            "source": data_dir.relative_to(ROOT).as_posix(),
+            "price_field": PRICE_FIELD,
+            "symbols": symbols,
+            "algorithms": [],
+        }
+    by_id = {item["id"]: item for item in existing.get("algorithms") or [] if item.get("id")}
+    order = [item["id"] for item in existing.get("algorithms") or [] if item.get("id")]
+    for item in algorithms:
+        if item["id"] not in by_id:
+            order.append(item["id"])
+        by_id[item["id"]] = item
+    existing["algorithms"] = [by_id[item_id] for item_id in order]
+    if not existing.get("benchmark"):
+        existing["benchmark"] = {"id": BENCH_ID, "name": BENCH_NAME}
+    _write_json(index_path, existing)
+    print(f"已写入 {out_dir.relative_to(ROOT).as_posix()}，{len(symbols)} 只，{len(PORTFOLIOS)} 个组合", flush=True)
+    return out_dir
+
+
+def _benchmark_from_price(
+    dataset_id: str,
+    books: dict[str, dict],
+    price: pd.Series,
+    symbol: str,
+    name: str,
+    note: str,
+) -> dict:
+    calendar = books[PORTFOLIOS[0]["id"]]["return"].index
+    close = price.reindex(calendar).astype("float64")
+    level = _equity(_stock_returns(close))
+    blank = pd.Series(np.nan, index=calendar)
+    dates = [timestamp.strftime("%Y-%m-%d") for timestamp in calendar]
+    algorithms = {}
+    for spec in PORTFOLIOS:
+        book = books[spec["id"]]
+        strategy = book["return"].reindex(calendar).fillna(0.0)
+        benchmark = book["benchmark_return"].reindex(calendar).fillna(0.0)
+        years = {}
+        for year in sorted(set(strategy.index.year)):
+            mask = strategy.index.year == int(year)
+            if bool(mask.any()):
+                years[str(int(year))] = _pair_stats(strategy.loc[mask], benchmark.loc[mask])
+        since = strategy.index >= pd.Timestamp(OOS_START)
+        algorithms[spec["id"]] = {
+            "id": spec["id"],
+            "name": spec["name"],
+            "note": spec["note"],
+            "params": {**spec["params"], "keep": WEIGHT_KEEP, "fill": spec.get("fill") or "close"},
+            "equity": _series(book["equity"].reindex(calendar)),
+            "benchmark_equity": _series(book["benchmark_equity"].reindex(calendar)),
+            "stats": _pair_stats(strategy, benchmark),
+            "stats_10y": _pair_stats(*_trailing(strategy, benchmark, 10)),
+            "stats_since_2021": _pair_stats(strategy.loc[since], benchmark.loc[since]),
+            "years": years,
+        }
+    return {
+        "schema_version": SCHEMA_VERSION,
+        "dataset_id": dataset_id,
+        "symbol": symbol,
+        "name": name,
+        "kind": "index",
+        "price_field": PRICE_FIELD,
+        "dates": dates,
+        "open": _series(blank),
+        "high": _series(blank),
+        "low": _series(blank),
+        "close": _series(close),
+        "return_index": _series(level),
+        "volume": _series(blank),
+        "universe_note": note,
+        "algorithms": algorithms,
+    }
 
 
 def main() -> None:
