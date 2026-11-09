@@ -473,6 +473,9 @@ def export_dataset(folder: Path) -> list[Path]:
     out_dir.mkdir(parents=True, exist_ok=True)
     ordered = [symbol for symbol in symbols if symbol in closes]
     for algo in algorithms:
+        if (out_dir / f"{algo}.json").exists():
+            print(f"已有 {folder.name}/paper/{algo}.json，跳过", flush=True)
+            continue
         frames = books[algo]
         names = [symbol for symbol in ordered if symbol in frames]
         if len(names) < 1:
